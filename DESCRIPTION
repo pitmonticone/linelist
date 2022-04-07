@@ -4,7 +4,12 @@ Version: 0.0.1
 Authors@R: 
     person("Thibaut", "Jombart", , "thibaut@data.org", role = c("aut", "cre"))
 Description: Provides tools to store and handle case line list data, including identification of key dates (e.g. onset, reporting, outcome) and other variables commonly reported during an outbreak (e.g. age, gender, location). 
-License: `use_mit_license()`
+License: MIT + file LICENSE
+URL: https://github.com/epiverse-trace/linelist
+BugReports: https://github.com/epiverse-trace/linelist/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Suggests: 
+    testthat,
+    covr
