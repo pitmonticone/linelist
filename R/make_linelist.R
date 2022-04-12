@@ -11,6 +11,30 @@
 #'
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
 #'   cases in rows and variables in columns
+#' 
+#' @param date_onset date of symptom onset
+#' 
+#' @param date_reporting date of case notification
+#' 
+#' @param date_admission date of hospital admission
+#' 
+#' @param date_discharge date of hospital discharge
+#' 
+#' @param date_outcome date of disease outcome
+#' 
+#' @param date_death date of death
+#' 
+#' @param gender the gender of the patient
+#' 
+#' @param age the age of the patient, in years
+#' 
+#' @param location the location of the patient
+#' 
+#' @param occupation the professional activity of the patient
+#' 
+#' @param hcw a logical indicating if the patient is a health care worker
+#' 
+#' @param outcome 
 #'
 #' @export
 #'

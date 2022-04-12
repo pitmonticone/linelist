@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_linelist.R
 \name{make_linelist}
 \alias{make_linelist}
-\title{Title of the function}
+\title{Create a linelist from a data.frame}
 \usage{
 make_linelist(x)
 }
@@ -14,7 +14,14 @@ cases in rows and variables in columns}
 The function returns a \code{linelist} object.
 }
 \description{
-A short description of what it does, the main inputs and outputs.
+This function converts a \code{data.frame} or a \code{tibble} to a \code{linelist} object,
+where different types of epidemiologically relevant data are tagged. This
+includes dates of different events (e.g. onset of symtpom, case reporting),
+information on the patient (e.g. age, gender, location) as well as other
+informations such as the type of case (e.g. confirmed, probable) or the
+outcome of the disease. The output will seem to be the same \code{data.frame}, but
+\code{linelist}-aware packages will then be able to automatically use tagged
+fields for further data cleaning and analysis.
 }
 \details{
 Some more information on the function
