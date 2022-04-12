@@ -1,6 +1,13 @@
-#' Title of the function
+#' Create a linelist from a data.frame
 #'
-#' A short description of what it does, the main inputs and outputs.
+#' This function converts a `data.frame` or a `tibble` to a `linelist` object,
+#' where different types of epidemiologically relevant data are tagged. This
+#' includes dates of different events (e.g. onset of symtpom, case reporting),
+#' information on the patient (e.g. age, gender, location) as well as other
+#' informations such as the type of case (e.g. confirmed, probable) or the
+#' outcome of the disease. The output will seem to be the same `data.frame`, but
+#' `linelist`-aware packages will then be able to automatically use tagged
+#' fields for further data cleaning and analysis.
 #'
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
 #'   cases in rows and variables in columns
@@ -24,5 +31,6 @@ make_linelist <- function(x) {
   # do stuff ...
 
   # shape output and return object
+  class(x) <- c(class(x), "linelist")
   x
 }
