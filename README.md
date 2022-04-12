@@ -21,7 +21,7 @@ replicating functionalities of the older package. However, the new
 package should be seen as a separate one, and will not aim to be
 backward compatible due to its change in scope.
 
-The development version of {linelist} can be installed from
+The development version of *linelist* can be installed from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -33,7 +33,7 @@ remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 
 ## linelist in a nutshell
 
-{linelist} is an R package which implements basic data representation
+*linelist* is an R package which implements basic data representation
 for case line lists, alongside accessors and basic methods. It relies on
 the idea that key fields of the linelist such as dates of events
 (e.g. reporting, symptom onset), age, gender, symptoms, outcome, or
