@@ -88,24 +88,22 @@ tags will be added</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Known variable types include:</p><ul><li><p>date_onset date of symptom onset (see below for date formats)</p></li>
-<li><p>date_reporting date of case notification (see below for date
-formats)</p></li>
-<li><p>date_admission date of hospital admission (see below for date
-formats)</p></li>
-<li><p>date_discharge date of hospital discharge (see below for date
-formats)</p></li>
-<li><p>date_outcome date of disease outcome (see below for date formats)</p></li>
-<li><p>date_death date of death (see below for date formats)</p></li>
-<li><p>gender a <code>factor</code> or <code>character</code> indicating the gender of the patient</p></li>
-<li><p>age a <code>numeric</code> indicating the age of the patient, in years</p></li>
-<li><p>location a <code>factor</code> or <code>character</code> indicating the location of the
+    <p>Known variable types include:</p><ul><li><p><code>id</code>: a unique case identifier as <code>numeric</code> or <code>character</code></p></li>
+<li><p><code>date_onset</code>: date of symptom onset (see below for date formats)</p></li>
+<li><p><code>date_reporting</code>: date of case notification (see below for date formats)</p></li>
+<li><p><code>date_admission</code>: date of hospital admission (see below for date formats)</p></li>
+<li><p><code>date_discharge</code>: date of hospital discharge (see below for date formats)</p></li>
+<li><p><code>date_outcome</code>: date of disease outcome (see below for date formats)</p></li>
+<li><p><code>date_death</code>: date of death (see below for date formats)</p></li>
+<li><p><code>gender</code>: a <code>factor</code> or <code>character</code> indicating the gender of the patient</p></li>
+<li><p><code>age</code>: a <code>numeric</code> indicating the age of the patient, in years</p></li>
+<li><p><code>location</code>: a <code>factor</code> or <code>character</code> indicating the location of the
 patient</p></li>
-<li><p>occupation a <code>factor</code> or <code>character</code> indicating the professional
+<li><p><code>occupation</code>: a <code>factor</code> or <code>character</code> indicating the professional
 activity of the patient</p></li>
-<li><p>hcw a <code>logical</code> indicating if the patient is a health care worker</p></li>
-<li><p>outcome a <code>factor</code> or <code>character</code> indicating the outcome of the
-disease (death or survival)</p></li>
+<li><p><code>hcw</code>: a <code>logical</code> indicating if the patient is a health care worker</p></li>
+<li><p><code>outcome</code>: a <code>factor</code> or <code>character</code> indicating the outcome of the disease
+(death or survival)</p></li>
 </ul><p>Dates can be provided in the following formats/types:</p><ul><li><p><code>Date</code> objects (e.g. using <code>as.Date</code> on a <code>character</code> with a correct date
 format); this is the recommended format</p></li>
 <li><p><code>POSIXct/POSIXlt</code> objects (when a finer scale than days is needed)</p></li>
@@ -125,6 +123,9 @@ format); this is the recommended format</p></li>
 <span class="r-in"><span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: outbreaks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $date_onset</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "date_of_prodrome"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
