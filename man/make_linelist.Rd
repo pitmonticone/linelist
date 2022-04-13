@@ -9,6 +9,30 @@ make_linelist(x)
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
 cases in rows and variables in columns}
+
+\item{date_onset}{date of symptom onset}
+
+\item{date_reporting}{date of case notification}
+
+\item{date_admission}{date of hospital admission}
+
+\item{date_discharge}{date of hospital discharge}
+
+\item{date_outcome}{date of disease outcome}
+
+\item{date_death}{date of death}
+
+\item{gender}{the gender of the patient}
+
+\item{age}{the age of the patient, in years}
+
+\item{location}{the location of the patient}
+
+\item{occupation}{the professional activity of the patient}
+
+\item{hcw}{a logical indicating if the patient is a health care worker}
+
+\item{outcome}{}
 }
 \value{
 The function returns a \code{linelist} object.

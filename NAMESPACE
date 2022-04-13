@@ -3,4 +3,3 @@
 export(make_linelist)
 export(tag_variable)
 export(template)
-export(var_types)
