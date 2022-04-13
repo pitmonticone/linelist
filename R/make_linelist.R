@@ -90,7 +90,7 @@ make_linelist <- function(x,
   # elsewhere.
   tags <- tags_defaults()
   
-  tags <- modify_defaults(tags, list(...), strict = allow_extra)
+  tags <- modify_defaults(tags, list(...), strict = !allow_extra)
 
   out <- x
   for (i in seq_along(tags)) {
