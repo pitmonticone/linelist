@@ -11,38 +11,50 @@
 #'
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
 #'   cases in rows and variables in columns
+#'
+#' @param ... a named `list` of variables to be tagged, where names indicate the
+#'   types of variable (to be selected from `tags_names()`), and values indicate
+#'   their name in the input `data.frame`; see details for a list of known
+#'   variable types and their expected content
+#'
+#' @param allow_extra a `logical` indicating if additional data types not
+#'   currently recognized by `linelist` should be allowed; if so, corresponding
+#'   tags will be added
+#'
+#' @details
+#' Known variable types include:
 #' 
-#' @param date_onset date of symptom onset (see details for date formats)
+#' * date_onset date of symptom onset (see below for date formats)
 #' 
-#' @param date_reporting date of case notification (see details for date
+#' * date_reporting date of case notification (see below for date
 #'   formats)
 #' 
-#' @param date_admission date of hospital admission (see details for date
+#' * date_admission date of hospital admission (see below for date
 #'   formats)
 #' 
-#' @param date_discharge date of hospital discharge (see details for date
+#' * date_discharge date of hospital discharge (see below for date
 #'   formats)
 #' 
-#' @param date_outcome date of disease outcome (see details for date formats)
+#' * date_outcome date of disease outcome (see below for date formats)
 #' 
-#' @param date_death date of death (see details for date formats)
+#' * date_death date of death (see below for date formats)
 #' 
-#' @param gender a `factor` or `character` indicating the gender of the patient
+#' * gender a `factor` or `character` indicating the gender of the patient
 #' 
-#' @param age a `numeric` indicating the age of the patient, in years
+#' * age a `numeric` indicating the age of the patient, in years
 #' 
-#' @param location a `factor` or `character` indicating the location of the
+#' * location a `factor` or `character` indicating the location of the
 #'   patient
 #' 
-#' @param occupation a `factor` or `character` indicating the professional
+#' * occupation a `factor` or `character` indicating the professional
 #'   activity of the patient
 #' 
-#' @param hcw a `logical` indicating if the patient is a health care worker
+#' * hcw a `logical` indicating if the patient is a health care worker
 #' 
-#' @param outcome a `factor` or `character` indicating the outcome of the
+#' * outcome a `factor` or `character` indicating the outcome of the
 #'   disease (death or survival)
 #'
-#' @details Dates can be provided in the following formats/types:
+#' Dates can be provided in the following formats/types:
 #'
 #' * `Date` objects (e.g. using `as.Date` on a `character` with a correct date
 #' format); this is the recommended format
@@ -57,8 +69,6 @@
 #'
 #' @return The function returns a `linelist` object.
 #'
-#' @details Some more information on the function
-#'
 #' @examples
 #' # basic use of the function
 #' if (require(outbreaks)) {
@@ -70,12 +80,19 @@
 #' 
 
 make_linelist <- function(x,
-                          ...) {
+                          ...,
+                          allow_extra = FALSE) {
   # assert inputs
 
   # do stuff ...
+  tags <- modify_defaults(tags_defaults(), list(...), strict = allow_extra)
 
+  out <- x
+  for (i in seq_along(tags)) {
+    out <- tag_variable(out, var_type = names(tags)[i], var_name = tags[i])
+  }
+  
   # shape output and return object
-  class(x) <- c(class(x), "linelist")
-  x
+  class(out) <- c(class(out), "linelist")
+  out
 }
