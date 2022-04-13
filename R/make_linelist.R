@@ -12,30 +12,45 @@
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
 #'   cases in rows and variables in columns
 #' 
-#' @param date_onset date of symptom onset
+#' @param date_onset date of symptom onset (see details for date formats)
 #' 
-#' @param date_reporting date of case notification
+#' @param date_reporting date of case notification (see details for date
+#'   formats)
 #' 
-#' @param date_admission date of hospital admission
+#' @param date_admission date of hospital admission (see details for date
+#'   formats)
 #' 
-#' @param date_discharge date of hospital discharge
+#' @param date_discharge date of hospital discharge (see details for date
+#'   formats)
 #' 
-#' @param date_outcome date of disease outcome
+#' @param date_outcome date of disease outcome (see details for date formats)
 #' 
-#' @param date_death date of death
+#' @param date_death date of death (see details for date formats)
 #' 
-#' @param gender the gender of the patient
+#' @param gender a `factor` or `character` indicating the gender of the patient
 #' 
-#' @param age the age of the patient, in years
+#' @param age a `numeric` indicating the age of the patient, in years
 #' 
-#' @param location the location of the patient
+#' @param location a `factor` or `character` indicating the location of the
+#'   patient
 #' 
-#' @param occupation the professional activity of the patient
+#' @param occupation a `factor` or `character` indicating the professional
+#'   activity of the patient
 #' 
-#' @param hcw a logical indicating if the patient is a health care worker
+#' @param hcw a `logical` indicating if the patient is a health care worker
 #' 
-#' @param outcome 
+#' @param outcome a `factor` or `character` indicating the outcome of the
+#'   disease (death or survival)
 #'
+#' @details Dates can be provided in the following formats/types:
+#'
+#' * `Date` objects (e.g. using `as.Date` on a `character` with a correct date
+#' format); this is the recommended format
+#'
+#' * `POSIXct/POSIXlt` objects (when a finer scale than days is needed)
+#'
+#' * `numeric` values, typically indicating the number of days since the first case
+#' 
 #' @export
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
@@ -46,10 +61,16 @@
 #'
 #' @examples
 #' # basic use of the function
-#' template(1)
+#' if (require(outbreaks)) {
+#' measles_hagelloch_1861
+#' x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+#' tags(x)
+#' }
+#' 
 #' 
 
-make_linelist <- function(x) {
+make_linelist <- function(x,
+                          ...) {
   # assert inputs
 
   # do stuff ...

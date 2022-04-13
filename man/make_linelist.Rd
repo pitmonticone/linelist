@@ -4,35 +4,41 @@
 \alias{make_linelist}
 \title{Create a linelist from a data.frame}
 \usage{
-make_linelist(x)
+make_linelist(x, ...)
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
 cases in rows and variables in columns}
 
-\item{date_onset}{date of symptom onset}
+\item{date_onset}{date of symptom onset (see details for date formats)}
 
-\item{date_reporting}{date of case notification}
+\item{date_reporting}{date of case notification (see details for date
+formats)}
 
-\item{date_admission}{date of hospital admission}
+\item{date_admission}{date of hospital admission (see details for date
+formats)}
 
-\item{date_discharge}{date of hospital discharge}
+\item{date_discharge}{date of hospital discharge (see details for date
+formats)}
 
-\item{date_outcome}{date of disease outcome}
+\item{date_outcome}{date of disease outcome (see details for date formats)}
 
-\item{date_death}{date of death}
+\item{date_death}{date of death (see details for date formats)}
 
-\item{gender}{the gender of the patient}
+\item{gender}{a \code{factor} or \code{character} indicating the gender of the patient}
 
-\item{age}{the age of the patient, in years}
+\item{age}{a \code{numeric} indicating the age of the patient, in years}
 
-\item{location}{the location of the patient}
+\item{location}{a \code{factor} or \code{character} indicating the location of the
+patient}
 
-\item{occupation}{the professional activity of the patient}
+\item{occupation}{a \code{factor} or \code{character} indicating the professional
+activity of the patient}
 
-\item{hcw}{a logical indicating if the patient is a health care worker}
+\item{hcw}{a \code{logical} indicating if the patient is a health care worker}
 
-\item{outcome}{}
+\item{outcome}{a \code{factor} or \code{character} indicating the outcome of the
+disease (death or survival)}
 }
 \value{
 The function returns a \code{linelist} object.
@@ -48,11 +54,24 @@ outcome of the disease. The output will seem to be the same \code{data.frame}, b
 fields for further data cleaning and analysis.
 }
 \details{
+Dates can be provided in the following formats/types:
+\itemize{
+\item \code{Date} objects (e.g. using \code{as.Date} on a \code{character} with a correct date
+format); this is the recommended format
+\item \code{POSIXct/POSIXlt} objects (when a finer scale than days is needed)
+\item \code{numeric} values, typically indicating the number of days since the first case
+}
+
 Some more information on the function
 }
 \examples{
 # basic use of the function
-template(1)
+if (require(outbreaks)) {
+measles_hagelloch_1861
+x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+tags(x)
+}
+
 
 }
 \author{

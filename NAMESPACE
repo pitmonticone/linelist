@@ -2,4 +2,6 @@
 
 export(make_linelist)
 export(tag_variable)
-export(template)
+export(tags)
+export(tags_defaults)
+export(tags_names)
