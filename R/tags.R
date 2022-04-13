@@ -9,9 +9,10 @@
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
-#' @return The function returns a ...
+#' @return The function returns a named `list` where names indicate generic
+#'   types of data, and values indicate which column they correspond to.
 #'
-#' @details Some more information on the function
+#' @details Tags are stored as the `tags` attribute of the object.
 #'
 #' @examples
 #' # basic use of the function

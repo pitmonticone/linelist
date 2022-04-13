@@ -23,36 +23,35 @@
 #'
 #' @details
 #' Known variable types include:
+#'
+#' * `id`: a unique case identifier as `numeric` or `character`
 #' 
-#' * date_onset date of symptom onset (see below for date formats)
+#' * `date_onset`: date of symptom onset (see below for date formats)
 #' 
-#' * date_reporting date of case notification (see below for date
-#'   formats)
+#' * `date_reporting`: date of case notification (see below for date formats)
 #' 
-#' * date_admission date of hospital admission (see below for date
-#'   formats)
+#' * `date_admission`: date of hospital admission (see below for date formats)
 #' 
-#' * date_discharge date of hospital discharge (see below for date
-#'   formats)
+#' * `date_discharge`: date of hospital discharge (see below for date formats)
 #' 
-#' * date_outcome date of disease outcome (see below for date formats)
+#' * `date_outcome`: date of disease outcome (see below for date formats)
 #' 
-#' * date_death date of death (see below for date formats)
+#' * `date_death`: date of death (see below for date formats)
 #' 
-#' * gender a `factor` or `character` indicating the gender of the patient
+#' * `gender`: a `factor` or `character` indicating the gender of the patient
 #' 
-#' * age a `numeric` indicating the age of the patient, in years
+#' * `age`: a `numeric` indicating the age of the patient, in years
 #' 
-#' * location a `factor` or `character` indicating the location of the
+#' * `location`: a `factor` or `character` indicating the location of the
 #'   patient
 #' 
-#' * occupation a `factor` or `character` indicating the professional
+#' * `occupation`: a `factor` or `character` indicating the professional
 #'   activity of the patient
 #' 
-#' * hcw a `logical` indicating if the patient is a health care worker
+#' * `hcw`: a `logical` indicating if the patient is a health care worker
 #' 
-#' * outcome a `factor` or `character` indicating the outcome of the
-#'   disease (death or survival)
+#' * `outcome`: a `factor` or `character` indicating the outcome of the disease
+#'   (death or survival)
 #'
 #' Dates can be provided in the following formats/types:
 #'
@@ -84,7 +83,8 @@ make_linelist <- function(x,
                           allow_extra = FALSE) {
   # assert inputs
   checkmate::assertDataFrame(x, min.cols = 1)
-
+  checkmate::assertLogical(allow_extra)
+  
   # The approach is to replace default values with user-provided ones, and then
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.

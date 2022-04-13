@@ -35,24 +35,22 @@ fields for further data cleaning and analysis.
 \details{
 Known variable types include:
 \itemize{
-\item date_onset date of symptom onset (see below for date formats)
-\item date_reporting date of case notification (see below for date
-formats)
-\item date_admission date of hospital admission (see below for date
-formats)
-\item date_discharge date of hospital discharge (see below for date
-formats)
-\item date_outcome date of disease outcome (see below for date formats)
-\item date_death date of death (see below for date formats)
-\item gender a \code{factor} or \code{character} indicating the gender of the patient
-\item age a \code{numeric} indicating the age of the patient, in years
-\item location a \code{factor} or \code{character} indicating the location of the
+\item \code{id}: a unique case identifier as \code{numeric} or \code{character}
+\item \code{date_onset}: date of symptom onset (see below for date formats)
+\item \code{date_reporting}: date of case notification (see below for date formats)
+\item \code{date_admission}: date of hospital admission (see below for date formats)
+\item \code{date_discharge}: date of hospital discharge (see below for date formats)
+\item \code{date_outcome}: date of disease outcome (see below for date formats)
+\item \code{date_death}: date of death (see below for date formats)
+\item \code{gender}: a \code{factor} or \code{character} indicating the gender of the patient
+\item \code{age}: a \code{numeric} indicating the age of the patient, in years
+\item \code{location}: a \code{factor} or \code{character} indicating the location of the
 patient
-\item occupation a \code{factor} or \code{character} indicating the professional
+\item \code{occupation}: a \code{factor} or \code{character} indicating the professional
 activity of the patient
-\item hcw a \code{logical} indicating if the patient is a health care worker
-\item outcome a \code{factor} or \code{character} indicating the outcome of the
-disease (death or survival)
+\item \code{hcw}: a \code{logical} indicating if the patient is a health care worker
+\item \code{outcome}: a \code{factor} or \code{character} indicating the outcome of the disease
+(death or survival)
 }
 
 Dates can be provided in the following formats/types:

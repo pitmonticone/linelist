@@ -10,14 +10,15 @@ tags(x)
 \item{x}{a \code{linelist} object}
 }
 \value{
-The function returns a ...
+The function returns a named \code{list} where names indicate generic
+types of data, and values indicate which column they correspond to.
 }
 \description{
 This function returns the list of tags identifying specific variable types in
 a \code{linelist}.
 }
 \details{
-Some more information on the function
+Tags are stored as the \code{tags} attribute of the object.
 }
 \examples{
 # basic use of the function

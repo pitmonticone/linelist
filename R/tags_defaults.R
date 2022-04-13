@@ -14,6 +14,7 @@
 
 tags_defaults <- function() {
   list(
+    id = NULL,
     date_onset = NULL,
     date_reporting = NULL,
     date_admission = NULL,
