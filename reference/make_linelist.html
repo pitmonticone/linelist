@@ -64,7 +64,7 @@ fields for further data cleaning and analysis.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_linelist</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_linelist</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -73,29 +73,35 @@ fields for further data cleaning and analysis.</p>
 <dd><p>a <code>data.frame</code> or a <code>tibble</code> containing case line list data, with
 cases in rows and variables in columns</p></dd>
 <dt>date_onset</dt>
-<dd><p>date of symptom onset</p></dd>
+<dd><p>date of symptom onset (see details for date formats)</p></dd>
 <dt>date_reporting</dt>
-<dd><p>date of case notification</p></dd>
+<dd><p>date of case notification (see details for date
+formats)</p></dd>
 <dt>date_admission</dt>
-<dd><p>date of hospital admission</p></dd>
+<dd><p>date of hospital admission (see details for date
+formats)</p></dd>
 <dt>date_discharge</dt>
-<dd><p>date of hospital discharge</p></dd>
+<dd><p>date of hospital discharge (see details for date
+formats)</p></dd>
 <dt>date_outcome</dt>
-<dd><p>date of disease outcome</p></dd>
+<dd><p>date of disease outcome (see details for date formats)</p></dd>
 <dt>date_death</dt>
-<dd><p>date of death</p></dd>
+<dd><p>date of death (see details for date formats)</p></dd>
 <dt>gender</dt>
-<dd><p>the gender of the patient</p></dd>
+<dd><p>a <code>factor</code> or <code>character</code> indicating the gender of the patient</p></dd>
 <dt>age</dt>
-<dd><p>the age of the patient, in years</p></dd>
+<dd><p>a <code>numeric</code> indicating the age of the patient, in years</p></dd>
 <dt>location</dt>
-<dd><p>the location of the patient</p></dd>
+<dd><p>a <code>factor</code> or <code>character</code> indicating the location of the
+patient</p></dd>
 <dt>occupation</dt>
-<dd><p>the professional activity of the patient</p></dd>
+<dd><p>a <code>factor</code> or <code>character</code> indicating the professional
+activity of the patient</p></dd>
 <dt>hcw</dt>
-<dd><p>a logical indicating if the patient is a health care worker</p></dd>
+<dd><p>a <code>logical</code> indicating if the patient is a health care worker</p></dd>
 <dt>outcome</dt>
-<dd></dd>
+<dd><p>a <code>factor</code> or <code>character</code> indicating the outcome of the
+disease (death or survival)</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -103,7 +109,11 @@ cases in rows and variables in columns</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Some more information on the function</p>
+    <p>Dates can be provided in the following formats/types:</p><ul><li><p><code>Date</code> objects (e.g. using <code>as.Date</code> on a <code>character</code> with a correct date
+format); this is the recommended format</p></li>
+<li><p><code>POSIXct/POSIXlt</code> objects (when a finer scale than days is needed)</p></li>
+<li><p><code>numeric</code> values, typically indicating the number of days since the first case</p></li>
+</ul><p>Some more information on the function</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -113,8 +123,14 @@ cases in rows and variables in columns</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># basic use of the function</span></span>
-<span class="r-in"><span class="fu"><a href="template.html">template</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="va">measles_hagelloch_1861</span></span>
+<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">make_linelist</span><span class="op">(</span><span class="va">measles_hagelloch_1861</span>, date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">}</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: outbreaks</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>there is no package called ‘outbreaks’</span>
+<span class="r-in"></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

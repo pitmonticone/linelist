@@ -25,6 +25,12 @@
     <loc>/reference/tag_variable.html</loc>
   </url>
   <url>
-    <loc>/reference/template.html</loc>
+    <loc>/reference/tags.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tags_defaults.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tags_names.html</loc>
   </url>
 </urlset>
