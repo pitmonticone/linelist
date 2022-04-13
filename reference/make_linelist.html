@@ -64,7 +64,7 @@ fields for further data cleaning and analysis.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_linelist</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_linelist</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, allow_extra <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,36 +72,15 @@ fields for further data cleaning and analysis.</p>
     <dl><dt>x</dt>
 <dd><p>a <code>data.frame</code> or a <code>tibble</code> containing case line list data, with
 cases in rows and variables in columns</p></dd>
-<dt>date_onset</dt>
-<dd><p>date of symptom onset (see details for date formats)</p></dd>
-<dt>date_reporting</dt>
-<dd><p>date of case notification (see details for date
-formats)</p></dd>
-<dt>date_admission</dt>
-<dd><p>date of hospital admission (see details for date
-formats)</p></dd>
-<dt>date_discharge</dt>
-<dd><p>date of hospital discharge (see details for date
-formats)</p></dd>
-<dt>date_outcome</dt>
-<dd><p>date of disease outcome (see details for date formats)</p></dd>
-<dt>date_death</dt>
-<dd><p>date of death (see details for date formats)</p></dd>
-<dt>gender</dt>
-<dd><p>a <code>factor</code> or <code>character</code> indicating the gender of the patient</p></dd>
-<dt>age</dt>
-<dd><p>a <code>numeric</code> indicating the age of the patient, in years</p></dd>
-<dt>location</dt>
-<dd><p>a <code>factor</code> or <code>character</code> indicating the location of the
-patient</p></dd>
-<dt>occupation</dt>
-<dd><p>a <code>factor</code> or <code>character</code> indicating the professional
-activity of the patient</p></dd>
-<dt>hcw</dt>
-<dd><p>a <code>logical</code> indicating if the patient is a health care worker</p></dd>
-<dt>outcome</dt>
-<dd><p>a <code>factor</code> or <code>character</code> indicating the outcome of the
-disease (death or survival)</p></dd>
+<dt>...</dt>
+<dd><p>a named <code>list</code> of variables to be tagged, where names indicate the
+types of variable (to be selected from <code><a href="tags_names.html">tags_names()</a></code>), and values indicate
+their name in the input <code>data.frame</code>; see details for a list of known
+variable types and their expected content</p></dd>
+<dt>allow_extra</dt>
+<dd><p>a <code>logical</code> indicating if additional data types not
+currently recognized by <code>linelist</code> should be allowed; if so, corresponding
+tags will be added</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -109,12 +88,29 @@ disease (death or survival)</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Dates can be provided in the following formats/types:</p><ul><li><p><code>Date</code> objects (e.g. using <code>as.Date</code> on a <code>character</code> with a correct date
+    <p>Known variable types include:</p><ul><li><p>date_onset date of symptom onset (see below for date formats)</p></li>
+<li><p>date_reporting date of case notification (see below for date
+formats)</p></li>
+<li><p>date_admission date of hospital admission (see below for date
+formats)</p></li>
+<li><p>date_discharge date of hospital discharge (see below for date
+formats)</p></li>
+<li><p>date_outcome date of disease outcome (see below for date formats)</p></li>
+<li><p>date_death date of death (see below for date formats)</p></li>
+<li><p>gender a <code>factor</code> or <code>character</code> indicating the gender of the patient</p></li>
+<li><p>age a <code>numeric</code> indicating the age of the patient, in years</p></li>
+<li><p>location a <code>factor</code> or <code>character</code> indicating the location of the
+patient</p></li>
+<li><p>occupation a <code>factor</code> or <code>character</code> indicating the professional
+activity of the patient</p></li>
+<li><p>hcw a <code>logical</code> indicating if the patient is a health care worker</p></li>
+<li><p>outcome a <code>factor</code> or <code>character</code> indicating the outcome of the
+disease (death or survival)</p></li>
+</ul><p>Dates can be provided in the following formats/types:</p><ul><li><p><code>Date</code> objects (e.g. using <code>as.Date</code> on a <code>character</code> with a correct date
 format); this is the recommended format</p></li>
 <li><p><code>POSIXct/POSIXlt</code> objects (when a finer scale than days is needed)</p></li>
 <li><p><code>numeric</code> values, typically indicating the number of days since the first case</p></li>
-</ul><p>Some more information on the function</p>
-    </div>
+</ul></div>
     <div id="author">
     <h2>Author</h2>
     <p>Thibaut Jombart <a href="thibaut@data.org">thibaut@data.org</a></p>
@@ -129,7 +125,42 @@ format); this is the recommended format</p></li>
 <span class="r-in"><span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: outbreaks</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>there is no package called ‘outbreaks’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $date_onset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "date_of_prodrome"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $date_reporting</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $date_admission</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $date_discharge</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $date_outcome</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $date_death</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $gender</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $age</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $location</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $occupation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hcw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $outcome</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"></span>
 <span class="r-in"></span>
 </code></pre></div>
