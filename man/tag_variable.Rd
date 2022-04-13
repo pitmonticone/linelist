@@ -25,11 +25,6 @@ adding a named attribute identifying the column name.
 \details{
 If used several times, the previous tag is removed silently.
 }
-\examples{
-# basic use of the function
-template(1)
-
-}
 \author{
 Thibaut Jombart \url{thibaut@data.org}
 }

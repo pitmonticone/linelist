@@ -4,41 +4,20 @@
 \alias{make_linelist}
 \title{Create a linelist from a data.frame}
 \usage{
-make_linelist(x, ...)
+make_linelist(x, ..., allow_extra = FALSE)
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
 cases in rows and variables in columns}
 
-\item{date_onset}{date of symptom onset (see details for date formats)}
+\item{...}{a named \code{list} of variables to be tagged, where names indicate the
+types of variable (to be selected from \code{tags_names()}), and values indicate
+their name in the input \code{data.frame}; see details for a list of known
+variable types and their expected content}
 
-\item{date_reporting}{date of case notification (see details for date
-formats)}
-
-\item{date_admission}{date of hospital admission (see details for date
-formats)}
-
-\item{date_discharge}{date of hospital discharge (see details for date
-formats)}
-
-\item{date_outcome}{date of disease outcome (see details for date formats)}
-
-\item{date_death}{date of death (see details for date formats)}
-
-\item{gender}{a \code{factor} or \code{character} indicating the gender of the patient}
-
-\item{age}{a \code{numeric} indicating the age of the patient, in years}
-
-\item{location}{a \code{factor} or \code{character} indicating the location of the
-patient}
-
-\item{occupation}{a \code{factor} or \code{character} indicating the professional
-activity of the patient}
-
-\item{hcw}{a \code{logical} indicating if the patient is a health care worker}
-
-\item{outcome}{a \code{factor} or \code{character} indicating the outcome of the
-disease (death or survival)}
+\item{allow_extra}{a \code{logical} indicating if additional data types not
+currently recognized by \code{linelist} should be allowed; if so, corresponding
+tags will be added}
 }
 \value{
 The function returns a \code{linelist} object.
@@ -54,6 +33,28 @@ outcome of the disease. The output will seem to be the same \code{data.frame}, b
 fields for further data cleaning and analysis.
 }
 \details{
+Known variable types include:
+\itemize{
+\item date_onset date of symptom onset (see below for date formats)
+\item date_reporting date of case notification (see below for date
+formats)
+\item date_admission date of hospital admission (see below for date
+formats)
+\item date_discharge date of hospital discharge (see below for date
+formats)
+\item date_outcome date of disease outcome (see below for date formats)
+\item date_death date of death (see below for date formats)
+\item gender a \code{factor} or \code{character} indicating the gender of the patient
+\item age a \code{numeric} indicating the age of the patient, in years
+\item location a \code{factor} or \code{character} indicating the location of the
+patient
+\item occupation a \code{factor} or \code{character} indicating the professional
+activity of the patient
+\item hcw a \code{logical} indicating if the patient is a health care worker
+\item outcome a \code{factor} or \code{character} indicating the outcome of the
+disease (death or survival)
+}
+
 Dates can be provided in the following formats/types:
 \itemize{
 \item \code{Date} objects (e.g. using \code{as.Date} on a \code{character} with a correct date
@@ -61,8 +62,6 @@ format); this is the recommended format
 \item \code{POSIXct/POSIXlt} objects (when a finer scale than days is needed)
 \item \code{numeric} values, typically indicating the number of days since the first case
 }
-
-Some more information on the function
 }
 \examples{
 # basic use of the function

@@ -19,10 +19,6 @@
 #'
 #' @details If used several times, the previous tag is removed silently.
 #'
-#' @examples
-#' # basic use of the function
-#' template(1)
-#' 
 
 tag_variable <- function(x, var_type, var_name) {
 
