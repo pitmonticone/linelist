@@ -29,4 +29,7 @@ test_that("tests for tag_variable", {
   x <- tag_variable(x, var_type = "speed", var_name = 1)
   expect_identical(attr(x, "tags"), list(distance = "dist", speed = "speed"))
 
+  x <- tag_variable(x, var_type = "speed") # reset to NULL
+  expect_identical(attr(x, "tags"), list(distance = "dist", speed = NULL))
+  
 })

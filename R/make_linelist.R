@@ -83,16 +83,22 @@ make_linelist <- function(x,
                           ...,
                           allow_extra = FALSE) {
   # assert inputs
+  checkmate::assertDataFrame(x, min.cols = 1)
 
-  # do stuff ...
-  tags <- modify_defaults(tags_defaults(), list(...), strict = allow_extra)
+  # The approach is to replace default values with user-provided ones, and then
+  # tag each variable in turn. Validation the tagged variables is done
+  # elsewhere.
+  tags <- tags_defaults()
+  
+  tags <- modify_defaults(tags, list(...), strict = allow_extra)
 
   out <- x
   for (i in seq_along(tags)) {
-    out <- tag_variable(out, var_type = names(tags)[i], var_name = tags[i])
+    out <- tag_variable(out, var_type = names(tags)[i], var_name = tags[[i]])
   }
   
   # shape output and return object
   class(out) <- c(class(out), "linelist")
   out
+  
 }
