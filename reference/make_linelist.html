@@ -73,10 +73,12 @@ fields for further data cleaning and analysis.</p>
 <dd><p>a <code>data.frame</code> or a <code>tibble</code> containing case line list data, with
 cases in rows and variables in columns</p></dd>
 <dt>...</dt>
-<dd><p>a named <code>list</code> of variables to be tagged, where names indicate the
-types of variable (to be selected from <code><a href="tags_names.html">tags_names()</a></code>), and values indicate
-their name in the input <code>data.frame</code>; see details for a list of known
-variable types and their expected content</p></dd>
+<dd><p>a series of tags provided as <code>tag_name = column_name</code>, where
+<code>tag_name</code> indicates any of the known variables listed in 'Details';
+alternatively, a named <code>list</code> of variables to be tagged, where names
+indicate the types of variable (to be selected from <code><a href="tags_names.html">tags_names()</a></code>), and
+values indicate their name in the input <code>data.frame</code>; see details for a
+list of known variable types and their expected content</p></dd>
 <dt>allow_extra</dt>
 <dd><p>a <code>logical</code> indicating if additional data types not
 currently recognized by <code>linelist</code> should be allowed; if so, corresponding
