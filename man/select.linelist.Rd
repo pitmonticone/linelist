@@ -7,7 +7,10 @@
 \method{select}{linelist}(.data, ...)
 }
 \arguments{
-\item{x}{a \code{linelist} object}
+\item{.data}{a \code{linelist} object}
+
+\item{...}{the variables to select, either using their column names, or tag
+names (or a mixture)}
 }
 \value{
 The function returns a \code{linelist} with selected columns.

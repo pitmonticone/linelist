@@ -3,7 +3,10 @@
 #' This function works similarly to `dplyr::select` but can in addition refer to
 #' tagged variables.
 #'
-#' @param x a `linelist` object
+#' @param .data a `linelist` object
+#'
+#' @param ... the variables to select, either using their column names, or tag
+#'   names (or a mixture)
 #'
 #' @exportS3Method dplyr::select
 #'

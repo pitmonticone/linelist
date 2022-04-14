@@ -91,8 +91,9 @@ make_linelist <- function(x,
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.
   tags <- tags_defaults()
+
   args <- list(...)
-  if (is.list(args[[1]])) {
+  if (length(args) && is.list(args[[1]])) {
     args <- args[[1]]
   }
   
