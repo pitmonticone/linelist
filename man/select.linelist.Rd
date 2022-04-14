@@ -4,13 +4,17 @@
 \alias{select.linelist}
 \title{subset columns of a linelist object}
 \usage{
-\method{select}{linelist}(.data, ...)
+\method{select}{linelist}(.data, ..., warn = TRUE)
 }
 \arguments{
 \item{.data}{a \code{linelist} object}
 
 \item{...}{the variables to select, either using their column names, or tag
 names (or a mixture)}
+
+\item{warn}{a \code{logical} indicating if a warning should be issued if some
+tagged variables have been lost by the \code{select} operation; defaults to
+\code{TRUE}}
 }
 \value{
 The function returns a \code{linelist} with selected columns.
@@ -18,15 +22,6 @@ The function returns a \code{linelist} with selected columns.
 \description{
 This function works similarly to \code{dplyr::select} but can in addition refer to
 tagged variables.
-}
-\examples{
-# basic use of the function
-if (require(outbreaks)) {
-measles_hagelloch_1861
-x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
-tags(x)
-}
-
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

@@ -4,10 +4,14 @@
 \alias{tags}
 \title{Get the list of tags in a linelist}
 \usage{
-tags(x)
+tags(x, show_null = FALSE)
 }
 \arguments{
 \item{x}{a \code{linelist} object}
+
+\item{show_null}{a \code{logical} indicating if the complete list of tags,
+including \code{NULL} ones, should be returned; if \code{FALSE}, only tags with a
+non-NULL value are returned; defaults to \code{FALSE}}
 }
 \value{
 The function returns a named \code{list} where names indicate generic
@@ -26,6 +30,7 @@ if (require(outbreaks)) {
 measles_hagelloch_1861
 x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
 tags(x)
+tags(x, TRUE)
 }
 
 }

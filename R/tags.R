@@ -24,6 +24,7 @@
 #' measles_hagelloch_1861
 #' x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
 #' tags(x)
+#' tags(x, TRUE)
 #' }
 #' 
 

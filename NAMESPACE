@@ -2,6 +2,7 @@
 
 S3method(dplyr::select,linelist)
 export(make_linelist)
+export(prune_tags)
 export(set_tags)
 export(tag_variable)
 export(tags)

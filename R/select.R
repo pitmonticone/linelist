@@ -8,22 +8,18 @@
 #' @param ... the variables to select, either using their column names, or tag
 #'   names (or a mixture)
 #'
+#' @param warn a `logical` indicating if a warning should be issued if some
+#'   tagged variables have been lost by the `select` operation; defaults to
+#'   `TRUE`
+#'
 #' @exportS3Method dplyr::select
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
 #' @return The function returns a `linelist` with selected columns.
-#'
-#' @examples
-#' # basic use of the function
-#' if (require(outbreaks)) {
-#' measles_hagelloch_1861
-#' x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
-#' tags(x)
-#' }
 #' 
 
-select.linelist <- function(.data, ...) {
+select.linelist <- function(.data, ..., warn = TRUE) {
   # Strategy
   # --------
   # We want to be able to select variables by their original names or
@@ -32,12 +28,13 @@ select.linelist <- function(.data, ...) {
   # after removing the linelist class from the object. Tags are re-added to the
   # object. And tag whose variable has been removed is removed too.
   x <- .data
-  tags <- unlist(tags(x))
+  tags <- unlist(tags(x, TRUE))
   tags_df <- x[tags]
   names(tags_df) <- names(tags)
-  full_df <- drop_linelist(cbind(tags_df, x))
+  full_df <- drop_linelist(cbind(x, tags_df))
 
   out <- select(full_df, ...)
   class(out) <- c("linelist", class(out))
+  out <- prune_tags(out, warn = warn)
   out
 }

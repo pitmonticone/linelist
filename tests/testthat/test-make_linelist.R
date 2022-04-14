@@ -14,7 +14,7 @@ test_that("tests for make_linelist", {
   expect_error(make_linelist(cars, foo = "speed", allow_extra = FALSE), msg, fixed = TRUE)
   
   # test functionalities
-  expect_identical(tags_defaults(), tags(make_linelist(cars)))
+  expect_identical(tags_defaults(), tags(make_linelist(cars), TRUE))
 
   x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
   expect_identical(tags(x)$date_onset, "dist")
@@ -23,5 +23,5 @@ test_that("tests for make_linelist", {
   expect_null(tags(x)$date_reporting)
 
   x <- make_linelist(cars, foo = "speed", bar = "dist", allow_extra = TRUE)
-  expect_identical(tags(x), c(tags_defaults(), foo = "speed", bar = "dist"))
+  expect_identical(tags(x, TRUE), c(tags_defaults(), foo = "speed", bar = "dist"))
 })

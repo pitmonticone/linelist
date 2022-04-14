@@ -1,10 +1,13 @@
-test_that("tests for drop_linelist", {
+test_that("tests for prune_tags", {
 
-  # Check functionality
-  x <- make_linelist(cars)
-  drop_x <- drop_linelist(x)
-  expect_identical(class(drop_x), "data.frame")
-  expect_identical(tags(x), attr(drop_x, "tags"))
-  expect_null(attr(drop_linelist(x, TRUE), "tags"))
+  x <- make_linelist(cars, age = "speed")
+  names(x) <- c("toto", "titi")
+
+  # Check warnings
+  msg <- "The following tags have lost their variable:\n age->speed"
+  expect_warning(prune_tags(x, TRUE), msg)
   
+  # Check functionality
+  expect_length(tags(prune_tags(x, FALSE)), 0)
+    
 })
