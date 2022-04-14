@@ -5,6 +5,10 @@
 #'
 #' @param x a `linelist` object
 #'
+#' @param show_null a `logical` indicating if the complete list of tags,
+#'   including `NULL` ones, should be returned; if `FALSE`, only tags with a
+#'   non-NULL value are returned; defaults to `FALSE`
+#' 
 #' @export
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
@@ -23,7 +27,12 @@
 #' }
 #' 
 
-tags <- function(x) {
+tags <- function(x, show_null = FALSE) {
   checkmate::assertClass(x, "linelist")
-  attr(x, "tags")
+  out <- attr(x, "tags")
+  if (!show_null) {
+    to_remove <- vapply(out, is.null, logical(1))
+    out <- out[!to_remove]
+  }
+  out
 }
