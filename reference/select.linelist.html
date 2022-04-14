@@ -53,7 +53,7 @@ tagged variables.</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for linelist</span>
-<span class="fu">select</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<span class="fu">select</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, warn <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,6 +63,10 @@ tagged variables.</p>
 <dt>...</dt>
 <dd><p>the variables to select, either using their column names, or tag
 names (or a mixture)</p></dd>
+<dt>warn</dt>
+<dd><p>a <code>logical</code> indicating if a warning should be issued if some
+tagged variables have been lost by the <code>select</code> operation; defaults to
+<code>TRUE</code></p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -73,20 +77,6 @@ names (or a mixture)</p></dd>
     <p>Thibaut Jombart <a href="thibaut@data.org">thibaut@data.org</a></p>
     </div>
 
-    <div id="ref-examples">
-    <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># basic use of the function</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">measles_hagelloch_1861</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span>, date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $date_onset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "date_of_prodrome"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-</code></pre></div>
-    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
