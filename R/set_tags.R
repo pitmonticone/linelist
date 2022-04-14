@@ -38,6 +38,12 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
   final_tags <- modify_defaults(defaults, old_tags, strict = !allow_extra)
   final_tags <- modify_defaults(old_tags, new_tags, strict = !allow_extra)
 
-  attr(x, "tags") <- final_tags
-  x
+  out <- x
+  for (i in seq_along(final_tags)) {
+    out <- tag_variable(out,
+                        var_type = names(final_tags)[i],
+                        var_name = final_tags[[i]])
+  }
+ 
+  out
 }

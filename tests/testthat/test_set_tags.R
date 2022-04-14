@@ -9,6 +9,10 @@ test_that("tests for se_tags", {
   msg <- "Unknown variable types: toto\n  Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
   expect_error(set_tags(x, toto = 1), msg, fixed = TRUE)
 
+  msg <- "Assertion on 'var_name' failed: Must be element of set \\{'speed','dist'\\}, but is 'toto'."
+  expect_error(set_tags(x, outcome = "toto"), msg)
+
+  
   # Check functionality
   expect_identical(x, set_tags(x))
   x <- set_tags(x, date_reporting = "speed")
