@@ -10,10 +10,12 @@ set_tags(x, ..., allow_extra = FALSE)
 \item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
 cases in rows and variables in columns}
 
-\item{...}{a named \code{list} of variables to be tagged, where names indicate the
-types of variable (to be selected from \code{tags_names()}), and values indicate
-their name in the input \code{data.frame}; see details for a list of known
-variable types and their expected content}
+\item{...}{a series of tags provided as \code{tag_name = column_name}, where
+\code{tag_name} indicates any of the known variables listed in 'Details';
+alternatively, a named \code{list} of variables to be tagged, where names
+indicate the types of variable (to be selected from \code{tags_names()}), and
+values indicate their name in the input \code{data.frame}; see details for a
+list of known variable types and their expected content}
 
 \item{allow_extra}{a \code{logical} indicating if additional data types not
 currently recognized by \code{linelist} should be allowed; if so, corresponding

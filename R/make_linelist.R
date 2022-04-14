@@ -12,10 +12,12 @@
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
 #'   cases in rows and variables in columns
 #'
-#' @param ... a named `list` of variables to be tagged, where names indicate the
-#'   types of variable (to be selected from `tags_names()`), and values indicate
-#'   their name in the input `data.frame`; see details for a list of known
-#'   variable types and their expected content
+#' @param ... a series of tags provided as `tag_name = column_name`, where
+#'   `tag_name` indicates any of the known variables listed in 'Details';
+#'   alternatively, a named `list` of variables to be tagged, where names
+#'   indicate the types of variable (to be selected from `tags_names()`), and
+#'   values indicate their name in the input `data.frame`; see details for a
+#'   list of known variable types and their expected content
 #'
 #' @param allow_extra a `logical` indicating if additional data types not
 #'   currently recognized by `linelist` should be allowed; if so, corresponding
@@ -89,8 +91,12 @@ make_linelist <- function(x,
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.
   tags <- tags_defaults()
+  args <- list(...)
+  if (is.list(args[[1]])) {
+    args <- args[[1]]
+  }
   
-  tags <- modify_defaults(tags, list(...), strict = !allow_extra)
+  tags <- modify_defaults(tags, args, strict = !allow_extra)
 
   out <- x
   for (i in seq_along(tags)) {
@@ -98,7 +104,7 @@ make_linelist <- function(x,
   }
   
   # shape output and return object
-  class(out) <- c(class(out), "linelist")
+  class(out) <- c("linelist", class(out))
   out
   
 }

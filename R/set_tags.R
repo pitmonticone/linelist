@@ -34,7 +34,10 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
   old_tags <- attr(x, "tags")
   defaults <- tags_defaults()
   new_tags <- list(...)
-  
+  if (is.list(new_tags[[1]])) {
+    new_tags <- new_tags[[1]]
+  }
+
   final_tags <- modify_defaults(defaults, old_tags, strict = !allow_extra)
   final_tags <- modify_defaults(old_tags, new_tags, strict = !allow_extra)
 
