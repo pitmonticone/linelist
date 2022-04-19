@@ -2,9 +2,48 @@
 % Please edit documentation in R/select.R
 \name{select.linelist}
 \alias{select.linelist}
+\alias{select_id}
+\alias{select_date_onset}
+\alias{select_date_reporting}
+\alias{select_date_admission}
+\alias{select_date_discharge}
+\alias{select_date_outcome}
+\alias{select_date_death}
+\alias{select_gender}
+\alias{select_age}
+\alias{select_location}
+\alias{select_occupation}
+\alias{select_hcw}
+\alias{select_outcome}
 \title{subset columns of a linelist object}
 \usage{
 \method{select}{linelist}(.data, ..., warn = TRUE)
+
+select_id(x)
+
+select_date_onset(x)
+
+select_date_reporting(x)
+
+select_date_admission(x)
+
+select_date_discharge(x)
+
+select_date_outcome(x)
+
+select_date_death(x)
+
+select_gender(x)
+
+select_age(x)
+
+select_location(x)
+
+select_occupation(x)
+
+select_hcw(x)
+
+select_outcome(x)
 }
 \arguments{
 \item{.data}{a \code{linelist} object}
@@ -15,6 +54,8 @@ names (or a mixture)}
 \item{warn}{a \code{logical} indicating if a warning should be issued if some
 tagged variables have been lost by the \code{select} operation; defaults to
 \code{TRUE}}
+
+\item{x}{a \code{linelist} object}
 }
 \value{
 The function returns a \code{linelist} with selected columns.
@@ -23,7 +64,9 @@ The function returns a \code{linelist} with selected columns.
 This function works similarly to \code{dplyr::select} but can in addition refer to
 tagged variables. We recommend referring to variables and tags by their
 names: using \code{logical} and \code{integer} may have unexecpted results due to how
-regular variables and tagged variables are combined (see details).
+regular variables and tagged variables are combined (see details). Functions
+in the form \code{select_[tag]} are wrappers for accessing specific tags as listed
+in \code{tags_names()}.
 }
 \details{
 The function relies on a concatenation of two data.frames, the first
@@ -33,6 +76,10 @@ variables are referred to by their names, which is the recommended
 approach. Other approaches using \code{integer} or \code{logical} may yield more
 confusing outputs, e.g. selecting \code{all} variables using \code{TRUE} will return
 the two data.frames concatenated.
+}
+\seealso{
+\url{make_linelist} for a list of all tags which can be
+used in \code{select}
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}
