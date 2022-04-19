@@ -14,9 +14,7 @@
 #' @param ... the variables to select, either using their column names, or tag
 #'   names (or a mixture)
 #'
-#' @param warn a `logical` indicating if a warning should be issued if some
-#'   tagged variables have been lost by the `select` operation; defaults to
-#'   `TRUE`
+#' @inheritParams prune_tags
 #'
 #' @exportS3Method dplyr::select
 #'
@@ -36,7 +34,7 @@
 #'   used in `select`
 #' 
 
-select.linelist <- function(.data, ..., warn = TRUE) {
+select.linelist <- function(.data, ..., lost_action = "none") {
   # Strategy
   # --------
   # We want to be able to select variables by their original names or
@@ -52,7 +50,7 @@ select.linelist <- function(.data, ..., warn = TRUE) {
 
   out <- select(full_df, ...)
   class(out) <- c("linelist", class(out))
-  out <- prune_tags(out, warn = warn)
+  out <- prune_tags(out, lost_action)
   out
 }
 
