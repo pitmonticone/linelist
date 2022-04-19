@@ -1,0 +1,43 @@
+test_that("tests for select", {
+
+  if (require("dplyr")) {
+
+    x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
+    
+    # test errors
+    msg <- "The following tags have lost their variable:\n date_outcome:speed"
+    expect_warning(select(x, toto = dist, tags = "date_onset"), msg)
+    expect_error(select(x, toto = dist, tags = "date_onset", lost_action = "error"), msg)
+
+    msg <- "The following tags have lost their variable:\n date_onset:dist, date_outcome:speed"
+    expect_warning(select(x, toto = dist), msg)
+    expect_error(select(x, toto = dist, lost_action = "error"), msg)
+
+    
+    # test functionalities
+    ## basic case
+    expect_identical(x, select(x, everything()))
+    y <- select(x, everything(), tags = "date_onset")
+    expect_identical(names(y), c("speed", "dist", "date_onset"))
+    expect_identical(y$dist, y$date_onset)
+    expect_identical(list(date_onset = "date_onset", date_outcome = "speed"),
+                     tags(y))
+
+    ## case where some tags are dropped
+    y <- select(x, dist, tags = "date_onset", lost_action = "none")
+    expect_identical(names(y), c("dist", "date_onset"))
+    expect_identical(tags(y), list(date_onset = "date_onset"))
+
+    ## same, with renaming of tags
+    y <- select(x, dist, tags = c(onset = "date_onset"), lost_action = "none")
+    expect_identical(names(y), c("dist", "onset"))
+    expect_identical(tags(y), list(date_onset = "onset"))
+
+    ## selecting tags only
+    expect_identical(
+      drop_linelist(select(x, tags = names(tags(x))), TRUE),
+      tags_df(x)
+      )
+    
+  }
+})
