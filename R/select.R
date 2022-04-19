@@ -30,35 +30,55 @@
 
 select.linelist <- function(.data, ..., tags = NULL,
                             lost_action = "none") {
+
+  checkmate::assertCharacter(tags, null.ok = TRUE)
+  
   # Strategy
   # --------
   #
   # Variable selection is done in two steps:
+  # 
   # 1. normal use of `dplyr::select` on the data.frame using `...` arguments
   # 2. selection of tagged variables via the `tags` argument
   #
   # Both outputs are cbinded in the returned object. The following additional
-  # checks are done, depending on how variables were selected:
+  # checks are done:
   #
-  # 1. we need to check that tagged variables have not been lost, through
-  # subsetting or renaming; for this we use `restore_tags()`
-  # 2. if tagged variables are added to the output, they need renaming to their
+  # if tagged variables are added to the output, they need renaming to their
   # canonical tag name
+  #
+  # we need to check that tagged variables have not been lost, through
+  # subsetting or renaming; for this we use `restore_tags()`
+  # 
 
-  # We want to be able to select variables by their original names or
-  # using tags, with minimal overhead for the user. Current strategy is to add
-  # columns for the tagged variables and then dispatch to the next select method
-  # after removing the linelist class from the object. Tags are re-added to the
-  # object. And tag whose variable has been removed is removed too.
-  x <- .data
-  tags <- unlist(tags(x, TRUE))
-  tags_df <- x[tags]
-  names(tags_df) <- names(tags)
-  full_df <- drop_linelist(cbind(x, tags_df))
+  # step 1
+  out_base <- dplyr::select(drop_linelist(x), ...)
 
-  out <- select(full_df, ...)
-  class(out) <- c("linelist", class(out))
-  out <- prune_tags(out, lost_action)
+  # step 2
+  # Note that tags could be renamed e.g. tags = c(onset = "date_onset"); we need
+  # to ensure that the tags of the output will be renamed accordingly. It is not
+  # entirely trivial as some of the tags may be named / renamed, some not,
+  # e.g. tags = c(age, onset = "date_onset")); as a workaround we impose names
+  # on all tags, then we rename tags as needed.
+  out_tags <- select_tags(x, tags)
+
+  ## keep old tags
+  old_tags <- tags(x, TRUE)
+
+  ## force naming of all new tags
+  tag_names <- names(tags)
+  missing_names <- is.null(tag_names) | tag_names == ""
+  tag_names[missing_names] <- tags[missing_names]
+
+  ## create new_tags where tags are renamed as needed 
+  new_tags <- as.list(tag_names)  
+  names(new_tags) <- tags
+  out_tags <- modify_defaults(old_tags, new_tags)
+  
+  
+  # finalize output
+  out <- cbind(out_base, out_tags)
+  out <- restore_tags(out, new_tags, lost_action)
   out
 }
 
