@@ -2,6 +2,7 @@
 
 S3method(dplyr::rename,linelist)
 S3method(dplyr::select,linelist)
+S3method(print,linelist)
 export(make_linelist)
 export(prune_tags)
 export(restore_tags)
