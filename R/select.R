@@ -1,11 +1,8 @@
 #' subset columns of a linelist object
 #'
 #' This function works similarly to `dplyr::select` but can in addition refer to
-#' tagged variables. We recommend referring to variables and tags by their
-#' names: using `logical` and `integer` may have unexecpted results due to how
-#' regular variables and tagged variables are combined (see details). Functions
-#' in the form `select_[tag]` are wrappers for accessing specific tags as listed
-#' in `tags_names()`.
+#' tagged variables through the `tags` argument. When variables are selected
+#' using both procedures, tagged variables are output as the last columns.
 #'
 #' @rdname select.linelist
 #' 
@@ -13,6 +10,9 @@
 #'
 #' @param ... the variables to select, either using their column names, or tag
 #'   names (or a mixture)
+#'
+#' @param tags a `character` indicating tagged variables to select using tag
+#'   names (see `tags_names()`) for default values
 #'
 #' @inheritParams prune_tags
 #'
@@ -22,21 +22,29 @@
 #'
 #' @return The function returns a `linelist` with selected columns.
 #'
-#' @details The function relies on a concatenation of two data.frames, the first
-#'   one containing the regular variables, and the second one containing tagged
-#'   variables. This approach is safe as long as regular variables and tagged
-#'   variables are referred to by their names, which is the recommended
-#'   approach. Other approaches using `integer` or `logical` may yield more
-#'   confusing outputs, e.g. selecting `all` variables using `TRUE` will return
-#'   the two data.frames concatenated.
+#' @details 
 #'
 #' @seealso [`make_linelist`](make_linelist) for a list of all tags which can be
 #'   used in `select`
 #' 
 
-select.linelist <- function(.data, ..., lost_action = "none") {
+select.linelist <- function(.data, ..., tags = NULL,
+                            lost_action = "none") {
   # Strategy
   # --------
+  #
+  # Variable selection is done in two steps:
+  # 1. normal use of `dplyr::select` on the data.frame using `...` arguments
+  # 2. selection of tagged variables via the `tags` argument
+  #
+  # Both outputs are cbinded in the returned object. The following additional
+  # checks are done, depending on how variables were selected:
+  #
+  # 1. we need to check that tagged variables have not been lost, through
+  # subsetting or renaming; for this we use `restore_tags()`
+  # 2. if tagged variables are added to the output, they need renaming to their
+  # canonical tag name
+
   # We want to be able to select variables by their original names or
   # using tags, with minimal overhead for the user. Current strategy is to add
   # columns for the tagged variables and then dispatch to the next select method

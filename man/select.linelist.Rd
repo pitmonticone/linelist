@@ -17,7 +17,7 @@
 \alias{select_outcome}
 \title{subset columns of a linelist object}
 \usage{
-\method{select}{linelist}(.data, ..., lost_action = "none")
+\method{select}{linelist}(.data, ..., tags = NULL, lost_action = "none")
 
 select_id(x)
 
@@ -51,6 +51,9 @@ select_outcome(x)
 \item{...}{the variables to select, either using their column names, or tag
 names (or a mixture)}
 
+\item{tags}{a \code{character} indicating tagged variables to select using tag
+names (see \code{tags_names()}) for default values}
+
 \item{lost_action}{a \code{character} indicating the behaviour to adopt when tagged
 variables have been lost: "error" (default) will issue an error; "warning"
 will issue a warning; "none" will do nothing}
@@ -62,20 +65,11 @@ The function returns a \code{linelist} with selected columns.
 }
 \description{
 This function works similarly to \code{dplyr::select} but can in addition refer to
-tagged variables. We recommend referring to variables and tags by their
-names: using \code{logical} and \code{integer} may have unexecpted results due to how
-regular variables and tagged variables are combined (see details). Functions
-in the form \code{select_[tag]} are wrappers for accessing specific tags as listed
-in \code{tags_names()}.
+tagged variables through the \code{tags} argument. When variables are selected
+using both procedures, tagged variables are output as the last columns.
 }
 \details{
-The function relies on a concatenation of two data.frames, the first
-one containing the regular variables, and the second one containing tagged
-variables. This approach is safe as long as regular variables and tagged
-variables are referred to by their names, which is the recommended
-approach. Other approaches using \code{integer} or \code{logical} may yield more
-confusing outputs, e.g. selecting \code{all} variables using \code{TRUE} will return
-the two data.frames concatenated.
+
 }
 \seealso{
 \url{make_linelist} for a list of all tags which can be
