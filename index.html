@@ -83,15 +83,120 @@
 <ul>
 <li><p><code><a href="reference/make_linelist.html">make_linelist()</a></code>: to create a <code>linelist</code> object by tagging key epi variables in a <code>data.frame</code> or a <code>tibble</code></p></li>
 <li><p><code><a href="reference/tags.html">tags()</a></code>: to list variables which have been tagged in a <code>linelist</code></p></li>
+<li><p><code><a href="reference/tags_names.html">tags_names()</a></code>: to list all recognized tag names</p></li>
 <li><p><code>set_tags():</code> to modify tags in a <code>linelist</code></p></li>
 <li><p><code>select_tags():</code> to select columns of a <code>linelist</code> based on tags using <em>dplyr</em> compatible syntax</p></li>
 <li><p><code><a href="reference/tags_df.html">tags_df()</a></code>: to obtain a <code>data.frame</code> of all the tagged variables in a <code>linelist</code></p></li>
-<li><p><code>select()</code>: adapted from <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select</a></code>, for subsetting regular and tagged variables</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code>: adapted from <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select</a></code>, for subsetting regular and tagged variables</p></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="worked-example">Worked example<a class="anchor" aria-label="anchor" href="#worked-example"></a>
 </h2>
+<p>In this example, we use the case line list of the Hagelloch 1861 measles outbreak.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># load libraries</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/epiverse-trace/linelist" class="external-link">linelist</a></span><span class="op">)</span>
+
+<span class="co"># overview of the data</span>
+<span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span>
+<span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span>
+<span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span>
+<span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span>
+<span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span>
+<span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span>
+<span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span>
+<span class="co">#&gt;   family_ID class complications x_loc y_loc</span>
+<span class="co">#&gt; 1        41     1           yes 142.5 100.0</span>
+<span class="co">#&gt; 2        41     1           yes 142.5 100.0</span>
+<span class="co">#&gt; 3        41     0           yes 142.5 100.0</span>
+<span class="co">#&gt; 4        61     2           yes 165.0 102.5</span>
+<span class="co">#&gt; 5        42     1           yes 145.0 120.0</span>
+<span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></code></pre></div>
+<p>Let us assume we want to tag the following variables to facilitate downstream analyses:</p>
+<ul>
+<li>dates of onset, here called <code>prodrome</code>
+</li>
+<li>date of death</li>
+<li>age</li>
+<li>gender</li>
+</ul>
+<p>Here, we will first create the outcome variable, then create a <code>linelist</code> with the above information:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/make_linelist.html">make_linelist</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,
+                date_death <span class="op">=</span> <span class="st">"date_of_death"</span>,
+                age <span class="op">=</span> <span class="st">"age"</span>,
+                gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span>
+<span class="va">x</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; // linelist object</span>
+<span class="co">#&gt; # A tibble: 188 × 12</span>
+<span class="co">#&gt;    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender</span>
+<span class="co">#&gt;      &lt;int&gt;    &lt;int&gt; &lt;date&gt;           &lt;date&gt;       &lt;date&gt;        &lt;dbl&gt; &lt;fct&gt; </span>
+<span class="co">#&gt;  1       1       45 1861-11-21       1861-11-25   NA                7 f     </span>
+<span class="co">#&gt;  2       2       45 1861-11-23       1861-11-27   NA                6 f     </span>
+<span class="co">#&gt;  3       3      172 1861-11-28       1861-12-02   NA                4 f     </span>
+<span class="co">#&gt;  4       4      180 1861-11-27       1861-11-28   NA               13 m     </span>
+<span class="co">#&gt;  5       5       45 1861-11-22       1861-11-27   NA                8 f     </span>
+<span class="co">#&gt;  6       6      180 1861-11-26       1861-11-29   NA               12 m     </span>
+<span class="co">#&gt;  7       7       42 1861-11-24       1861-11-28   NA                6 m     </span>
+<span class="co">#&gt;  8       8       45 1861-11-21       1861-11-26   NA               10 m     </span>
+<span class="co">#&gt;  9       9      182 1861-11-26       1861-11-30   NA               13 m     </span>
+<span class="co">#&gt; 10      10       45 1861-11-21       1861-11-25   NA                7 f     </span>
+<span class="co">#&gt; # … with 178 more rows, and 5 more variables: family_ID &lt;int&gt;, class &lt;fct&gt;,</span>
+<span class="co">#&gt; #   complications &lt;fct&gt;, x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age</span></code></pre></div>
+<p>The printing of the object confirms that the tags have been added. If we want to double-check which variables have been tagged:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="reference/tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="co">#&gt; $date_onset</span>
+<span class="co">#&gt; [1] "date_of_prodrome"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $date_death</span>
+<span class="co">#&gt; [1] "date_of_death"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $gender</span>
+<span class="co">#&gt; [1] "gender"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $age</span>
+<span class="co">#&gt; [1] "age"</span></code></pre></div>
+<p>Let us now assume we also want to record the outcome: it is currently missing but can be built from dates of deaths (missing date = survived). This can be done by using <code>mutate</code> to create the new variable, and setting up a new tag using <code>set_tags</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>inferred_outcome <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">date_of_death</span><span class="op">)</span>, <span class="st">"survided"</span>, <span class="st">"died"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="reference/set_tags.html">set_tags</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="st">"inferred_outcome"</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; // linelist object</span>
+<span class="co">#&gt; # A tibble: 188 × 13</span>
+<span class="co">#&gt;    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender</span>
+<span class="co">#&gt;      &lt;int&gt;    &lt;int&gt; &lt;date&gt;           &lt;date&gt;       &lt;date&gt;        &lt;dbl&gt; &lt;fct&gt; </span>
+<span class="co">#&gt;  1       1       45 1861-11-21       1861-11-25   NA                7 f     </span>
+<span class="co">#&gt;  2       2       45 1861-11-23       1861-11-27   NA                6 f     </span>
+<span class="co">#&gt;  3       3      172 1861-11-28       1861-12-02   NA                4 f     </span>
+<span class="co">#&gt;  4       4      180 1861-11-27       1861-11-28   NA               13 m     </span>
+<span class="co">#&gt;  5       5       45 1861-11-22       1861-11-27   NA                8 f     </span>
+<span class="co">#&gt;  6       6      180 1861-11-26       1861-11-29   NA               12 m     </span>
+<span class="co">#&gt;  7       7       42 1861-11-24       1861-11-28   NA                6 m     </span>
+<span class="co">#&gt;  8       8       45 1861-11-21       1861-11-26   NA               10 m     </span>
+<span class="co">#&gt;  9       9      182 1861-11-26       1861-11-30   NA               13 m     </span>
+<span class="co">#&gt; 10      10       45 1861-11-21       1861-11-25   NA                7 f     </span>
+<span class="co">#&gt; # … with 178 more rows, and 6 more variables: family_ID &lt;int&gt;, class &lt;fct&gt;,</span>
+<span class="co">#&gt; #   complications &lt;fct&gt;, x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;, inferred_outcome &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="contributing-guidelines">Contributing guidelines<a class="anchor" aria-label="anchor" href="#contributing-guidelines"></a>
