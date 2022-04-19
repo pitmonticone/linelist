@@ -15,9 +15,9 @@
 \alias{select_occupation}
 \alias{select_hcw}
 \alias{select_outcome}
-\title{subset columns of a linelist object}
+\title{Subset columns of a linelist object}
 \usage{
-\method{select}{linelist}(.data, ..., tags = NULL, lost_action = "none")
+\method{select}{linelist}(.data, ..., tags = NULL, lost_action = "warning")
 
 select_id(x)
 
@@ -54,9 +54,9 @@ names (or a mixture)}
 \item{tags}{a \code{character} indicating tagged variables to select using tag
 names (see \code{tags_names()}) for default values}
 
-\item{lost_action}{a \code{character} indicating the behaviour to adopt when tagged
-variables have been lost: "error" (default) will issue an error; "warning"
-will issue a warning; "none" will do nothing}
+\item{lost_action}{a \code{character} indicating the behaviour to adopt when some
+of the tagged variables are dropped through the \code{select} process; can be
+"warning" (default), "error", or "none".}
 
 \item{x}{a \code{linelist} object}
 }
@@ -68,12 +68,11 @@ This function works similarly to \code{dplyr::select} but can in addition refer 
 tagged variables through the \code{tags} argument. When variables are selected
 using both procedures, tagged variables are output as the last columns.
 }
-\details{
-
-}
 \seealso{
-\url{make_linelist} for a list of all tags which can be
-used in \code{select}
+\itemize{
+\item \url{select_tags} to select tags only
+\item \url{tags_df} to return a \code{data.frame} of all tagged variables
+}
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

@@ -1,4 +1,4 @@
-#' subset columns of a linelist object
+#' Subset columns of a linelist object
 #'
 #' This function works similarly to `dplyr::select` but can in addition refer to
 #' tagged variables through the `tags` argument. When variables are selected
@@ -24,16 +24,16 @@
 #'
 #' @return The function returns a `linelist` with selected columns.
 #'
-#' @details 
-#'
-#' @seealso [`make_linelist`](make_linelist) for a list of all tags which can be
-#'   used in `select`
+#' @seealso
+#' * [`select_tags`](select_tags) to select tags only
+#' * [`tags_df`](tags_df) to return a `data.frame` of all tagged variables
 #' 
 
 select.linelist <- function(.data, ..., tags = NULL,
                             lost_action = "warning") {
 
   checkmate::assertCharacter(tags, null.ok = TRUE)
+  x <- .data
   
   # Strategy
   # --------
@@ -96,77 +96,77 @@ select.linelist <- function(.data, ..., tags = NULL,
 #' @rdname select.linelist
 #' @param x a `linelist` object
 select_id <- function(x) {
-  select(x, "id")
+  select_tags(x, "id")
 }
 
 #' @export
 #' @rdname select.linelist
 select_date_onset <- function(x) {
-  select(x, "date_onset")
+  select_tags(x, "date_onset")
 }
 
 #' @export
 #' @rdname select.linelist
 select_date_reporting <- function(x) {
-  select(x, "date_reporting")
+  select_tags(x, "date_reporting")
 }
 
 #' @export
 #' @rdname select.linelist
 select_date_admission <- function(x) {
-  select(x, "date_admission")
+  select_tags(x, "date_admission")
 }
 
 #' @export
 #' @rdname select.linelist
 select_date_discharge <- function(x) {
-  select(x, "date_discharge")
+  select_tags(x, "date_discharge")
 }
 
 #' @export
 #' @rdname select.linelist
 select_date_outcome <- function(x) {
-  select(x, "date_outcome")
+  select_tags(x, "date_outcome")
 }
 
 #' @export
 #' @rdname select.linelist
 select_date_death <- function(x) {
-  select(x, "date_death")
+  select_tags(x, "date_death")
 }
 
 #' @export
 #' @rdname select.linelist
 select_gender <- function(x) {
-  select(x, "gender")
+  select_tags(x, "gender")
 }
 
 #' @export
 #' @rdname select.linelist
 select_age <- function(x) {
-  select(x, "age")
+  select_tags(x, "age")
 }
 
 #' @export
 #' @rdname select.linelist
 select_location <- function(x) {
-  select(x, "location")
+  select_tags(x, "location")
 }
 
 #' @export
 #' @rdname select.linelist
 select_occupation <- function(x) {
-  select(x, "occupation")
+  select_tags(x, "occupation")
 }
 
 #' @export
 #' @rdname select.linelist
 select_hcw <- function(x) {
-  select(x, "hcw")
+  select_tags(x, "hcw")
 }
 
 #' @export
 #' @rdname select.linelist
 select_outcome <- function(x) {
-  select(x, "outcome")
+  select_tags(x, "outcome")
 }
