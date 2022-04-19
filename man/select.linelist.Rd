@@ -17,7 +17,7 @@
 \alias{select_outcome}
 \title{subset columns of a linelist object}
 \usage{
-\method{select}{linelist}(.data, ..., warn = TRUE)
+\method{select}{linelist}(.data, ..., lost_action = "none")
 
 select_id(x)
 
@@ -51,9 +51,9 @@ select_outcome(x)
 \item{...}{the variables to select, either using their column names, or tag
 names (or a mixture)}
 
-\item{warn}{a \code{logical} indicating if a warning should be issued if some
-tagged variables have been lost by the \code{select} operation; defaults to
-\code{TRUE}}
+\item{lost_action}{a \code{character} indicating the behaviour to adopt when tagged
+variables have been lost: "error" (default) will issue an error; "warning"
+will issue a warning; "none" will do nothing}
 
 \item{x}{a \code{linelist} object}
 }

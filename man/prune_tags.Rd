@@ -4,20 +4,22 @@
 \alias{prune_tags}
 \title{Prune tags after changing columns of a linelist}
 \usage{
-prune_tags(x, warn = TRUE)
+prune_tags(x, lost_action = c("error", "warning", "none"))
 }
 \arguments{
 \item{x}{\code{linelist} object}
 
-\item{warn}{a \code{logical} indicating if a warning should be issued if some tagged
-variables have been lost; defaults to \code{TRUE}}
+\item{lost_action}{a \code{character} indicating the behaviour to adopt when tagged
+variables have been lost: "error" (default) will issue an error; "warning"
+will issue a warning; "none" will do nothing}
 }
 \value{
 The function returns a \code{linelist} object.
 }
 \description{
-Internal function. Used to remove tags whose variable has been removed after
-subsetting the columns of a \code{linelist} object.
+This finction is used to remove tags whose variable has been removed after
+subsetting the columns of a \code{linelist} object. By default, a warning will be
+issued if some tagged variables have been removed.
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

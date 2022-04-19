@@ -3,6 +3,7 @@
 S3method(dplyr::select,linelist)
 export(make_linelist)
 export(prune_tags)
+export(restore_tags)
 export(select_age)
 export(select_date_admission)
 export(select_date_death)
