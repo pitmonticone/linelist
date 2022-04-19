@@ -92,15 +92,14 @@ measles_hagelloch_1861 %>%
 ```
 
 Let us assume we want to tag the following variables to facilitate downstream
-analyses:
+analyses, after having checked their tag name in `?make_linelist`:
 
-* dates of onset, here called `prodrome`
-* date of death
-* age
-* gender
+* the date of symptom onset, here called `prodrome` (tag: `date_onset`)
+* the date of death (tag: `date_death`)
+* the age of the patient (tag: `age`)
+* the gender of the patient (tag: `gender`)
 
-Here, we will first create the outcome variable, then create a `linelist` with
-the above information:
+We create a `linelist` with the above information:
 
 ```{r }
 
@@ -123,10 +122,11 @@ tags(x)
 
 ```
 
-Let us now assume we also want to record the outcome: it is currently missing
+Let us now assume we also want to record the outcome: it is currently missing,
 but can be built from dates of deaths (missing date = survived). This can be
-done by using `mutate` to create the new variable, and setting up a new tag
-using `set_tags`:
+done by using `mutate` on `x` to create the new variable (remember `x` is not
+only a `linelist`, but also a regular `tibble` and this compatible with `dplyr`
+verbs), and setting up a new tag using `set_tags`:
 
 ```{r }
 
