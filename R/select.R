@@ -14,7 +14,9 @@
 #' @param tags a `character` indicating tagged variables to select using tag
 #'   names (see `tags_names()`) for default values
 #'
-#' @inheritParams prune_tags
+#' @param lost_action a `character` indicating the behaviour to adopt when some
+#'   of the tagged variables are dropped through the `select` process; can be
+#'   "warning" (default), "error", or "none".
 #'
 #' @exportS3Method dplyr::select
 #'
@@ -29,7 +31,7 @@
 #' 
 
 select.linelist <- function(.data, ..., tags = NULL,
-                            lost_action = "none") {
+                            lost_action = "warning") {
 
   checkmate::assertCharacter(tags, null.ok = TRUE)
   
@@ -52,7 +54,7 @@ select.linelist <- function(.data, ..., tags = NULL,
   # 
 
   # step 1
-  out_base <- dplyr::select(drop_linelist(x), ...)
+  df_base <- dplyr::select(drop_linelist(x), ...)
 
   # step 2
   # Note that tags could be renamed e.g. tags = c(onset = "date_onset"); we need
@@ -60,15 +62,21 @@ select.linelist <- function(.data, ..., tags = NULL,
   # entirely trivial as some of the tags may be named / renamed, some not,
   # e.g. tags = c(age, onset = "date_onset")); as a workaround we impose names
   # on all tags, then we rename tags as needed.
-  out_tags <- select_tags(x, tags)
+  df_tags <- select_tags(x, tags)
 
   ## keep old tags
   old_tags <- tags(x, TRUE)
 
+ # browser()
   ## force naming of all new tags
   tag_names <- names(tags)
-  missing_names <- is.null(tag_names) | tag_names == ""
-  tag_names[missing_names] <- tags[missing_names]
+  ###  special case of a single unnamed tag
+  if (is.null(tag_names)) {
+    tag_names <- tags
+  } else {
+    missing_names <- tag_names == ""
+    tag_names[missing_names] <- tags[missing_names]
+  }  
 
   ## create new_tags where tags are renamed as needed 
   new_tags <- as.list(tag_names)  
@@ -77,8 +85,8 @@ select.linelist <- function(.data, ..., tags = NULL,
   
   
   # finalize output
-  out <- cbind(out_base, out_tags)
-  out <- restore_tags(out, new_tags, lost_action)
+  out <- cbind(df_base, df_tags)
+  out <- restore_tags(out, out_tags, lost_action)
   out
 }
 
