@@ -3,3 +3,4 @@ CODE_OF_CONDUCT.md
 README.Rmd
 codecov.yml
 ^\.github$
+^README\.Rmd$
