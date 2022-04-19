@@ -49,6 +49,8 @@ functions of the package include:
 
   - `tags()`: to list variables which have been tagged in a `linelist`
 
+  - `tags_names()`: to list all recognized tag names
+
   - `set_tags():` to modify tags in a `linelist`
 
   - `select_tags():` to select columns of a `linelist` based on tags
@@ -61,6 +63,128 @@ functions of the package include:
     tagged variables
 
 ## Worked example
+
+In this example, we use the case line list of the Hagelloch 1861 measles
+outbreak.
+
+``` r
+
+# load libraries
+library(outbreaks)
+library(tibble)
+library(dplyr)
+library(magrittr)
+library(linelist)
+
+# overview of the data
+measles_hagelloch_1861 %>%
+  head()
+#>   case_ID infector date_of_prodrome date_of_rash date_of_death age gender
+#> 1       1       45       1861-11-21   1861-11-25          <NA>   7      f
+#> 2       2       45       1861-11-23   1861-11-27          <NA>   6      f
+#> 3       3      172       1861-11-28   1861-12-02          <NA>   4      f
+#> 4       4      180       1861-11-27   1861-11-28          <NA>  13      m
+#> 5       5       45       1861-11-22   1861-11-27          <NA>   8      f
+#> 6       6      180       1861-11-26   1861-11-29          <NA>  12      m
+#>   family_ID class complications x_loc y_loc
+#> 1        41     1           yes 142.5 100.0
+#> 2        41     1           yes 142.5 100.0
+#> 3        41     0           yes 142.5 100.0
+#> 4        61     2           yes 165.0 102.5
+#> 5        42     1           yes 145.0 120.0
+#> 6        42     2           yes 145.0 120.0
+```
+
+Let us assume we want to tag the following variables to facilitate
+downstream analyses:
+
+  - dates of onset, here called `prodrome`
+  - date of death
+  - age
+  - gender
+
+Here, we will first create the outcome variable, then create a
+`linelist` with the above information:
+
+``` r
+
+x <- measles_hagelloch_1861 %>%
+  tibble() %>%
+  make_linelist(date_onset = "date_of_prodrome",
+                date_death = "date_of_death",
+                age = "age",
+                gender = "gender")
+x
+#> 
+#> // linelist object
+#> # A tibble: 188 × 12
+#>    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender
+#>      <int>    <int> <date>           <date>       <date>        <dbl> <fct> 
+#>  1       1       45 1861-11-21       1861-11-25   NA                7 f     
+#>  2       2       45 1861-11-23       1861-11-27   NA                6 f     
+#>  3       3      172 1861-11-28       1861-12-02   NA                4 f     
+#>  4       4      180 1861-11-27       1861-11-28   NA               13 m     
+#>  5       5       45 1861-11-22       1861-11-27   NA                8 f     
+#>  6       6      180 1861-11-26       1861-11-29   NA               12 m     
+#>  7       7       42 1861-11-24       1861-11-28   NA                6 m     
+#>  8       8       45 1861-11-21       1861-11-26   NA               10 m     
+#>  9       9      182 1861-11-26       1861-11-30   NA               13 m     
+#> 10      10       45 1861-11-21       1861-11-25   NA                7 f     
+#> # … with 178 more rows, and 5 more variables: family_ID <int>, class <fct>,
+#> #   complications <fct>, x_loc <dbl>, y_loc <dbl>
+#> 
+#> // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age
+```
+
+The printing of the object confirms that the tags have been added. If we
+want to double-check which variables have been tagged:
+
+``` r
+
+tags(x)
+#> $date_onset
+#> [1] "date_of_prodrome"
+#> 
+#> $date_death
+#> [1] "date_of_death"
+#> 
+#> $gender
+#> [1] "gender"
+#> 
+#> $age
+#> [1] "age"
+```
+
+Let us now assume we also want to record the outcome: it is currently
+missing but can be built from dates of deaths (missing date = survived).
+This can be done by using `mutate` to create the new variable, and
+setting up a new tag using `set_tags`:
+
+``` r
+
+x %>%
+  mutate(inferred_outcome = if_else(is.na(date_of_death), "survided", "died")) %>%
+  set_tags(outcome = "inferred_outcome")
+#> 
+#> // linelist object
+#> # A tibble: 188 × 13
+#>    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender
+#>      <int>    <int> <date>           <date>       <date>        <dbl> <fct> 
+#>  1       1       45 1861-11-21       1861-11-25   NA                7 f     
+#>  2       2       45 1861-11-23       1861-11-27   NA                6 f     
+#>  3       3      172 1861-11-28       1861-12-02   NA                4 f     
+#>  4       4      180 1861-11-27       1861-11-28   NA               13 m     
+#>  5       5       45 1861-11-22       1861-11-27   NA                8 f     
+#>  6       6      180 1861-11-26       1861-11-29   NA               12 m     
+#>  7       7       42 1861-11-24       1861-11-28   NA                6 m     
+#>  8       8       45 1861-11-21       1861-11-26   NA               10 m     
+#>  9       9      182 1861-11-26       1861-11-30   NA               13 m     
+#> 10      10       45 1861-11-21       1861-11-25   NA                7 f     
+#> # … with 178 more rows, and 6 more variables: family_ID <int>, class <fct>,
+#> #   complications <fct>, x_loc <dbl>, y_loc <dbl>, inferred_outcome <chr>
+#> 
+#> // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome
+```
 
 ## Contributing guidelines
 

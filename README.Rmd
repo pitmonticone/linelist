@@ -59,6 +59,8 @@ include:
   
 * `tags()`: to list variables which have been tagged in a `linelist`
 
+* `tags_names()`: to list all recognized tag names
+
 * `set_tags():` to modify tags in a `linelist`
 
 * `select_tags():` to select columns of a `linelist` based on tags using *dplyr*
@@ -71,6 +73,71 @@ include:
 
 
 ## Worked example
+
+In this example, we use the case line list of the Hagelloch 1861 measles outbreak.
+
+```{r }
+
+# load libraries
+library(outbreaks)
+library(tibble)
+library(dplyr)
+library(magrittr)
+library(linelist)
+
+# overview of the data
+measles_hagelloch_1861 %>%
+  head()
+
+```
+
+Let us assume we want to tag the following variables to facilitate downstream
+analyses:
+
+* dates of onset, here called `prodrome`
+* date of death
+* age
+* gender
+
+Here, we will first create the outcome variable, then create a `linelist` with
+the above information:
+
+```{r }
+
+x <- measles_hagelloch_1861 %>%
+  tibble() %>%
+  make_linelist(date_onset = "date_of_prodrome",
+                date_death = "date_of_death",
+                age = "age",
+                gender = "gender")
+x
+
+```
+
+The printing of the object confirms that the tags have been added. If we want to
+double-check which variables have been tagged:
+
+```{r }
+
+tags(x)
+
+```
+
+
+Let us now assume we also want to record the outcome: it is currently missing
+but can be built from dates of deaths (missing date = survived). This can be
+done by using `mutate` to create the new variable, and setting up a new tag
+using `set_tags`:
+
+```{r }
+
+x %>%
+  mutate(inferred_outcome = if_else(is.na(date_of_death), "survided", "died")) %>%
+  set_tags(outcome = "inferred_outcome")
+
+```
+
+
 
 
 ## Contributing guidelines
