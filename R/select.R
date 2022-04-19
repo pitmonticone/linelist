@@ -8,11 +8,12 @@
 #' 
 #' @param .data a `linelist` object
 #'
-#' @param ... the variables to select, either using their column names, or tag
-#'   names (or a mixture)
+#' @param ... the variables to select, using `dplyr` compatible syntax
 #'
 #' @param tags a `character` indicating tagged variables to select using tag
-#'   names (see `tags_names()`) for default values
+#'   names (see `tags_names()`) for default values; values can be named, in
+#'   which case the output columns will be renamed accordingly (e.g. `onset =
+#'   "date_onset"` will output a column named 'onset').
 #'
 #' @param lost_action a `character` indicating the behaviour to adopt when some
 #'   of the tagged variables are dropped through the `select` process; can be

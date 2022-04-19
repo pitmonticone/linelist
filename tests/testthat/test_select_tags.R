@@ -1,4 +1,4 @@
-test_that("tests for se_tags", {
+test_that("tests for set_tags", {
 
   x <- make_linelist(cars, date_onset = "dist", age = "speed")
 

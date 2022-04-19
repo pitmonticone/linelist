@@ -48,11 +48,11 @@ select_outcome(x)
 \arguments{
 \item{.data}{a \code{linelist} object}
 
-\item{...}{the variables to select, either using their column names, or tag
-names (or a mixture)}
+\item{...}{the variables to select, using \code{dplyr} compatible syntax}
 
 \item{tags}{a \code{character} indicating tagged variables to select using tag
-names (see \code{tags_names()}) for default values}
+names (see \code{tags_names()}) for default values; values can be named, in
+which case the output columns will be renamed accordingly (e.g. \code{onset = "date_onset"} will output a column named 'onset').}
 
 \item{lost_action}{a \code{character} indicating the behaviour to adopt when some
 of the tagged variables are dropped through the \code{select} process; can be
