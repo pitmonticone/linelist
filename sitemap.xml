@@ -28,7 +28,13 @@
     <loc>/reference/prune_tags.html</loc>
   </url>
   <url>
+    <loc>/reference/restore_tags.html</loc>
+  </url>
+  <url>
     <loc>/reference/select.linelist.html</loc>
+  </url>
+  <url>
+    <loc>/reference/select_tags.html</loc>
   </url>
   <url>
     <loc>/reference/set_tags.html</loc>
@@ -41,6 +47,9 @@
   </url>
   <url>
     <loc>/reference/tags_defaults.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tags_df.html</loc>
   </url>
   <url>
     <loc>/reference/tags_names.html</loc>
