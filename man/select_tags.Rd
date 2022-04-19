@@ -17,8 +17,10 @@ A \code{data.frame} of tagged variables.
 }
 \description{
 This function is used to create a \code{data.frame} of tagged variables from a
-\code{linelist} object, and runs \code{dplyr::select} on the output. Note that the
-output no longer is a \code{linelist} object, but a regular \code{data.frame}.
+\code{linelist} object, and runs \code{dplyr::select} on the output. It is equivalent
+to running successively \code{tags_df} and \code{dplyr::select} on a \code{linelist}
+object. Note that the output no longer is a \code{linelist} object, but a regular
+\code{data.frame}.
 }
 \seealso{
 \url{tags_names}) for the names of tags

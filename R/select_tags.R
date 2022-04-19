@@ -1,8 +1,10 @@
 #' Extract tagged variables of a linelist object
 #'
 #' This function is used to create a `data.frame` of tagged variables from a
-#' `linelist` object, and runs `dplyr::select` on the output. Note that the
-#' output no longer is a `linelist` object, but a regular `data.frame`.
+#' `linelist` object, and runs `dplyr::select` on the output. It is equivalent
+#' to running successively `tags_df` and `dplyr::select` on a `linelist`
+#' object. Note that the output no longer is a `linelist` object, but a regular
+#' `data.frame`.
 #'
 #' @param x a `linelist` object
 #'
