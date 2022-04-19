@@ -79,6 +79,19 @@
 <h2 id="linelist-in-a-nutshell">linelist in a nutshell<a class="anchor" aria-label="anchor" href="#linelist-in-a-nutshell"></a>
 </h2>
 <p><em>linelist</em> is an R package which implements basic data representation for case line lists, alongside accessors and basic methods. It relies on the idea that key fields of the linelist such as dates of events (e.g. reporting, symptom onset), age, gender, symptoms, outcome, or location, should be explicitely identified to facilitate data cleaning, validation, and downstream analyses.</p>
+<p>A <code>linelist</code> object is an instance of a <code>data.frame</code> or a <code>tibble</code> in which key epidemiological variables have been <em>tagged</em>. The main functions of the package include:</p>
+<ul>
+<li><p><code><a href="reference/make_linelist.html">make_linelist()</a></code>: to create a <code>linelist</code> object by tagging key epi variables in a <code>data.frame</code> or a <code>tibble</code></p></li>
+<li><p><code><a href="reference/tags.html">tags()</a></code>: to list variables which have been tagged in a <code>linelist</code></p></li>
+<li><p><code>set_tags():</code> to modify tags in a <code>linelist</code></p></li>
+<li><p><code>select_tags():</code> to select columns of a <code>linelist</code> based on tags using <em>dplyr</em> compatible syntax</p></li>
+<li><p><code><a href="reference/tags_df.html">tags_df()</a></code>: to obtain a <code>data.frame</code> of all the tagged variables in a <code>linelist</code></p></li>
+<li><p><code>select()</code>: adapted from <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select</a></code>, for subsetting regular and tagged variables</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="worked-example">Worked example<a class="anchor" aria-label="anchor" href="#worked-example"></a>
+</h2>
 </div>
 <div class="section level2">
 <h2 id="contributing-guidelines">Contributing guidelines<a class="anchor" aria-label="anchor" href="#contributing-guidelines"></a>
