@@ -50,6 +50,27 @@ key fields of the linelist such as dates of events (e.g. reporting, symptom
 onset), age, gender, symptoms, outcome, or location, should be explicitely
 identified to facilitate data cleaning, validation, and downstream analyses. 
 
+A `linelist` object is an instance of a `data.frame` or a `tibble` in which key
+epidemiological variables have been *tagged*. The main functions of the package
+include:
+
+* `make_linelist()`: to create a `linelist` object by tagging key epi variables in
+  a `data.frame` or a `tibble`
+  
+* `tags()`: to list variables which have been tagged in a `linelist`
+
+* `set_tags():` to modify tags in a `linelist`
+
+* `select_tags():` to select columns of a `linelist` based on tags using *dplyr*
+  compatible syntax
+  
+* `tags_df()`: to obtain a `data.frame` of all the tagged variables in a `linelist`
+
+* `select()`: adapted from `dplyr::select`, for subsetting regular and tagged
+  variables
+
+
+## Worked example
 
 
 ## Contributing guidelines
