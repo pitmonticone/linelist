@@ -21,7 +21,18 @@ The function returns a \code{linelist} with selected columns.
 }
 \description{
 This function works similarly to \code{dplyr::select} but can in addition refer to
-tagged variables.
+tagged variables. We recommend referring to variables and tags by their
+names: using \code{logical} and \code{integer} may have unexecpted results due to how
+regular variables and tagged variables are combined (see details).
+}
+\details{
+The function relies on a concatenation of two data.frames, the first
+one containing the regular variables, and the second one containing tagged
+variables. This approach is safe as long as regular variables and tagged
+variables are referred to by their names, which is the recommended
+approach. Other approaches using \code{integer} or \code{logical} may yield more
+confusing outputs, e.g. selecting \code{all} variables using \code{TRUE} will return
+the two data.frames concatenated.
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

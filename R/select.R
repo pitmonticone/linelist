@@ -1,7 +1,9 @@
 #' subset columns of a linelist object
 #'
 #' This function works similarly to `dplyr::select` but can in addition refer to
-#' tagged variables.
+#' tagged variables. We recommend referring to variables and tags by their
+#' names: using `logical` and `integer` may have unexecpted results due to how
+#' regular variables and tagged variables are combined (see details).
 #'
 #' @param .data a `linelist` object
 #'
@@ -17,6 +19,14 @@
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
 #' @return The function returns a `linelist` with selected columns.
+#'
+#' @details The function relies on a concatenation of two data.frames, the first
+#'   one containing the regular variables, and the second one containing tagged
+#'   variables. This approach is safe as long as regular variables and tagged
+#'   variables are referred to by their names, which is the recommended
+#'   approach. Other approaches using `integer` or `logical` may yield more
+#'   confusing outputs, e.g. selecting `all` variables using `TRUE` will return
+#'   the two data.frames concatenated.
 #' 
 
 select.linelist <- function(.data, ..., warn = TRUE) {
