@@ -15,6 +15,8 @@
 #'
 #' @return A `data.frame` of tagged variables.
 #'
+#' @export
+#'
 #' @seealso [`tags_names`](tags_names)) for the names of tags
 #' 
 
