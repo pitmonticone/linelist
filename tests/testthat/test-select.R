@@ -37,7 +37,11 @@ test_that("tests for select", {
     expect_identical(
       drop_linelist(select(x, tags = names(tags(x))), TRUE),
       tags_df(x)
-      )
+    )
+
+    ## check that tibble class is preserved
+    x <- make_linelist(tibble(cars), date_onset = "dist", date_outcome = "speed")
+    expect_true(inherits(select(x, 1, tags = "date_onset"), "tbl_df"))
     
   }
 })

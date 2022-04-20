@@ -68,7 +68,6 @@ select.linelist <- function(.data, ..., tags = NULL,
   ## keep old tags
   old_tags <- tags(x, TRUE)
 
- # browser()
   ## force naming of all new tags
   tag_names <- names(tags)
   ###  special case of a single unnamed tag
@@ -86,7 +85,12 @@ select.linelist <- function(.data, ..., tags = NULL,
   
   
   # finalize output
-  out <- cbind(df_base, df_tags)
+  # Note: cbind() loses the `tibble` class, which we want to avoid.
+  if (inherits(x, "tbl_df")) {
+    out <- dplyr::bind_cols(df_base, df_tags)
+  } else {
+    out <- cbind(df_base, df_tags)
+  }
   out <- restore_tags(out, out_tags, lost_action)
   out
 }

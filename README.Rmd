@@ -133,6 +133,7 @@ verbs), and setting up a new tag using `set_tags`:
 x <- x %>%
   mutate(inferred_outcome = if_else(is.na(date_of_death), "survided", "died")) %>%
   set_tags(outcome = "inferred_outcome")
+x
 
 ```
 

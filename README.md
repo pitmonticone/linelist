@@ -73,6 +73,14 @@ outbreak.
 library(outbreaks)
 library(tibble)
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(magrittr)
 library(linelist)
 
@@ -168,6 +176,26 @@ tag using `set_tags`:
 x <- x %>%
   mutate(inferred_outcome = if_else(is.na(date_of_death), "survided", "died")) %>%
   set_tags(outcome = "inferred_outcome")
+x
+#> 
+#> // linelist object
+#> # A tibble: 188 × 13
+#>    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender
+#>      <int>    <int> <date>           <date>       <date>        <dbl> <fct> 
+#>  1       1       45 1861-11-21       1861-11-25   NA                7 f     
+#>  2       2       45 1861-11-23       1861-11-27   NA                6 f     
+#>  3       3      172 1861-11-28       1861-12-02   NA                4 f     
+#>  4       4      180 1861-11-27       1861-11-28   NA               13 m     
+#>  5       5       45 1861-11-22       1861-11-27   NA                8 f     
+#>  6       6      180 1861-11-26       1861-11-29   NA               12 m     
+#>  7       7       42 1861-11-24       1861-11-28   NA                6 m     
+#>  8       8       45 1861-11-21       1861-11-26   NA               10 m     
+#>  9       9      182 1861-11-26       1861-11-30   NA               13 m     
+#> 10      10       45 1861-11-21       1861-11-25   NA                7 f     
+#> # … with 178 more rows, and 6 more variables: family_ID <int>, class <fct>,
+#> #   complications <fct>, x_loc <dbl>, y_loc <dbl>, inferred_outcome <chr>
+#> 
+#> // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome
 ```
 
 Now that key variables have been tagged in `x`, we can used these
