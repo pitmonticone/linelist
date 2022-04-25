@@ -63,14 +63,43 @@ more robust and flexible.
 for case line lists, alongside accessors and basic methods. It
 essentially provides two types of functionalities:
 
-1.  pre-identify key epidemiological variables needed in downstream
+1.  **pre-identify key epidemiological variables** needed in downstream
     analyses (e.g. dates of case notification, symptom onset, age,
     gender, disease outcome) using a *tags* system
 
-2.  validate tagged variables by ensuring they have the expected type
-    (e.g. checking that dates are a `Date` or a `numeric`) and trivial
-    compatibilities (e.g. checking that `outcome` happens after `onset`,
-    not before)
+2.  **validate tagged variables** by ensuring they have the expected
+    type (e.g. checking that dates are a `Date` or a `numeric`) and
+    trivial compatibilities (e.g. checking that `outcome` happens after
+    `onset`, not before)
+
+### Should I use *linelist*?
+
+*linelist* is designed to add a robust, foundational layer to your data
+pipelines, but it might add unnecessary complexity to your analysis
+scripts. Here are a few hints to gauge if you should consider using the
+package.
+
+**You may have use for *linelist* if …**:
+
+  - your data changes/updates over time (e.g. new entries, new
+    variables, renamed variables)
+
+  - you build data pipelines entailing multiple layers of data
+    processing and analysis
+
+  - you are looking to build re-useable analysis scripts, *i.e.* which
+    will work on other datasets with minimal added changes
+
+**Conversely, you probably do not need it if …**:
+
+  - you work on historical data, which has likely already been
+    curated/validated and will no longer change
+
+  - you perform some quick, simple analysis of your data, which you will
+    not need to expand on later
+
+  - your analysis scripts are very specific and will not be re-used
+    elsewhere
 
 ### Key functionalities
 
@@ -107,14 +136,6 @@ outbreak.
 library(outbreaks)
 library(tibble)
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(magrittr)
 library(linelist)
 
