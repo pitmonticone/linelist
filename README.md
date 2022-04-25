@@ -7,7 +7,8 @@
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![R-CMD-check](https://github.com/epiverse-trace/linelist/workflows/R-CMD-check/badge.svg)](https://github.com/epiverse-trace/linelist/actions)
 [![codecov](https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02)](https://codecov.io/gh/epiverse-trace/linelist)
-[![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)
+[![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
+
 <!-- badges: end -->
 
 # Welcome to linelist\!
@@ -32,14 +33,46 @@ if (!require(remotes)) {
 remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 ```
 
+## Motivations
+
+Outbreak analytics pipelines often start with *case line lists*, which
+are data tables in which every line is a different case/patient, and
+columns record different variables of potential epidemiological interest
+such as date of events (e.g. onset of symptom, case notification),
+disease outcome, or patient data (e.g. age, sex, occupation). Such data
+is typically held in a `data.frame` (or `tibble`) and used in various
+downstream analysis. While this approach is functional, it often means
+that each analysis step will:
+
+1.  need to check the required inputs are present in the data, and for
+    the user to specify where (e.g. ‘*This is the column where dates of
+    onset are stored.*’)
+
+2.  need to validate the required data (e.g. ‘*Check that the field
+    storing onset dates are indeed dates, and not a `factor`.*’)
+
+The aim of *linelist* is to take care of these pre-requisites once and
+for all before downstream analyses, thus helping to make data pipelines
+more robust and flexible.
+
 ## linelist in a nutshell
 
+### Outline
+
 *linelist* is an R package which implements basic data representation
-for case line lists, alongside accessors and basic methods. It relies on
-the idea that key fields of the linelist such as dates of events
-(e.g. reporting, symptom onset), age, gender, symptoms, outcome, or
-location, should be explicitely identified to facilitate data cleaning,
-validation, and downstream analyses.
+for case line lists, alongside accessors and basic methods. It
+essentially provides two types of functionalities:
+
+1.  pre-identify key epidemiological variables needed in downstream
+    analyses (e.g. dates of case notification, symptom onset, age,
+    gender, disease outcome) using a *tags* system
+
+2.  validate tagged variables by ensuring they have the expected type
+    (e.g. checking that dates are a `Date` or a `numeric`) and trivial
+    compatibilities (e.g. checking that `outcome` happens after `onset`,
+    not before)
+
+### Key functionalities
 
 A `linelist` object is an instance of a `data.frame` or a `tibble` in
 which key epidemiological variables have been *tagged*. The main
