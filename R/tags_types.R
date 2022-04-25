@@ -1,10 +1,13 @@
 #' List acceptable variable types for tags
 #'
 #' This function returns a named list providing the acceptable data types for
-#' the default tags.
+#' the default tags. If no argument is provided, it returns default
+#' values. Otherwise, provided values will be used to define the defaults.
 #'
 #' @export
 #'
+#' @inheritParams make_linelist
+#' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
 #' @return A named `list`.
@@ -12,10 +15,11 @@
 #' @seealso [`tags_defaults`](tags_defaults) for the default tags
 #' 
 #' @examples
+#' # list default values
 #' tags_types()
 
-tags_types <- function() {
-  list(
+tags_types <- function(..., allow_extra = FALSE) {
+  defaults <- list(
     id = c("numeric", "integer", "character"),
     date_onset = date_types,
     date_reporting = date_types,
@@ -30,6 +34,14 @@ tags_types <- function() {
     hcw = binary_types, 
     outcome = category_types
   )
+
+  new_values <- list(...)
+  if (length(new_values)) {
+    lapply(new_values, checkmate::assertCharacter, min.len = 1)
+  }
+  
+  modify_defaults(defaults = defaults, x = new_values, strict = !allow_extra)
+  
 }
 
 
