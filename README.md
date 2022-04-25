@@ -7,7 +7,7 @@
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![R-CMD-check](https://github.com/epiverse-trace/linelist/workflows/R-CMD-check/badge.svg)](https://github.com/epiverse-trace/linelist/actions)
 [![codecov](https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02)](https://codecov.io/gh/epiverse-trace/linelist)
-<https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg>
+[![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)
 <!-- badges: end -->
 
 # Welcome to linelist\!
