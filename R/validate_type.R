@@ -1,19 +1,40 @@
 #' Check a tagged variable has the right type
 #'
 #' This function checks that a specific tagged variable has the expected type of
-#' data. Default expected types are defined by [`tags_types`](tags_types).
+#' data. Default expected types are defined by [`tags_types`](tags_types). Note
+#' that this is a low-level function. Consider using the plurial version
+#' `validate_types` which operates the validation on all tagged variables of a
+#' `linelist` object.
 #'
-#' @export
+#' @noRd
 #'
+#' @param x a variable, typically a column of a `data.frame`
+#'
+#' @param tag the name of the tag the variable corresponds to, typically one of
+#'   the values of `tags_names()`
+#'
+#' @param ref_types a `list` providing allowed types for all tags 
+#' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
 #' @return A named `list`.
 #'
 #' @seealso [`tags_types`](tags_types) to check or change acceptable data
-#'   classes for specific tags
+#'   classes for specific tags; [`validate_types`](validate_types) to apply
+#'   validation to a `linelist`
 #' 
 #' @examples
 #' 
 
-validate_type <- function() {
+validate_type <- function(x, tag, ref_types = tags_types()) {
+  checkmate::assertAtomicVector(x)
+  if (!tag %in% names(ref_types)) {
+    msg <- sprintf(
+      "Allowed types for tag `%s` are not documented in `ref_types`",
+      tag)
+    stop(msg)
+  }
+  
+  allowed_types <- ref_types[[tag]]
+  checkmate::assert_multi_class(x, allowed_types, null.ok = TRUE)
 }
