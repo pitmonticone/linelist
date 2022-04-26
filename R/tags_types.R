@@ -17,6 +17,13 @@
 #' @examples
 #' # list default values
 #' tags_types()
+#'
+#' # change existing values
+#' tags_types(date_onset = "Date") # impose a Date class
+#'
+#' # add new values
+#' tags_types(sequence = "DNAbin", allow_extra = TRUE)
+#' 
 
 tags_types <- function(..., allow_extra = FALSE) {
   defaults <- list(

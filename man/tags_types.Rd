@@ -4,17 +4,38 @@
 \alias{tags_types}
 \title{List acceptable variable types for tags}
 \usage{
-tags_types()
+tags_types(..., allow_extra = FALSE)
+}
+\arguments{
+\item{...}{a series of tags provided as \code{tag_name = column_name}, where
+\code{tag_name} indicates any of the known variables listed in 'Details';
+alternatively, a named \code{list} of variables to be tagged, where names
+indicate the types of variable (to be selected from \code{tags_names()}), and
+values indicate their name in the input \code{data.frame}; see details for a
+list of known variable types and their expected content}
+
+\item{allow_extra}{a \code{logical} indicating if additional data types not
+currently recognized by \code{linelist} should be allowed; if so, corresponding
+tags will be added}
 }
 \value{
 A named \code{list}.
 }
 \description{
 This function returns a named list providing the acceptable data types for
-the default tags.
+the default tags. If no argument is provided, it returns default
+values. Otherwise, provided values will be used to define the defaults.
 }
 \examples{
+# list default values
 tags_types()
+
+# change existing values
+tags_types(date_onset = "Date") # impose a Date class
+
+# add new values
+tags_types(sequence = "DNAbin", allow_extra = TRUE)
+
 }
 \seealso{
 \url{tags_defaults} for the default tags
