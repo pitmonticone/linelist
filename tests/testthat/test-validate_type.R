@@ -6,24 +6,23 @@ test_that("tests for validate_type", {
 
   msg <- "Allowed types for tag `toto` are not documented in `ref_types`"
   expect_error(validate_type(letters, "toto"), msg)
+  
+  # Check functionality
+  msg <- "Must inherit from class 'numeric'/'integer'/'character', but has class 'factor'"
+  expect_identical(validate_type(factor(letters), "id"), msg)
 
-  msg <- "Assertion on 'x' failed: Must inherit from class 'numeric'/'integer'/'character', but has class 'factor'."
-  expect_error(validate_type(factor(letters), "id"), msg)
-
-  msg <- "Assertion on 'x' failed: Must inherit from class 'DNAbin', but has class 'character'."
-  expect_error(
+  msg <- "Must inherit from class 'DNAbin', but has class 'character'"
+  expect_identical(
     validate_type(c("a", "t"),
                   "sequence",
                   tags_types(sequence = "DNAbin",
                              allow_extra = TRUE)),
     msg)
-  
-  # Check functionality
-  expect_identical(letters, validate_type(letters, "id"))
+
+  expect_true(validate_type(letters, "id"))
 
   x <- validate_type(factor(letters), "id",
                      tags_types(id = c("character", "factor", "numeric")))
-  expect_identical(factor(letters), x)
-
+  expect_true(x)
 
 })

@@ -18,8 +18,6 @@
 #'   classes for specific tags; [`validate_type`](validate_type) to apply
 #'   validation to a single variable (non exported)
 #' 
-#' @examples
-#' 
 
 validate_types <- function(x, ref_types = tags_types()) {
 
@@ -28,10 +26,17 @@ validate_types <- function(x, ref_types = tags_types()) {
   df_to_check <- tags_df(x)
 
   for (i in seq_len(ncol(df_to_check))) {
-    validate_type(df_to_check[[i]],
-                  names(df_to_check)[i],
-                  ref_types
-                  )
+    res <- validate_type(df_to_check[[i]],
+                         names(df_to_check)[i],
+                         ref_types
+                         )
+    if (is.character(res)) {
+      msg <- sprintf(
+        "Issue when checking class of tag `%s`:\n%s",
+        names(df_to_check)[i],
+        res)
+      stop(msg)
+    }
   }
   
   x

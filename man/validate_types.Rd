@@ -19,9 +19,6 @@ A named \code{list}.
 This function checks the class of each tagged variable in a \code{linelist}
 against pre-defined accepted classes in \href{tags_types}{\code{tags_types()}}.
 }
-\examples{
-
-}
 \seealso{
 \url{tags_types} to check or change acceptable data
 classes for specific tags; \url{validate_type} to apply

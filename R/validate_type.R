@@ -17,7 +17,8 @@
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
-#' @return A named `list`.
+#' @return `TRUE` if the test is successful; otherwise, a `character` indicating
+#'   the issue
 #'
 #' @seealso [`tags_types`](tags_types) to check or change acceptable data
 #'   classes for specific tags; [`validate_types`](validate_types) to apply
@@ -36,5 +37,5 @@ validate_type <- function(x, tag, ref_types = tags_types()) {
   }
   
   allowed_types <- ref_types[[tag]]
-  checkmate::assert_multi_class(x, allowed_types, null.ok = TRUE)
+  checkmate::check_multi_class(x, allowed_types, null.ok = TRUE)
 }
