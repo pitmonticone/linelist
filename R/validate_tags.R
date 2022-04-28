@@ -18,7 +18,7 @@
 #' @seealso [`validate_types`](validate_types) to check if tagged variables have
 #'   the right classes
 
-validate_tags <- function(x, allow_extra = TRUE) {
+validate_tags <- function(x, allow_extra = FALSE) {
   checkmate::assert_class(x, "linelist")
   x_tags <- tags(x, show_null = TRUE)
 
