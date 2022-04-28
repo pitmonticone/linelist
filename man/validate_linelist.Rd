@@ -4,28 +4,41 @@
 \alias{validate_linelist}
 \title{Checks the content of a linelist object}
 \usage{
-validate_linelist(x, ref_types = tags_types(), allow_extra = FALSE)
+validate_linelist(x, allow_extra = FALSE, ref_types = tags_types())
 }
 \arguments{
 \item{x}{a \code{linelist} object}
 
-\item{ref_types}{a \code{list} providing allowed types for all tags, as returned
-by \url{tags_types}}
-
 \item{allow_extra}{a \code{logical} indicating if additional data types not
 currently recognized by \code{linelist} should be allowed; if so, corresponding
 tags will be added}
+
+\item{ref_types}{a \code{list} providing allowed types for all tags, as returned
+by \url{tags_types}}
 }
 \value{
 If checks pass, a \code{linelist} object; otherwise issues an error.
 }
 \description{
 This function evalutes the validity of a \code{linelist} object by checking the
-object class, its tags, and the types of the tagged variables.
+object class, its tags, and the types of the tagged variables. See 'Details'
+section for more information on the checks performed.
+}
+\details{
+The following checks are performed:
+\itemize{
+\item \code{x} is a \code{linelist} object
+\item \code{x} has a well-formed \code{tags} attribute
+\item all default tags are present (even if \code{NULL})
+\item all tagged variables correspond to existing columns
+\item all tagged variables have an acceptable class
+\item (optional) \code{x} has no extra tag beyond the default tags
+}
 }
 \seealso{
 \url{validate_types} to check if tagged variables have
-the right classes
+the right classes; \url{validate_tags} to perform a series of
+checks on the tags
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}
