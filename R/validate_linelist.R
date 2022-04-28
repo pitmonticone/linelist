@@ -7,9 +7,9 @@
 #'
 #' @param x a `linelist` object
 #'
-#' @inheritParams validate_types ref_types
+#' @inheritParams validate_types
 #'
-#' @inheritParams set_tags allow_extra
+#' @inheritParams set_tags
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
@@ -18,7 +18,7 @@
 #' @seealso [`validate_types`](validate_types) to check if tagged variables have
 #'   the right classes
 
-validate_linelist <- function(x, ref_types = tags_types(), allow_extra = TRUE) {
+validate_linelist <- function(x, ref_types = tags_types(), allow_extra = FALSE) {
 
   checkmate::assert_class(x, "linelist")
   validate_tags(x)

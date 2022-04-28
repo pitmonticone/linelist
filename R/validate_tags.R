@@ -9,7 +9,7 @@
 #'
 #' @param x a `linelist` object
 #'
-#' @inheritParams set_tags allow_extra
+#' @inheritParams set_tags
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
