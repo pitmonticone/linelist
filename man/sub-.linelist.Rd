@@ -24,10 +24,13 @@ of the tagged variables are dropped through the subsetting process; can be
 "warning" (default), "error", or "none".}
 }
 \value{
-Invisibly returns the object.
+If no drop is happening, a \code{linelist}. Otherwise an atomic vector.
 }
 \description{
-This function prints linelist objects
+The \verb{[]} operator for \code{linelist} objects behaves like for regular
+\code{data.frame} or \code{tibble}, but checks that tagged variables are not lost, and
+takes the appropriate action (warning, error, or ignore, depending on the
+value of \code{lost_action}) if this is the case.
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

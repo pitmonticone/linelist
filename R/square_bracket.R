@@ -1,6 +1,9 @@
 #' Subsetting of linelist objets
 #'
-#' This function prints linelist objects
+#' The `[]` operator for `linelist` objects behaves like for regular
+#' `data.frame` or `tibble`, but checks that tagged variables are not lost, and
+#' takes the appropriate action (warning, error, or ignore, depending on the
+#' value of `lost_action`) if this is the case.
 #'
 #' @param x a `linelist` object
 #'
@@ -18,7 +21,7 @@
 #'   of the tagged variables are dropped through the subsetting process; can be
 #'   "warning" (default), "error", or "none".
 #'
-#' @return Invisibly returns the object.
+#' @return If no drop is happening, a `linelist`. Otherwise an atomic vector.
 #' 
 #' @export
 #'
