@@ -2,9 +2,12 @@
 % Please edit documentation in R/square_bracket.R
 \name{[.linelist}
 \alias{[.linelist}
+\alias{[<-.linelist}
 \title{Subsetting of linelist objets}
 \usage{
 \method{[}{linelist}(x, i, j, drop = FALSE, lost_action = "warning")
+
+\method{[}{linelist}(x, i, j, lost_action = "warning") <- value
 }
 \arguments{
 \item{x}{a \code{linelist} object}
@@ -33,5 +36,7 @@ takes the appropriate action (warning, error, or ignore, depending on the
 value of \code{lost_action}) if this is the case.
 }
 \author{
+Thibaut Jombart \url{thibaut@data.org}
+
 Thibaut Jombart \url{thibaut@data.org}
 }

@@ -25,14 +25,16 @@
 #' 
 #' @export
 #'
+#' @rdname sub_linelist
+#' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 
 `[.linelist` <- function(x, i, j, drop = FALSE, lost_action = "warning") {
   # Strategy for subsetting
   #
   # Subsetting is done using the next method in line, for which we drop the
-  # linelist class (we could equally use NextMethod). Then we need to check two
-  # things:
+  # linelist class (we cannot use NextMethod because of the extra argument
+  # `lost_action`). Then we need to check two things:
   #
   # 1. that the subsetted object is still a `data.frame` or a `tibble`; if not,
   # we automatically drop the `linelist` class and tags
@@ -50,4 +52,29 @@
   out <- restore_tags(out, old_tags, lost_action)
 
   out
+}
+
+
+
+#' @export
+#'
+#' @rdname sub_linelist
+#' 
+#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+
+`[<-.linelist` <- function(x, i, j, value, lost_action = "warning") {
+
+  # Note: explicitely calling the `data.frame` method seems like a necessary
+  # workaround, as `NextMethod` does not seem to like the extra arguments for
+  # `[<-`, even when passing the arguments through.
+
+  # See this conversation: https://stackoverflow.com/questions/21859777/can-i-prevent-arguments-from-being-passed-via-nextmethod-in-r
+
+  out <- drop_linelist(x)
+  out[i, j] <- value
+
+  old_tags <- tags(x, TRUE)
+  out <- restore_tags(out, old_tags, lost_action)
+  out
+  
 }
