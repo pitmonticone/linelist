@@ -4,7 +4,7 @@
 \alias{rename.linelist}
 \title{Rename columns of a linelist object}
 \usage{
-\method{rename}{linelist}(.data, ..., lost_action = "warning")
+\method{rename}{linelist}(.data, ...)
 }
 \arguments{
 \item{.data}{a \code{linelist} object}
@@ -19,8 +19,9 @@ of the tagged variables are dropped through the \code{rename} process; can be
 The function returns a \code{linelist} with renameed columns.
 }
 \description{
-This function works similarly to \code{dplyr::rename} but adds a specific
-behaviour when some of the tagged variable are lost via renaming.
+This function works similarly to \code{dplyr::rename} and can be used to rename
+the columns of a \code{linelist}. Tagged variables are updated as needed to match
+new column names.
 }
 \seealso{
 \itemize{

@@ -4,16 +4,12 @@
 \alias{names<-.linelist}
 \title{Rename columns of a linelist}
 \usage{
-\method{names}{linelist}(x, lost_action = "warning") <- value
+\method{names}{linelist}(x) <- value
 }
 \arguments{
 \item{x}{a \code{linelist} object}
 
 \item{value}{a \code{character} vector to set the new names of the columns of \code{x}}
-
-\item{lost_action}{a \code{character} indicating the behaviour to adopt when some
-of the tagged variables are dropped through the subsetting process; can be
-"warning" (default), "error", or "none".}
 }
 \value{
 a \code{linelist} with new column names

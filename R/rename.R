@@ -1,7 +1,8 @@
 #' Rename columns of a linelist object
 #'
-#' This function works similarly to `dplyr::rename` but adds a specific
-#' behaviour when some of the tagged variable are lost via renaming.
+#' This function works similarly to `dplyr::rename` and can be used to rename
+#' the columns of a `linelist`. Tagged variables are updated as needed to match
+#' new column names.
 #'
 #' @rdname rename.linelist
 #' 
@@ -26,13 +27,12 @@
 #' * [`tags_df`](tags_df) to return a `data.frame` of all tagged variables
 #' 
 
-rename.linelist <- function(.data, ...,
-                            lost_action = "warning") {
-
-  x <- .data
-
-  out <- dplyr::rename(drop_linelist(x), ...)
-  old_tags <- tags(x, TRUE)
-  restore_tags(out, old_tags, lost_action)
-  
+rename.linelist <- function(.data, ...) {
+  # Strategy: we use `dplyr::rename` to handle the renaming of columns, then
+  # extract these names and use them to rename the linelist using
+  # `names<-.linelist`
+  out <- .data
+  new_names <- names(dplyr::rename(drop_linelist(out), ...))
+  names(out) <- new_names
+  out
 }
