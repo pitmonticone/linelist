@@ -12,5 +12,9 @@ test_that("tests for validate_linelist", {
   msg <- "Issue when checking class of tag `gender`:\nMust inherit from class 'character'/'factor', but has class 'numeric'"
   expect_error(validate_linelist(x), msg)
 
+  # Functionalities
+  x <- make_linelist(cars)
+  expect_identical(x, validate_linelist(x))
+  
 })
 

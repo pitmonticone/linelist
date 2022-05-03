@@ -10,4 +10,7 @@ test_that("tests for lost_tags_action", {
   lost_tags_action("none")
   expect_identical(get_lost_tags_action(), "none")
 
+  lost_tags_action("warning")
+  expect_identical(get_lost_tags_action(), "warning")
+
 })
