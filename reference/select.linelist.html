@@ -55,33 +55,7 @@ using both procedures, tagged variables are output as the last columns.</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for linelist</span>
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, tags <span class="op">=</span> <span class="cn">NULL</span>, lost_action <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span>
-
-<span class="fu">select_id</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_date_onset</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_date_reporting</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_date_admission</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_date_discharge</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_date_outcome</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_date_death</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_gender</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_age</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_location</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_occupation</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_hcw</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">select_outcome</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, tags <span class="op">=</span> <span class="cn">NULL</span>, lost_action <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -98,8 +72,6 @@ which case the output columns will be renamed accordingly (e.g. <code>onset = "d
 <dd><p>a <code>character</code> indicating the behaviour to adopt when some
 of the tagged variables are dropped through the <code>select</code> process; can be
 "warning" (default), "error", or "none".</p></dd>
-<dt>x</dt>
-<dd><p>a <code>linelist</code> object</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
