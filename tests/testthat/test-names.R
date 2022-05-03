@@ -4,6 +4,10 @@ test_that("tests for the names<- operator", {
   old_x <- x
   old_class <- class(x)
   old_names <- names(x)
+
+  # errors
+  msg <- "Suggested naming would result in `NA` for some column names.\nDid you provide less names than columns targetted for renaming?"
+  expect_error(names(x) <- "toto", msg)
   
   # functionalities
   names(x) <- c("titi", "toto")

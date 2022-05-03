@@ -7,7 +7,7 @@ test_that("tests for prune_tags", {
   expect_error(prune_tags(cars), msg)
 
   x$speed <- NULL
-  names(x) <- "belette"
+  attr(x, "names") <- "belette" # hack needed as names<- is now safe
   msg <- "The following tags have lost their variable:\n date_onset:dist, age:speed"
   expect_error(prune_tags(x), msg)
   expect_warning(prune_tags(x, "warning"), msg)
@@ -16,4 +16,5 @@ test_that("tests for prune_tags", {
   y <- prune_tags(x, "none")
   expect_identical(tags_defaults(), tags(y, TRUE))
   expect_true(inherits(y, "linelist"))
+  
 })
