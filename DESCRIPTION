@@ -14,7 +14,8 @@ Config/testthat/edition: 3
 Imports:
     checkmate
 Suggests:
+    callr,
+    covr,
     dplyr,
     outbreaks,
-    testthat,
-    covr
+    testthat

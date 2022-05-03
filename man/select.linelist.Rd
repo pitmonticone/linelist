@@ -4,7 +4,7 @@
 \alias{select.linelist}
 \title{Subset columns of a linelist object}
 \usage{
-\method{select}{linelist}(.data, ..., tags = NULL, lost_action = "warning")
+select.linelist(.data, ..., tags = NULL, lost_action = "warning")
 }
 \arguments{
 \item{.data}{a \code{linelist} object}
