@@ -25,6 +25,9 @@
     <loc>/reference/modify_defaults.html</loc>
   </url>
   <url>
+    <loc>/reference/names-set-.linelist.html</loc>
+  </url>
+  <url>
     <loc>/reference/print.linelist.html</loc>
   </url>
   <url>
@@ -44,6 +47,9 @@
   </url>
   <url>
     <loc>/reference/set_tags.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sub-.linelist.html</loc>
   </url>
   <url>
     <loc>/reference/tag_variable.html</loc>
