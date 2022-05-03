@@ -2,48 +2,9 @@
 % Please edit documentation in R/select.R
 \name{select.linelist}
 \alias{select.linelist}
-\alias{select_id}
-\alias{select_date_onset}
-\alias{select_date_reporting}
-\alias{select_date_admission}
-\alias{select_date_discharge}
-\alias{select_date_outcome}
-\alias{select_date_death}
-\alias{select_gender}
-\alias{select_age}
-\alias{select_location}
-\alias{select_occupation}
-\alias{select_hcw}
-\alias{select_outcome}
 \title{Subset columns of a linelist object}
 \usage{
 \method{select}{linelist}(.data, ..., tags = NULL, lost_action = "warning")
-
-select_id(x)
-
-select_date_onset(x)
-
-select_date_reporting(x)
-
-select_date_admission(x)
-
-select_date_discharge(x)
-
-select_date_outcome(x)
-
-select_date_death(x)
-
-select_gender(x)
-
-select_age(x)
-
-select_location(x)
-
-select_occupation(x)
-
-select_hcw(x)
-
-select_outcome(x)
 }
 \arguments{
 \item{.data}{a \code{linelist} object}
@@ -57,8 +18,6 @@ which case the output columns will be renamed accordingly (e.g. \code{onset = "d
 \item{lost_action}{a \code{character} indicating the behaviour to adopt when some
 of the tagged variables are dropped through the \code{select} process; can be
 "warning" (default), "error", or "none".}
-
-\item{x}{a \code{linelist} object}
 }
 \value{
 The function returns a \code{linelist} with selected columns.
