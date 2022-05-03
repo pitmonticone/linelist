@@ -4,12 +4,24 @@
 \alias{[.linelist}
 \title{Subsetting of linelist objets}
 \usage{
-\method{[}{linelist}(x, i, j, drop = FALSE)
+\method{[}{linelist}(x, i, j, drop = FALSE, lost_action = "warning")
 }
 \arguments{
 \item{x}{a \code{linelist} object}
 
-\item{...}{further arguments to be passed to 'print'}
+\item{i}{a vector of \code{integer} or \code{logical} to subset the rows of the
+\code{linelist}}
+
+\item{j}{a vector of \code{character}, \code{integer}, or \code{logical} to subset the
+columns of the \code{linelist}}
+
+\item{drop}{a \code{logical} indicating if, when a single column is selected, the
+\code{data.frame} class should be dropped to return a simple vector, in which
+case the \code{linelist} class is lost as well; defaults to \code{FALSE}}
+
+\item{lost_action}{a \code{character} indicating the behaviour to adopt when some
+of the tagged variables are dropped through the subsetting process; can be
+"warning" (default), "error", or "none".}
 }
 \value{
 Invisibly returns the object.

@@ -16,7 +16,7 @@
 tags_df <- function(x) {
   checkmate::assertClass(x, "linelist")
   tags <- unlist(tags(x))
-  out <- x[tags]
+  out <- drop_linelist(x, remove_tags = TRUE)[tags]
   names(out) <- names(tags)
-  drop_linelist(out, remove_tags = TRUE)
+  out
 }
