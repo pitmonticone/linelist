@@ -3,11 +3,14 @@
 \name{[.linelist}
 \alias{[.linelist}
 \alias{[<-.linelist}
+\alias{[[<-.linelist}
 \title{Subsetting of linelist objets}
 \usage{
-\method{[}{linelist}(x, i, j, drop = FALSE, lost_action = "warning")
+\method{[}{linelist}(x, i, j, drop = FALSE)
 
-\method{[}{linelist}(x, i, j, lost_action = "warning") <- value
+\method{[}{linelist}(x, i, j) <- value
+
+\method{[[}{linelist}(x, i, j) <- value
 }
 \arguments{
 \item{x}{a \code{linelist} object}
@@ -22,20 +25,24 @@ columns of the \code{linelist}}
 \code{data.frame} class should be dropped to return a simple vector, in which
 case the \code{linelist} class is lost as well; defaults to \code{FALSE}}
 
-\item{lost_action}{a \code{character} indicating the behaviour to adopt when some
-of the tagged variables are dropped through the subsetting process; can be
-"warning" (default), "error", or "none".}
+\item{value}{the replacement to be used for the entries identified in \code{x}}
 }
 \value{
 If no drop is happening, a \code{linelist}. Otherwise an atomic vector.
 }
 \description{
-The \verb{[]} operator for \code{linelist} objects behaves like for regular
-\code{data.frame} or \code{tibble}, but checks that tagged variables are not lost, and
-takes the appropriate action (warning, error, or ignore, depending on the
-value of \code{lost_action}) if this is the case.
+The \verb{[]} and \verb{[[]]} operators for \code{linelist} objects behaves like for regular
+\code{data.frame} or \code{tibble}, but check that tagged variables are not lost, and
+takes the appropriate action if this is the case (warning, error, or ignore,
+depending on the general option set via \code{lost_tags_action()}) .
+}
+\seealso{
+\url{lost_tags_action} to set the behaviour to adopt
+when tags are lost through subsetting; default is to issue a warning
 }
 \author{
+Thibaut Jombart \url{thibaut@data.org}
+
 Thibaut Jombart \url{thibaut@data.org}
 
 Thibaut Jombart \url{thibaut@data.org}

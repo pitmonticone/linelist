@@ -10,10 +10,6 @@
 #'
 #' @param ... the variables to rename, using `dplyr` compatible syntax
 #'
-#' @param lost_action a `character` indicating the behaviour to adopt when some
-#'   of the tagged variables are dropped through the `rename` process; can be
-#'   "warning" (default), "error", or "none".
-#'
 #' @exportS3Method dplyr::rename
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)

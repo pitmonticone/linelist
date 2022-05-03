@@ -1,9 +1,9 @@
 #' Subsetting of linelist objets
 #'
-#' The `[]` operator for `linelist` objects behaves like for regular
-#' `data.frame` or `tibble`, but checks that tagged variables are not lost, and
-#' takes the appropriate action (warning, error, or ignore, depending on the
-#' value of `lost_action`) if this is the case.
+#' The `[]` and `[[]]` operators for `linelist` objects behaves like for regular
+#' `data.frame` or `tibble`, but check that tagged variables are not lost, and
+#' takes the appropriate action if this is the case (warning, error, or ignore,
+#' depending on the general option set via `lost_tags_action()`) .
 #'
 #' @param x a `linelist` object
 #'
@@ -17,11 +17,12 @@
 #'   `data.frame` class should be dropped to return a simple vector, in which
 #'   case the `linelist` class is lost as well; defaults to `FALSE`
 #'
-#' @param lost_action a `character` indicating the behaviour to adopt when some
-#'   of the tagged variables are dropped through the subsetting process; can be
-#'   "warning" (default), "error", or "none".
+#' @param value the replacement to be used for the entries identified in `x` 
 #'
 #' @return If no drop is happening, a `linelist`. Otherwise an atomic vector.
+#'
+#' @seealso [`lost_tags_action`](lost_tags_action) to set the behaviour to adopt
+#'   when tags are lost through subsetting; default is to issue a warning
 #' 
 #' @export
 #'
@@ -29,7 +30,7 @@
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 
-`[.linelist` <- function(x, i, j, drop = FALSE, lost_action = "warning") {
+`[.linelist` <- function(x, i, j, drop = FALSE) {
   # Strategy for subsetting
   #
   # Subsetting is done using the next method in line, for which we drop the
@@ -40,6 +41,8 @@
   # we automatically drop the `linelist` class and tags
   # 2. if the output is going to be a `linelist` we need to restore previous
   # tags with the appropriate behaviour in case of missing tagged variables
+
+  lost_action <- get_lost_tags_action()
 
   # Case 1
   out <- drop_linelist(x)[i, j, drop = drop]
@@ -62,19 +65,28 @@
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 
-`[<-.linelist` <- function(x, i, j, value, lost_action = "warning") {
-
-  # Note: explicitely calling the `data.frame` method seems like a necessary
-  # workaround, as `NextMethod` does not seem to like the extra arguments for
-  # `[<-`, even when passing the arguments through.
-
-  # See this conversation: https://stackoverflow.com/questions/21859777/can-i-prevent-arguments-from-being-passed-via-nextmethod-in-r
-
-  out <- drop_linelist(x)
-  out[i, j] <- value
-
+`[<-.linelist` <- function(x, i, j, value) {
+  lost_action <- get_lost_tags_action()
+  out <- NextMethod()
   old_tags <- tags(x, TRUE)
   out <- restore_tags(out, old_tags, lost_action)
   out
   
 }
+
+
+
+#' @export
+#'
+#' @rdname sub_linelist
+#' 
+#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+
+`[[<-.linelist` <- function(x, i, j, value) {
+  lost_action <- get_lost_tags_action()
+  out <- NextMethod()
+  old_tags <- tags(x, TRUE)
+  out <- restore_tags(out, old_tags, lost_action)
+  out  
+}
+

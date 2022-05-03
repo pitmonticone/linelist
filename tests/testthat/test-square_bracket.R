@@ -3,10 +3,15 @@ test_that("tests for [ operator", {
   x <- make_linelist(cars, id = "speed", age = "dist")
 
   # errors
+  lost_tags_action("warning", quiet = TRUE)
   msg <- "The following tags have lost their variable:\n age:dist"
   expect_warning(x[, 1], msg)
+
+  lost_tags_action("error", quiet = TRUE)
   msg <- "The following tags have lost their variable:\n age:dist"
-  expect_error(x[, 1, lost_action = "error"], msg)
+  expect_error(x[, 1], msg)
+
+  lost_tags_action("warning", quiet = TRUE)
   msg <- "The following tags have lost their variable:\n id:speed, age:dist"
   expect_warning(x[, NULL], msg)
 
@@ -16,6 +21,9 @@ test_that("tests for [ operator", {
   expect_null(ncol(x[, 1, drop = TRUE]))
   expect_identical(x[, 1, drop = TRUE], cars[, 1])
 
+  lost_tags_action("none", quiet = TRUE)
+  expect_identical(x[, 1], make_linelist(cars[, 1, drop = FALSE], id = "speed"))
+
 })
 
 
@@ -23,20 +31,23 @@ test_that("tests for [ operator", {
 test_that("tests for [<- operator", {
 
   # errors
+  lost_tags_action("warning", quiet = TRUE)
   x <- make_linelist(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
   expect_warning(x[, 1] <- NULL, msg)
 
+  lost_tags_action("error", quiet = TRUE)
   x <- make_linelist(cars, id = "speed", age = "dist")
   msg <- "The following tags have lost their variable:\n id:speed"
-  expect_error(x[, 1, lost_action = "error"] <- NULL, msg)
+  expect_error(x[, 1] <- NULL, msg)
   
   # functionalities
   x[1:3, 1] <- 1
   expect_equal(x$speed[1:3], rep(1L, 3))
 
+  lost_tags_action("none", quiet = TRUE)
   x <- make_linelist(cars, id = "speed", age = "dist")
-  x[, 1:2, lost_action = "none"] <- NULL
+  x[, 1:2] <- NULL
   expect_identical(ncol(x), 0L)
 
 })

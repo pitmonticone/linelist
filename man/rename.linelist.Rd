@@ -10,10 +10,6 @@
 \item{.data}{a \code{linelist} object}
 
 \item{...}{the variables to rename, using \code{dplyr} compatible syntax}
-
-\item{lost_action}{a \code{character} indicating the behaviour to adopt when some
-of the tagged variables are dropped through the \code{rename} process; can be
-"warning" (default), "error", or "none".}
 }
 \value{
 The function returns a \code{linelist} with renameed columns.
