@@ -14,9 +14,13 @@
 #'
 #' @return A named `list`.
 #'
-#' @seealso [`tags_types`](tags_types) to check or change acceptable data
-#'   classes for specific tags; [`validate_type`](validate_type) to apply
-#'   validation to a single variable (non exported)
+#' @seealso
+#' * [`tags_types`](tags_types) to change allowed types
+#'
+#' * [`validate_tags`](validate_tags) to perform a series of checks on the tags
+#' 
+#' * [`validate_linelist`](validate_linelist) to combine `validate_tags` and
+#' `validate_types`
 #' 
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {

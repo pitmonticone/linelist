@@ -12,7 +12,13 @@
 #'
 #' @return A named `list`.
 #'
-#' @seealso [`tags_defaults`](tags_defaults) for the default tags
+#' @seealso
+#' * [`tags_defaults`](tags_defaults) for the default tags
+#' 
+#' * [`validate_types`](validate_types) uses `tags_types()` for validating tags
+#' 
+#' * [`validate_linelist`](validate_linelist) uses `tags_types()` for validating
+#' tags
 #' 
 #' @examples
 #' # list default values
@@ -21,7 +27,7 @@
 #' # change existing values
 #' tags_types(date_onset = "Date") # impose a Date class
 #'
-#' # add new values
+#' # add new types e.g. to allow genetic sequences using ape's format
 #' tags_types(sequence = "DNAbin", allow_extra = TRUE)
 #' 
 

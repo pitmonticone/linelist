@@ -37,9 +37,12 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 }
 \seealso{
-\url{tags_types} to check or change acceptable data
-classes for specific tags; \url{validate_type} to apply
-validation to a single variable (non exported)
+\itemize{
+\item \url{tags_types} to change allowed types
+\item \url{validate_tags} to perform a series of checks on the tags
+\item \url{validate_linelist} to combine \code{validate_tags} and
+\code{validate_types}
+}
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

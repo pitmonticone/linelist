@@ -21,8 +21,10 @@ If checks pass, a \code{linelist} object; otherwise issues an error.
 }
 \description{
 This function evalutes the validity of a \code{linelist} object by checking the
-object class, its tags, and the types of the tagged variables. See 'Details'
-section for more information on the checks performed.
+object class, its tags, and the types of the tagged variables. It combines
+validations checks made by \url{validate_types} and
+\url{validate_tags}. See 'Details' section for more information
+on the checks performed.
 }
 \details{
 The following checks are performed:
@@ -64,9 +66,12 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 }
 \seealso{
-\url{validate_types} to check if tagged variables have
-the right classes; \url{validate_tags} to perform a series of
-checks on the tags
+\itemize{
+\item \url{tags_types} to change allowed types
+\item \url{validate_types} to check if tagged variables have
+the right classes
+\item \url{validate_tags} to perform a series of checks on the tags
+}
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

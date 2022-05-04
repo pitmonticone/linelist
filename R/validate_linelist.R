@@ -1,8 +1,10 @@
 #' Checks the content of a linelist object
 #'
 #' This function evalutes the validity of a `linelist` object by checking the
-#' object class, its tags, and the types of the tagged variables. See 'Details'
-#' section for more information on the checks performed.
+#' object class, its tags, and the types of the tagged variables. It combines
+#' validations checks made by [`validate_types`](validate_types) and
+#' [`validate_tags`](validate_tags). See 'Details' section for more information
+#' on the checks performed.
 #'
 #' @details The following checks are performed:
 #'
@@ -25,9 +27,13 @@
 #'
 #' @return If checks pass, a `linelist` object; otherwise issues an error.
 #'
-#' @seealso [`validate_types`](validate_types) to check if tagged variables have
-#'   the right classes; [`validate_tags`](validate_tags) to perform a series of
-#'   checks on the tags
+#' @seealso
+#' * [`tags_types`](tags_types) to change allowed types
+#' 
+#' * [`validate_types`](validate_types) to check if tagged variables have
+#'   the right classes
+#'
+#' * [`validate_tags`](validate_tags) to perform a series of checks on the tags
 #'
 #' @examples
 #' 

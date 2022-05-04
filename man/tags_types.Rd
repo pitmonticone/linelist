@@ -33,12 +33,17 @@ tags_types()
 # change existing values
 tags_types(date_onset = "Date") # impose a Date class
 
-# add new values
+# add new types e.g. to allow genetic sequences using ape's format
 tags_types(sequence = "DNAbin", allow_extra = TRUE)
 
 }
 \seealso{
-\url{tags_defaults} for the default tags
+\itemize{
+\item \url{tags_defaults} for the default tags
+\item \url{validate_types} uses \code{tags_types()} for validating tags
+\item \url{validate_linelist} uses \code{tags_types()} for validating
+tags
+}
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}
