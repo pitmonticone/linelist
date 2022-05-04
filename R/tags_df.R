@@ -11,7 +11,23 @@
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
 #' @return A `data.frame` of tagged variables.
+#'
+#' @examples
 #' 
+#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#'
+#'   ## create a tibble linelist
+#'   x <- measles_hagelloch_1861 %>%
+#'     tibble() %>% 
+#'     make_linelist(id = "case_ID",
+#'                   date_onset = "date_of_prodrome",
+#'                   age = "age",
+#'                   gender = "gender")
+#'   x
+#'
+#'   ## get a data.frame of all tagged variables
+#'   tags_df(x)
+#' }
 
 tags_df <- function(x) {
   checkmate::assertClass(x, "linelist")

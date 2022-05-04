@@ -1,7 +1,8 @@
 #' Tag a variable using its name
 #'
-#' This function will tag a pre-defined type of variable in a `data.frame` by
-#' adding a named attribute identifying the column name.
+#' Internal. This function will tag a pre-defined type of variable in a
+#' `data.frame` by adding a named attribute identifying the column name. This is
+#' a singular version of the user-facing function `set_tags`.
 #'
 #' @param x a `data.frame` or a `tibble`, with at least one column
 #'
@@ -10,7 +11,7 @@
 #' @param var_name a `character` or an `integer` indicating the columns of the
 #'   dataset corresponding to this type of data
 #'
-#' @export
+#' @noRd
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'

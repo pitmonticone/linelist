@@ -35,6 +35,34 @@ The following checks are performed:
 \item (optional) \code{x} has no extra tag beyond the default tags
 }
 }
+\examples{
+
+if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+
+  ## create a valid linelist
+  x <- measles_hagelloch_1861 \%>\%
+    tibble() \%>\% 
+    make_linelist(id = "case_ID",
+                  date_onset = "date_of_prodrome",
+                  age = "age",
+                  gender = "gender")
+  x
+
+  ## validation
+  validate_linelist(x)
+
+  ## create an invalid linelist - onset date is a factor
+  x <- measles_hagelloch_1861 \%>\%
+    tibble() \%>\% 
+    make_linelist(id = "case_ID",
+                  date_onset = "gender",
+                  age = "age")
+  x
+
+  ## the below issues an error
+  # validate_linelist(x)
+}
+}
 \seealso{
 \url{validate_types} to check if tagged variables have
 the right classes; \url{validate_tags} to perform a series of

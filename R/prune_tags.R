@@ -1,8 +1,8 @@
 #' Prune tags after changing columns of a linelist
 #'
-#' This finction is used to remove tags whose variable has been removed after
-#' subsetting the columns of a `linelist` object. By default, a warning will be
-#' issued if some tagged variables have been removed.
+#' Internal. This function is used to remove tags whose variable has been
+#' removed after subsetting the columns of a `linelist` object. By default, a
+#' warning will be issued if some tagged variables have been removed.
 #'
 #' @param x `linelist` object
 #'
@@ -10,7 +10,7 @@
 #'   variables have been lost: "error" (default) will issue an error; "warning"
 #'   will issue a warning; "none" will do nothing
 #' 
-#' @export
+#' @noRd
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'

@@ -23,7 +23,7 @@ new column names.
 if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 
   ## dataset to create a linelist from
-  measles_hagelloch_1861
+  head(measles_hagelloch_1861)
 
   ## create linelist
   x <- measles_hagelloch_1861 \%>\%

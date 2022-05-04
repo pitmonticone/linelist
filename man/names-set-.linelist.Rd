@@ -30,13 +30,13 @@ if (require(outbreaks)) {
                      date_onset = "date_of_prodrome",
                      age = "age",
                      gender = "gender")
-  x
+  head(x)
 
   ## change names
   names(x)[1] <- "case_label"
 
   ## see results: tags have been updated
-  x
+  head(x)
   tags(x)
 }
 }

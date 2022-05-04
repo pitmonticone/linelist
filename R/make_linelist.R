@@ -75,7 +75,7 @@
 #' if (require(outbreaks)) {
 #'
 #'   ## dataset we will convert to linelist
-#'   measles_hagelloch_1861
+#'   head(measles_hagelloch_1861)
 #'
 #'   ## create linelist
 #'   x <- make_linelist(measles_hagelloch_1861,
@@ -83,8 +83,9 @@
 #'                      date_onset = "date_of_prodrome",
 #'                      age = "age",
 #'                      gender = "gender")
-#'   ## print result
-#'   x
+#' 
+#'   ## print result - just first few entries
+#'   head(x)
 #' }
 #' 
 make_linelist <- function(x,

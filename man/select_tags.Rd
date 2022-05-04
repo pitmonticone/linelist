@@ -38,7 +38,7 @@ id = "case_ID",
 date_onset = "date_of_prodrome",
 age = "age",
 gender = "gender")
-x
+head(x)
 }
 
 \subsection{check tagged variables}{

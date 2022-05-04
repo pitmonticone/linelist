@@ -54,11 +54,11 @@
 #' if (require(outbreaks)) {
 #'   # using base R style
 #'
-#'   ## dataset we'll create a linelist from
-#'   measles_hagelloch_1861
+#'   ## dataset we'll create a linelist from, only using the first 50 entries
+#'   measles_hagelloch_1861[1:50, ]
 #'
 #'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861,
+#'   x <- make_linelist(measles_hagelloch_1861[1:50, ],
 #'                      id = "case_ID",
 #'                      date_onset = "date_of_prodrome",
 #'                      age = "age",

@@ -31,7 +31,7 @@
 #'                      date_onset = "date_of_prodrome",
 #'                      age = "age",
 #'                      gender = "gender")
-#'   x
+#'   head(x)
 #' 
 #'   ## check tagged variables
 #'   tags(x)

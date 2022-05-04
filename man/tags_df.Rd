@@ -17,6 +17,23 @@ This function returns a \code{data.frame} of all the tagged variables stored in 
 \code{linelist}. Note that the output is no longer a \code{linelist}, but a regular
 \code{data.frame}.
 }
+\examples{
+
+if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+
+  ## create a tibble linelist
+  x <- measles_hagelloch_1861 \%>\%
+    tibble() \%>\% 
+    make_linelist(id = "case_ID",
+                  date_onset = "date_of_prodrome",
+                  age = "age",
+                  gender = "gender")
+  x
+
+  ## get a data.frame of all tagged variables
+  tags_df(x)
+}
+}
 \author{
 Thibaut Jombart \url{thibaut@data.org}
 }

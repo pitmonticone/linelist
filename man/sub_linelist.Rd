@@ -37,6 +37,28 @@ The \verb{[]} and \verb{[[]]} operators for \code{linelist} objects behaves like
 takes the appropriate action if this is the case (warning, error, or ignore,
 depending on the general option set via \code{lost_tags_action()}) .
 }
+\examples{
+if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+  ## create a linelist
+  x <- measles_hagelloch_1861 \%>\%
+    tibble() \%>\% 
+    make_linelist(id = "case_ID",
+                  date_onset = "date_of_prodrome",
+                  age = "age",
+                  gender = "gender") \%>\%
+    mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
+    set_tags(outcome = "result") \%>\%
+    rename(identifier = case_ID)
+  x
+
+  ## dangerous removal of a tagged column setting it to NULL issues a warning
+  x[, 1] <- NULL
+  x
+
+  x[[2]] <- NULL
+  x
+}
+}
 \seealso{
 \url{lost_tags_action} to set the behaviour to adopt
 when tags are lost through subsetting; default is to issue a warning

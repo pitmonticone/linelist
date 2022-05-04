@@ -31,6 +31,28 @@
 #' @aliases sub_linelist
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#'
+#' @examples
+#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#'   ## create a linelist
+#'   x <- measles_hagelloch_1861 %>%
+#'     tibble() %>% 
+#'     make_linelist(id = "case_ID",
+#'                   date_onset = "date_of_prodrome",
+#'                   age = "age",
+#'                   gender = "gender") %>%
+#'     mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
+#'     set_tags(outcome = "result") %>%
+#'     rename(identifier = case_ID)
+#'   x
+#'
+#'   ## dangerous removal of a tagged column setting it to NULL issues a warning
+#'   x[, 1] <- NULL
+#'   x
+#'
+#'   x[[2]] <- NULL
+#'   x
+#' }
 
 `[.linelist` <- function(x, i, j, drop = FALSE) {
   # Strategy for subsetting
