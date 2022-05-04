@@ -17,5 +17,6 @@ Suggests:
     callr,
     covr,
     dplyr,
+    magrittr,
     outbreaks,
     testthat

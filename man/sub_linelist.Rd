@@ -2,6 +2,7 @@
 % Please edit documentation in R/square_bracket.R
 \name{[.linelist}
 \alias{[.linelist}
+\alias{sub_linelist}
 \alias{[<-.linelist}
 \alias{[[<-.linelist}
 \title{Subsetting of linelist objets}

@@ -27,6 +27,8 @@
 #' @export
 #'
 #' @rdname sub_linelist
+#'
+#' @aliases sub_linelist
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 

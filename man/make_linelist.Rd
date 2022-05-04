@@ -64,9 +64,10 @@ format); this is the recommended format
 }
 }
 \examples{
-# basic use of the function
+
 if (require(outbreaks)) {
-  # using base R style
+
+  ## dataset we will convert to linelist
   measles_hagelloch_1861
 
   ## create linelist
@@ -75,65 +76,9 @@ if (require(outbreaks)) {
                      date_onset = "date_of_prodrome",
                      age = "age",
                      gender = "gender")
+  ## print result
   x
-
-  ## check tagged variables
-  tags(x)
-
-  ## extract tagged variables
-  select_tags(x, "gender", "age")
-
-  ## robust renaming
-  names(x)[1] <- "identifier"
-  x
-
-  ## example of dropping tags by mistake - default: warning
-  x[, 2:5]
-
-  ## to silence warnings when taggs are dropped
-  lost_tags_action("none")
-  x[, 2:5]
-
-  ## to trigger errors when taggs are dropped
-  # lost_tags_action("error")
-  # x[, 2:5]
-
-  ## reset default behaviour
-  lost_tags_action()
-
-
-  # using tidyverse style
-
-  ## example of creating a linelist, adding a new variable, and adding a tag
-  ## for it
-
-  if (require(dplyr) && require(magrittr)) {
-    x <- measles_hagelloch_1861 \%>\%
-      tibble() \%>\% 
-      make_linelist(id = "case_ID",
-                    date_onset = "date_of_prodrome",
-                    age = "age",
-                    gender = "gender") \%>\%
-      mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
-      set_tags(outcome = "result") \%>\%
-      rename(identifier = case_ID)
-
-    x
-
-    x \%>\%
-      tags()
-
-    x \%>\%
-      select(starts_with("date"))
-
-    ## disable warnings on the fly
-    x \%>\%
-      lost_tags_action("none") \%>\%
-      select(starts_with("date"))
-    
-  }
 }
-
 
 }
 \author{
