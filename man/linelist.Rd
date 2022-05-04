@@ -25,7 +25,7 @@ reliable.
 \item \url{lost_tags_action}: to change the behaviour of actions
 where tagged variables are lost (e.g. removing columns storing tagged
 variables) to issue warnings, errors, or do nothing
-\item \url{get_lost_tags_action}: to check the current
+\item \href{lost_tags_action}{\code{get_lost_tags_action}}: to check the current
 behaviour of actions where tagged variables are lost
 }
 }
@@ -42,6 +42,8 @@ pipelines).
 rename tags as needed
 \item \href{sub_linelist}{\verb{x[...] <-}} and \href{sub_linelist}{\verb{x[[...]] <-}}: will adopt
 the desire behaviour when tagged variables are lost
+\item \code{print()}: prints info about the \code{linelist} in addition to the \code{data.frame}
+or \code{tibble}
 }
 }
 

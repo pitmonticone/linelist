@@ -17,9 +17,9 @@ indicate the types of variable (to be selected from \code{tags_names()}), and
 values indicate their name in the input \code{data.frame}; see details for a
 list of known variable types and their expected content}
 
-\item{allow_extra}{a \code{logical} indicating if additional data types not
-currently recognized by \code{linelist} should be allowed; if so, corresponding
-tags will be added}
+\item{allow_extra}{a \code{logical} indicating if additional data tags not
+currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
+tags will trigger an error}
 }
 \value{
 The function returns a \code{linelist} object.

@@ -33,7 +33,7 @@
 #' where tagged variables are lost (e.g. removing columns storing tagged
 #' variables) to issue warnings, errors, or do nothing
 #' 
-#' * [`get_lost_tags_action`](get_lost_tags_action): to check the current
+#' * [`get_lost_tags_action`](lost_tags_action): to check the current
 #' behaviour of actions where tagged variables are lost
 #'
 #' @section Dedicated methods:
@@ -48,6 +48,9 @@
 #' 
 #' * [`x[...] <-`](sub_linelist) and [`x[[...]] <-`](sub_linelist): will adopt
 #' the desire behaviour when tagged variables are lost
+#'
+#' * `print()`: prints info about the `linelist` in addition to the `data.frame`
+#' or `tibble`
 #'
 #' @examples
 #'

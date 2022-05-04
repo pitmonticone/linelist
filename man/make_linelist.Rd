@@ -17,15 +17,15 @@ indicate the types of variable (to be selected from \code{tags_names()}), and
 values indicate their name in the input \code{data.frame}; see details for a
 list of known variable types and their expected content}
 
-\item{allow_extra}{a \code{logical} indicating if additional data types not
-currently recognized by \code{linelist} should be allowed; if so, corresponding
-tags will be added}
+\item{allow_extra}{a \code{logical} indicating if additional data tags not
+currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
+tags will trigger an error}
 }
 \value{
 The function returns a \code{linelist} object.
 }
 \description{
-This function converts a \code{data.frame} or a \code{tibble} to a \code{linelist} object,
+This function converts a \code{data.frame} or a \code{tibble} into a \code{linelist} object,
 where different types of epidemiologically relevant data are tagged. This
 includes dates of different events (e.g. onset of symtpom, case reporting),
 information on the patient (e.g. age, gender, location) as well as other
@@ -79,8 +79,14 @@ if (require(outbreaks)) {
 
   ## print result - just first few entries
   head(x)
+
+  ## check tags
+  tags(x)
 }
 
+}
+\seealso{
+an \href{linelist}{overview} of the package
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

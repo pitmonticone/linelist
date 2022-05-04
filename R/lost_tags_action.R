@@ -1,8 +1,10 @@
 #' Set behaviour for lost tags
 #'
 #' This function determines the behaviour to adopt when tagged variables of a
-#' `linelist` are lost e.g. through subsetting. This is achieved using
-#' `options` defined for the `linelist` package.
+#' `linelist` are lost e.g. through subsetting. This is achieved using `options`
+#' defined for the `linelist` package. The function can be used in isolation,
+#' but it can also accept a dataset as first argument, so that it can be used in
+#' pipelines as well.
 #'
 #' @param x either a `character`, or an optional `linelist` object; if a
 #'   `character`, it needs matching `warning` (default), `error` or `none` (see
@@ -22,10 +24,15 @@
 #' @export
 #'
 #' @rdname lost_tags_action
+#'
+#' @aliases lost_tags_action get_lost_tags_action
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 #'
 #' @examples
+#' # reset default (done automatically at package loading) 
+#' lost_tags_action()
+#' 
 #' # check current value
 #' get_lost_tags_action()
 #'
@@ -74,8 +81,6 @@ lost_tags_action <- function(x = NULL,
 #' @export
 #' 
 #' @rdname lost_tags_action
-#' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 
 get_lost_tags_action <- function() {
   options("linelist")$linelist$lost_tags_action

@@ -32,10 +32,15 @@ otherwise, returns \code{NULL}; the option itself is set in
 }
 \description{
 This function determines the behaviour to adopt when tagged variables of a
-\code{linelist} are lost e.g. through subsetting. This is achieved using
-\code{options} defined for the \code{linelist} package.
+\code{linelist} are lost e.g. through subsetting. This is achieved using \code{options}
+defined for the \code{linelist} package. The function can be used in isolation,
+but it can also accept a dataset as first argument, so that it can be used in
+pipelines as well.
 }
 \examples{
+# reset default (done automatically at package loading) 
+lost_tags_action()
+
 # check current value
 get_lost_tags_action()
 
@@ -51,7 +56,5 @@ get_lost_tags_action()
 lost_tags_action()
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
-
 Thibaut Jombart \url{thibaut@data.org}
 }

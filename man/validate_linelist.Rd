@@ -9,9 +9,9 @@ validate_linelist(x, allow_extra = FALSE, ref_types = tags_types())
 \arguments{
 \item{x}{a \code{linelist} object}
 
-\item{allow_extra}{a \code{logical} indicating if additional data types not
-currently recognized by \code{linelist} should be allowed; if so, corresponding
-tags will be added}
+\item{allow_extra}{a \code{logical} indicating if additional data tags not
+currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
+tags will trigger an error}
 
 \item{ref_types}{a \code{list} providing allowed types for all tags, as returned
 by \url{tags_types}}

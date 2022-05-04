@@ -1,6 +1,6 @@
 #' Create a linelist from a data.frame
 #'
-#' This function converts a `data.frame` or a `tibble` to a `linelist` object,
+#' This function converts a `data.frame` or a `tibble` into a `linelist` object,
 #' where different types of epidemiologically relevant data are tagged. This
 #' includes dates of different events (e.g. onset of symtpom, case reporting),
 #' information on the patient (e.g. age, gender, location) as well as other
@@ -19,10 +19,12 @@
 #'   values indicate their name in the input `data.frame`; see details for a
 #'   list of known variable types and their expected content
 #'
-#' @param allow_extra a `logical` indicating if additional data types not
-#'   currently recognized by `linelist` should be allowed; if so, corresponding
-#'   tags will be added
+#' @param allow_extra a `logical` indicating if additional data tags not
+#'   currently recognized by `linelist` should be allowed; if `FALSE`, unknown
+#'   tags will trigger an error
 #'
+#' @seealso an [overview](linelist) of the package
+#' 
 #' @details
 #' Known variable types include:
 #'
@@ -86,6 +88,9 @@
 #' 
 #'   ## print result - just first few entries
 #'   head(x)
+#'
+#'   ## check tags
+#'   tags(x)
 #' }
 #' 
 make_linelist <- function(x,

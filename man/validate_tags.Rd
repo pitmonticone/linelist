@@ -9,9 +9,9 @@ validate_tags(x, allow_extra = FALSE)
 \arguments{
 \item{x}{a \code{linelist} object}
 
-\item{allow_extra}{a \code{logical} indicating if additional data types not
-currently recognized by \code{linelist} should be allowed; if so, corresponding
-tags will be added}
+\item{allow_extra}{a \code{logical} indicating if additional data tags not
+currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
+tags will trigger an error}
 }
 \value{
 If checks pass, a \code{linelist} object; otherwise issues an error.
