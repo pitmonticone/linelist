@@ -22,6 +22,28 @@ checking that: i) tags are present ii) tags is a \code{list} of \code{character}
 that all default tags are present iv) tagged variables exist v) that no extra
 tag exists (if \code{allow_extra} is \code{FALSE}).
 }
+\examples{
+if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+
+  ## create a valid linelist
+  x <- measles_hagelloch_1861 \%>\%
+    tibble() \%>\% 
+    make_linelist(id = "case_ID",
+                  date_onset = "date_of_prodrome",
+                  age = "age",
+                  gender = "gender")
+  x
+
+  ## validation
+  validate_linelist(x)
+
+  ## hack to create an invalid tags (missing defaults)
+  attr(x, "tags") <- list(id = "case_ID")
+
+  ## the below issues an error
+  # validate_linelist(x)
+}
+}
 \seealso{
 \url{validate_types} to check if tagged variables have
 the right classes

@@ -18,6 +18,22 @@
 #'   classes for specific tags; [`validate_type`](validate_type) to apply
 #'   validation to a single variable (non exported)
 #' 
+#' @examples
+#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#'
+#'   ## create an invalid linelist - gender is a numeric
+#'   x <- measles_hagelloch_1861 %>%
+#'     tibble() %>% 
+#'     make_linelist(id = "case_ID",
+#'                   gender = "infector")
+#'   x
+#'
+#'   ## the below would issue an error
+#'   # validate_types(x)
+#'
+#'   ## to allow other types, e.g. gender to be integer, character or factor
+#'   validate_types(x, tags_types(gender = c("integer", "character", "factor")))
+#' }
 
 validate_types <- function(x, ref_types = tags_types()) {
 

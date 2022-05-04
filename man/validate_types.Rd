@@ -19,6 +19,23 @@ A named \code{list}.
 This function checks the class of each tagged variable in a \code{linelist}
 against pre-defined accepted classes in \href{tags_types}{\code{tags_types()}}.
 }
+\examples{
+if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+
+  ## create an invalid linelist - gender is a numeric
+  x <- measles_hagelloch_1861 \%>\%
+    tibble() \%>\% 
+    make_linelist(id = "case_ID",
+                  gender = "infector")
+  x
+
+  ## the below would issue an error
+  # validate_types(x)
+
+  ## to allow other types, e.g. gender to be integer, character or factor
+  validate_types(x, tags_types(gender = c("integer", "character", "factor")))
+}
+}
 \seealso{
 \url{tags_types} to check or change acceptable data
 classes for specific tags; \url{validate_type} to apply

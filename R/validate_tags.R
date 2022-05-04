@@ -17,6 +17,28 @@
 #'
 #' @seealso [`validate_types`](validate_types) to check if tagged variables have
 #'   the right classes
+#'
+#' @examples
+#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#'
+#'   ## create a valid linelist
+#'   x <- measles_hagelloch_1861 %>%
+#'     tibble() %>% 
+#'     make_linelist(id = "case_ID",
+#'                   date_onset = "date_of_prodrome",
+#'                   age = "age",
+#'                   gender = "gender")
+#'   x
+#'
+#'   ## validation
+#'   validate_linelist(x)
+#'
+#'   ## hack to create an invalid tags (missing defaults)
+#'   attr(x, "tags") <- list(id = "case_ID")
+#'
+#'   ## the below issues an error
+#'   # validate_linelist(x)
+#' }
 
 validate_tags <- function(x, allow_extra = FALSE) {
   checkmate::assert_class(x, "linelist")
