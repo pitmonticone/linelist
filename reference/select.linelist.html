@@ -54,7 +54,8 @@ using both procedures, tagged variables are output as the last columns.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">select.linelist</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, tags <span class="op">=</span> <span class="cn">NULL</span>, lost_action <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for linelist</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, tags <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,10 +68,6 @@ using both procedures, tagged variables are output as the last columns.</p>
 <dd><p>a <code>character</code> indicating tagged variables to select using tag
 names (see <code><a href="tags_names.html">tags_names()</a></code>) for default values; values can be named, in
 which case the output columns will be renamed accordingly (e.g. <code>onset = "date_onset"</code> will output a column named 'onset').</p></dd>
-<dt>lost_action</dt>
-<dd><p>a <code>character</code> indicating the behaviour to adopt when some
-of the tagged variables are dropped through the <code>select</code> process; can be
-"warning" (default), "error", or "none".</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
