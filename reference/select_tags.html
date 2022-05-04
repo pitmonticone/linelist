@@ -75,7 +75,22 @@ terminology; see <a href="tags_names">tags_names</a>) for default values</p></dd
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><a href="tags_names">tags_names</a>) for the names of tags</p></div>
+    <div class="dont-index"><p><a href="tags_names">tags_names</a>) for the names of tags</p>
+<p>if (require(outbreaks)) 
+</p><div class="section">
+<h3 id="dataset-we-ll-create-a-linelist-from">dataset we'll create a linelist from<a class="anchor" aria-label="anchor" href="#dataset-we-ll-create-a-linelist-from"></a></h3><p>measles_hagelloch_1861</p>
+</div><div class="section">
+<h3 id="create-linelist">create linelist<a class="anchor" aria-label="anchor" href="#create-linelist"></a></h3><p>x &lt;- make_linelist(measles_hagelloch_1861,
+id = "case_ID",
+date_onset = "date_of_prodrome",
+age = "age",
+gender = "gender")
+x</p>
+</div><div class="section">
+<h3 id="check-tagged-variables">check tagged variables<a class="anchor" aria-label="anchor" href="#check-tagged-variables"></a></h3><p>tags(x)</p>
+</div><div class="section">
+<h3 id="extract-tagged-variables">extract tagged variables<a class="anchor" aria-label="anchor" href="#extract-tagged-variables"></a></h3><p>select_tags(x, "gender", "age")</p>
+</div></div>
     </div>
     <div id="author">
     <h2>Author</h2>
