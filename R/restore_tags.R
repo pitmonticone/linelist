@@ -1,9 +1,9 @@
 #' Restore tags of a linelist
 #'
-#' This function is used to restore tags of a `linelist` object which may have
-#' lost its tags after handling e.g. through `dplyr` verbs. Specific actions can
-#' be triggered when some of the tagged variables have disappeared from the
-#' object.
+#' Internal. This function is used to restore tags of a `linelist` object which
+#' may have lost its tags after handling e.g. through `dplyr` verbs. Specific
+#' actions can be triggered when some of the tagged variables have disappeared
+#' from the object.
 #'
 #' @param x a `data.frame`
 #'
@@ -14,7 +14,7 @@
 #'   variables have been lost: "error" (default) will issue an error; "warning"
 #'   will issue a warning; "none" will do nothing
 #' 
-#' @export
+#' @noRd
 #'
 #' @seealso [`prune_tags`](prune_tags) for removing tags which have lost their
 #'   variables
