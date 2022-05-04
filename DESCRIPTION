@@ -19,4 +19,5 @@ Suggests:
     dplyr,
     magrittr,
     outbreaks,
-    testthat
+    testthat,
+    tibble
