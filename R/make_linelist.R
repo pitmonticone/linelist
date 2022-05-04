@@ -105,7 +105,10 @@
 #'   # lost_tags_action("error")
 #'   # x[, 2:5]
 #'
+#'   ## reset default behaviour
+#'   lost_tags_action()
 #' 
+#'
 #'   # using tidyverse style
 #'
 #'   ## example of creating a linelist, adding a new variable, and adding a tag
@@ -119,12 +122,22 @@
 #'                     age = "age",
 #'                     gender = "gender") %>%
 #'       mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
-#'       set_tags(outcome = "result")
+#'       set_tags(outcome = "result") %>%
+#'       rename(identifier = case_ID)
 #'
 #'     x
-#'     x %>% tags()
+#'
 #'     x %>%
-#'       select(2:5)
+#'       tags()
+#' 
+#'     x %>%
+#'       select(starts_with("date"))
+#'
+#'     ## disable warnings on the fly
+#'     x %>%
+#'       lost_tags_action("none") %>%
+#'       select(starts_with("date"))
+#'     
 #'   }
 #' }
 #' 

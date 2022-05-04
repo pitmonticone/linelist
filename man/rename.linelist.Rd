@@ -4,7 +4,7 @@
 \alias{rename.linelist}
 \title{Rename columns of a linelist object}
 \usage{
-rename.linelist(.data, ...)
+\method{rename}{linelist}(.data, ...)
 }
 \arguments{
 \item{.data}{a \code{linelist} object}
