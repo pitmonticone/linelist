@@ -1,6 +1,6 @@
 #' Printing method for linelist objects
 #'
-#' This function prints linelist objects
+#' This function prints linelist objects.
 #'
 #' @param x a `linelist` object
 #'
@@ -11,6 +11,23 @@
 #' @export
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#'
+#' @examples
+#' if (require(outbreaks)) {
+#'
+#'   ## dataset we'll create a linelist from
+#'   measles_hagelloch_1861
+#'
+#'   ## create linelist
+#'   x <- make_linelist(measles_hagelloch_1861,
+#'                      id = "case_ID",
+#'                      date_onset = "date_of_prodrome",
+#'                      age = "age",
+#'                      gender = "gender")
+#'   ## print object
+#'   x
+#' }
+
 
 print.linelist <- function(x, ...) {
   cat("\n// linelist object\n")

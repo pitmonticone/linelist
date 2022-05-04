@@ -15,7 +15,23 @@
 Invisibly returns the object.
 }
 \description{
-This function prints linelist objects
+This function prints linelist objects.
+}
+\examples{
+if (require(outbreaks)) {
+
+  ## dataset we'll create a linelist from
+  measles_hagelloch_1861
+
+  ## create linelist
+  x <- make_linelist(measles_hagelloch_1861,
+                     id = "case_ID",
+                     date_onset = "date_of_prodrome",
+                     age = "age",
+                     gender = "gender")
+  ## print object
+  x
+}
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}
