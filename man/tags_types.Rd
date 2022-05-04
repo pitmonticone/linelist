@@ -7,7 +7,7 @@
 tags_types(..., allow_extra = FALSE)
 }
 \arguments{
-\item{...}{a series of tags provided as \code{tag_name = column_name}, where
+\item{...}{a series of tags provided as \code{tag_name = "column_name"}, where
 \code{tag_name} indicates any of the known variables listed in 'Details';
 alternatively, a named \code{list} of variables to be tagged, where names
 indicate the types of variable (to be selected from \code{tags_names()}), and

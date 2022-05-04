@@ -86,8 +86,6 @@
 #' @export
 #'
 #' @rdname sub_linelist
-#' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 
 `[<-.linelist` <- function(x, i, j, value) {
   lost_action <- get_lost_tags_action()
@@ -103,8 +101,6 @@
 #' @export
 #'
 #' @rdname sub_linelist
-#' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
 
 `[[<-.linelist` <- function(x, i, j, value) {
   lost_action <- get_lost_tags_action()

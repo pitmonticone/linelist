@@ -65,8 +65,4 @@ when tags are lost through subsetting; default is to issue a warning
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}
-
-Thibaut Jombart \url{thibaut@data.org}
-
-Thibaut Jombart \url{thibaut@data.org}
 }

@@ -12,7 +12,7 @@
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
 #'   cases in rows and variables in columns
 #'
-#' @param ... a series of tags provided as `tag_name = column_name`, where
+#' @param ... a series of tags provided as `tag_name = "column_name"`, where
 #'   `tag_name` indicates any of the known variables listed in 'Details';
 #'   alternatively, a named `list` of variables to be tagged, where names
 #'   indicate the types of variable (to be selected from `tags_names()`), and
