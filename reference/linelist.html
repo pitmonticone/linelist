@@ -102,11 +102,11 @@ the desire behaviour when tagged variables are lost</p></li>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="co"># using base R style</span></span>
 <span class="r-in"></span>
-<span class="r-in">  <span class="co">## dataset we'll create a linelist from</span></span>
-<span class="r-in">  <span class="va">measles_hagelloch_1861</span></span>
+<span class="r-in">  <span class="co">## dataset we'll create a linelist from, only using the first 50 entries</span></span>
+<span class="r-in">  <span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span></span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="co">## create linelist</span></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span>,</span>
+<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span>,</span>
 <span class="r-in">                     id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
 <span class="r-in">                     date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span>
 <span class="r-in">                     age <span class="op">=</span> <span class="st">"age"</span>,</span>

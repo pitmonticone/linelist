@@ -34,9 +34,6 @@
     <loc>/reference/print.linelist.html</loc>
   </url>
   <url>
-    <loc>/reference/prune_tags.html</loc>
-  </url>
-  <url>
     <loc>/reference/rename.linelist.html</loc>
   </url>
   <url>
@@ -50,9 +47,6 @@
   </url>
   <url>
     <loc>/reference/sub_linelist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tag_variable.html</loc>
   </url>
   <url>
     <loc>/reference/tags.html</loc>
