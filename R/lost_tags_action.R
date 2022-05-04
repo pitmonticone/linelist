@@ -24,6 +24,21 @@
 #' @rdname lost_tags_action
 #' 
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#'
+#' @examples
+#' # check current value
+#' get_lost_tags_action()
+#'
+#' # change to issue errors when tags are lost
+#' lost_tags_action("error")
+#' get_lost_tags_action()
+#' 
+#' # change to ignore when tags are lost
+#' lost_tags_action("none")
+#' get_lost_tags_action()
+#' 
+#' # reset to default (warning)
+#' lost_tags_action()
 
 lost_tags_action <- function(x = NULL,
                              action = c("warning", "error", "none"),

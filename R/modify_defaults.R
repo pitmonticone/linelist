@@ -12,6 +12,8 @@
 #' @param strict a `logical` indicating if allowed modification should be
 #'   restricted to variables existing in the defaults (`TRUE`); if `FALSE`, new
 #'   variables will allowed and added to the output
+#'
+#' @noRd
 #' 
 #' @return A named `list`.
 

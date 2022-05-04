@@ -15,7 +15,28 @@
 #' @export
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
-
+#'
+#' @examples
+#' if (require(outbreaks)) {
+#'
+#'   ## dataset to create a linelist from
+#'   measles_hagelloch_1861
+#'
+#'   ## create linelist
+#'   x <- make_linelist(measles_hagelloch_1861,
+#'                      id = "case_ID",
+#'                      date_onset = "date_of_prodrome",
+#'                      age = "age",
+#'                      gender = "gender")
+#'   x
+#'
+#'   ## change names
+#'   names(x)[1] <- "case_label"
+#'
+#'   ## see results: tags have been updated
+#'   x
+#'   tags(x)
+#' }
 `names<-.linelist` <- function(x, value) {
   # Strategy for renaming
 

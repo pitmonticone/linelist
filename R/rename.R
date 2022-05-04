@@ -22,6 +22,28 @@
 #' * [`select_tags`](select_tags) to rename tags only
 #' * [`tags_df`](tags_df) to return a `data.frame` of all tagged variables
 #' 
+#' @examples
+#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#'
+#'   ## dataset to create a linelist from
+#'   measles_hagelloch_1861
+#'
+#'   ## create linelist
+#'   x <- measles_hagelloch_1861 %>%
+#'     make_linelist(id = "case_ID",
+#'                   date_onset = "date_of_prodrome",
+#'                   age = "age",
+#'                   gender = "gender")
+#'   x
+#'
+#'   ## change names
+#'   x <- x %>%
+#'     rename(sex = gender, case = case_ID)
+#'
+#'   ## see results: tags have been updated
+#'   x
+#'   tags(x)
+#' }
 
 rename.linelist <- function(.data, ...) {
   # Strategy: we use `dplyr::rename` to handle the renaming of columns, then

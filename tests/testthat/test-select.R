@@ -6,17 +6,17 @@ test_that("tests for select", {
     
     # test errors
     msg <- "The following tags have lost their variable:\n date_outcome:speed"
-    lost_tags_action("warning")
+    lost_tags_action("warning", quiet = TRUE)
     expect_warning(select(x, toto = dist, tags = "date_onset"), msg)
 
-    lost_tags_action("error")
+    lost_tags_action("error", quiet = TRUE)
     expect_error(select(x, toto = dist, tags = "date_onset"), msg)
 
     msg <- "The following tags have lost their variable:\n date_onset:dist, date_outcome:speed"
-    lost_tags_action("warning")
+    lost_tags_action("warning", quiet = TRUE)
     expect_warning(select(x, toto = dist), msg)
 
-    lost_tags_action("error")
+    lost_tags_action("error", quiet = TRUE)
     expect_error(select(x, toto = dist), msg)
 
     
@@ -30,7 +30,7 @@ test_that("tests for select", {
                      tags(y))
 
     ## case where some tags are dropped
-    lost_tags_action("none")
+    lost_tags_action("none", quiet = TRUE)
     y <- select(x, dist, tags = "date_onset")
     expect_identical(names(y), c("dist", "date_onset"))
     expect_identical(tags(y), list(date_onset = "date_onset"))

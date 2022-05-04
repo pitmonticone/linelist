@@ -19,6 +19,29 @@ This function works similarly to \code{dplyr::rename} and can be used to rename
 the columns of a \code{linelist}. Tagged variables are updated as needed to match
 new column names.
 }
+\examples{
+if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+
+  ## dataset to create a linelist from
+  measles_hagelloch_1861
+
+  ## create linelist
+  x <- measles_hagelloch_1861 \%>\%
+    make_linelist(id = "case_ID",
+                  date_onset = "date_of_prodrome",
+                  age = "age",
+                  gender = "gender")
+  x
+
+  ## change names
+  x <- x \%>\%
+    rename(sex = gender, case = case_ID)
+
+  ## see results: tags have been updated
+  x
+  tags(x)
+}
+}
 \seealso{
 \itemize{
 \item \url{select.linelist} for selecting variables and tags

@@ -18,6 +18,28 @@ a \code{linelist} with new column names
 This function can be used to rename the columns a \code{linelist}, adjusting tags
 as needed.
 }
+\examples{
+if (require(outbreaks)) {
+
+  ## dataset to create a linelist from
+  measles_hagelloch_1861
+
+  ## create linelist
+  x <- make_linelist(measles_hagelloch_1861,
+                     id = "case_ID",
+                     date_onset = "date_of_prodrome",
+                     age = "age",
+                     gender = "gender")
+  x
+
+  ## change names
+  names(x)[1] <- "case_label"
+
+  ## see results: tags have been updated
+  x
+  tags(x)
+}
+}
 \seealso{
 \url{rename.linelist} for \code{dplyr}-style renaming of
 columns

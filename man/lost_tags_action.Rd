@@ -35,6 +35,21 @@ This function determines the behaviour to adopt when tagged variables of a
 \code{linelist} are lost e.g. through subsetting. This is achieved using
 \code{options} defined for the \code{linelist} package.
 }
+\examples{
+# check current value
+get_lost_tags_action()
+
+# change to issue errors when tags are lost
+lost_tags_action("error")
+get_lost_tags_action()
+
+# change to ignore when tags are lost
+lost_tags_action("none")
+get_lost_tags_action()
+
+# reset to default (warning)
+lost_tags_action()
+}
 \author{
 Thibaut Jombart \url{thibaut@data.org}
 
