@@ -2,9 +2,9 @@
 #'
 #' This function is used to create a `data.frame` of tagged variables from a
 #' `linelist` object, and runs `dplyr::select` on the output. It is equivalent
-#' to running successively `tags_df` and `dplyr::select` on a `linelist`
-#' object. Note that the output no longer is a `linelist` object, but a regular
-#' `data.frame`.
+#' to running successively [`tags_df`](tags_df) and `dplyr::select` on a
+#' `linelist` object. Note that the output no longer is a `linelist` object, but
+#' a regular `data.frame` (or `tibble`).
 #'
 #' @param x a `linelist` object
 #'
@@ -17,9 +17,12 @@
 #'
 #' @export
 #'
-#' @seealso [`tags_names`](tags_names)) for the names of tags
-#' 
+#' @seealso
+#' * [`tags`](tags) for existing tags in a `linelist`
 #'
+#' * [`tags_df`](tags_df) to get a `data.frame` of all tags
+#' 
+#' @examples
 #' if (require(outbreaks)) {
 #'
 #'   ## dataset we'll create a linelist from

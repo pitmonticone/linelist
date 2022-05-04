@@ -17,10 +17,10 @@
 #' @return The function returns a `linelist` with renameed columns.
 #'
 #' @seealso
-#' * [`select.linelist`](select.linelist) for selecting variables and tags
-#' * [`tags_df`](tags_df) to return a `data.frame` of all tagged variables
-#' * [`select_tags`](select_tags) to rename tags only
-#' * [`tags_df`](tags_df) to return a `data.frame` of all tagged variables
+#' * [`select`](select.linelist) for selecting variables and tags
+#' * [`select_tags`](select_tags) for selecting tags
+#' * [`tags_df`](tags_df) to return a `data.frame` or a `tibble` of all
+#'   tagged variables
 #' 
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {

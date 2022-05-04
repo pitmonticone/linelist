@@ -18,38 +18,35 @@ A \code{data.frame} of tagged variables.
 \description{
 This function is used to create a \code{data.frame} of tagged variables from a
 \code{linelist} object, and runs \code{dplyr::select} on the output. It is equivalent
-to running successively \code{tags_df} and \code{dplyr::select} on a \code{linelist}
-object. Note that the output no longer is a \code{linelist} object, but a regular
-\code{data.frame}.
+to running successively \url{tags_df} and \code{dplyr::select} on a
+\code{linelist} object. Note that the output no longer is a \code{linelist} object, but
+a regular \code{data.frame} (or \code{tibble}).
+}
+\examples{
+if (require(outbreaks)) {
+
+  ## dataset we'll create a linelist from
+  measles_hagelloch_1861
+
+  ## create linelist
+  x <- make_linelist(measles_hagelloch_1861,
+                     id = "case_ID",
+                     date_onset = "date_of_prodrome",
+                     age = "age",
+                     gender = "gender")
+  head(x)
+
+  ## check tagged variables
+  tags(x)
+
+  ## extract tagged variables
+  select_tags(x, "gender", "age")
+}
 }
 \seealso{
-\url{tags_names}) for the names of tags
-
-if (require(outbreaks)) {
-\subsection{dataset we'll create a linelist from}{
-
-measles_hagelloch_1861
-}
-
-\subsection{create linelist}{
-
-x <- make_linelist(measles_hagelloch_1861,
-id = "case_ID",
-date_onset = "date_of_prodrome",
-age = "age",
-gender = "gender")
-head(x)
-}
-
-\subsection{check tagged variables}{
-
-tags(x)
-}
-
-\subsection{extract tagged variables}{
-
-select_tags(x, "gender", "age")
-}
+\itemize{
+\item \url{tags} for existing tags in a \code{linelist}
+\item \url{tags_df} to get a \code{data.frame} of all tags
 }
 }
 \author{

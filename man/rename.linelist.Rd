@@ -45,10 +45,10 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 \seealso{
 \itemize{
-\item \url{select.linelist} for selecting variables and tags
-\item \url{tags_df} to return a \code{data.frame} of all tagged variables
-\item \url{select_tags} to rename tags only
-\item \url{tags_df} to return a \code{data.frame} of all tagged variables
+\item \href{select.linelist}{\code{select}} for selecting variables and tags
+\item \url{select_tags} for selecting tags
+\item \url{tags_df} to return a \code{data.frame} or a \code{tibble} of all
+tagged variables
 }
 }
 \author{
