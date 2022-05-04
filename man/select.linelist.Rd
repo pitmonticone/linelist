@@ -23,6 +23,38 @@ This function works similarly to \code{dplyr::select} but can in addition refer 
 tagged variables through the \code{tags} argument. When variables are selected
 using both procedures, tagged variables are output as the last columns.
 }
+\examples{
+if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+
+  ## dataset to create a linelist from
+  measles_hagelloch_1861
+
+  ## create linelist
+  x <- measles_hagelloch_1861 \%>\%
+    make_linelist(id = "case_ID",
+                  date_onset = "date_of_prodrome",
+                  age = "age",
+                  gender = "gender")
+  x
+
+  ## change select all dates and some tags
+  x \%>\%
+    select(contains("date"), tags = c("id", "age", "gender"))
+
+  ## showing warnings when tags are lost
+  x \%>\%
+    select(1:3)
+
+ ## getting rid of warnings on the fly
+ x \%>\%
+   lost_tags_action("none") \%>\%
+   select(1:3)
+
+ ## reset default behaviour
+ lost_tags_action()
+
+}
+}
 \seealso{
 \itemize{
 \item \url{select_tags} to select tags only
