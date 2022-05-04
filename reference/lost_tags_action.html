@@ -89,6 +89,29 @@ otherwise, returns <code>NULL</code>; the option itself is set in
 <p>Thibaut Jombart <a href="thibaut@data.org">thibaut@data.org</a></p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># check current value</span></span>
+<span class="r-in"><span class="fu">get_lost_tags_action</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "none"</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># change to issue errors when tags are lost</span></span>
+<span class="r-in"><span class="fu">lost_tags_action</span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Lost tags will now issue an error.</span>
+<span class="r-in"><span class="fu">get_lost_tags_action</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "error"</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># change to ignore when tags are lost</span></span>
+<span class="r-in"><span class="fu">lost_tags_action</span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Lost tags will now be ignored.</span>
+<span class="r-in"><span class="fu">get_lost_tags_action</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "none"</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># reset to default (warning)</span></span>
+<span class="r-in"><span class="fu">lost_tags_action</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
