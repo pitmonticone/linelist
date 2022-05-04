@@ -30,13 +30,31 @@ syntax as the constructor \code{make_linelist}. If some of the default tags are
 missing, they will be added to the final object.
 }
 \examples{
-# basic use of the function
+
 if (require(outbreaks)) {
-measles_hagelloch_1861
-x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
-tags(x)
-x <- set_tags(x, age = "age", gender = "gender")
-tags(x)
+  ## create a linelist
+  x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_rash")
+  tags(x)
+
+  ## add new tags and fix an existing one
+  x <- set_tags(x, age = "age",
+                gender = "gender",
+                date_onset = "date_of_prodrome")
+  tags(x)
+
+  ## add non-default tags using allow_extra
+  x <- set_tags(x, severe = "complications", allow_extra = TRUE)
+  tags(x)
+
+  ## remove tags by setting them to NULL
+  old_tags <- tags(x)
+  x <- set_tags(x, age = NULL, gender = NULL)
+  tags(x)
+
+  ## setting tags providing a list (used to restore old tags here)
+  x <- set_tags(x, old_tags)
+  tags(x)
+  
 }
 
 }
