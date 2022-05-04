@@ -15,10 +15,6 @@
 #'   which case the output columns will be renamed accordingly (e.g. `onset =
 #'   "date_onset"` will output a column named 'onset').
 #'
-#' @param lost_action a `character` indicating the behaviour to adopt when some
-#'   of the tagged variables are dropped through the `select` process; can be
-#'   "warning" (default), "error", or "none".
-#'
 #' @exportS3Method dplyr::select
 #'
 #' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
@@ -30,8 +26,9 @@
 #' * [`tags_df`](tags_df) to return a `data.frame` of all tagged variables
 #' 
 
-select.linelist <- function(.data, ..., tags = NULL,
-                            lost_action = "warning") {
+select.linelist <- function(.data, ..., tags = NULL) {
+
+  lost_action <- get_lost_tags_action()
 
   checkmate::assertCharacter(tags, null.ok = TRUE)
   x <- .data
