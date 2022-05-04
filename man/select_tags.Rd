@@ -24,6 +24,33 @@ object. Note that the output no longer is a \code{linelist} object, but a regula
 }
 \seealso{
 \url{tags_names}) for the names of tags
+
+if (require(outbreaks)) {
+\subsection{dataset we'll create a linelist from}{
+
+measles_hagelloch_1861
+}
+
+\subsection{create linelist}{
+
+x <- make_linelist(measles_hagelloch_1861,
+id = "case_ID",
+date_onset = "date_of_prodrome",
+age = "age",
+gender = "gender")
+x
+}
+
+\subsection{check tagged variables}{
+
+tags(x)
+}
+
+\subsection{extract tagged variables}{
+
+select_tags(x, "gender", "age")
+}
+}
 }
 \author{
 Thibaut Jombart \url{thibaut@data.org}

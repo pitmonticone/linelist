@@ -19,6 +19,26 @@
 #'
 #' @seealso [`tags_names`](tags_names)) for the names of tags
 #' 
+#'
+#' if (require(outbreaks)) {
+#'
+#'   ## dataset we'll create a linelist from
+#'   measles_hagelloch_1861
+#'
+#'   ## create linelist
+#'   x <- make_linelist(measles_hagelloch_1861,
+#'                      id = "case_ID",
+#'                      date_onset = "date_of_prodrome",
+#'                      age = "age",
+#'                      gender = "gender")
+#'   x
+#' 
+#'   ## check tagged variables
+#'   tags(x)
+#' 
+#'   ## extract tagged variables
+#'   select_tags(x, "gender", "age")
+#' }
 
 select_tags <- function(x, ...) {
   df <- tags_df(x)
