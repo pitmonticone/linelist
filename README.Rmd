@@ -74,7 +74,7 @@ The short example below illustrates these different features. See the
 [Documentation](Documentation) section for more in-depth examples and details
 about `linelist` objects.
 
-```{r error = TRUE, fig.height = 7, fig.width = 12, out.width = "80%"}
+```{r error = TRUE, fig.height = 4, fig.width = 8, out.width = "80%"}
 
 # load packages and a dataset for the example
 # -------------------------------------------

@@ -157,7 +157,7 @@ x <- x %>%
 ## attemping to remove geographical info but removing dates by mistake
 x_no_geo <- x %>%
   select(-(5:8))
-#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
+#> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
 #>  date_onset:dt_onset
 
 ## for stronger pipelines, trigger errors upon loss
