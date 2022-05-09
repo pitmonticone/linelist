@@ -17,11 +17,10 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 
 This package is a reboot of the RECON package
 [linelist](https://github.com/reconhub/linelist). Unliked its
-predecessor, the new package focuses on the implementation of a linelist
-class. It will also eventually implement data cleaning tools,
-replicating functionalities of the older package. However, the new
-package should be seen as a separate one, and will not aim to be
-backward compatible due to its change in scope.
+predecessor, the new package focuses on the implementation of a
+*linelist* class. The data cleaning features of the original package
+will eventually be re-implemented for *linelist* objects, albeit likely
+in a separate package.
 
 The development version of *linelist* can be installed from
 [GitHub](https://github.com/) with:
@@ -40,7 +39,7 @@ are data tables in which every line is a different case/patient, and
 columns record different variables of potential epidemiological interest
 such as date of events (e.g. onset of symptom, case notification),
 disease outcome, or patient data (e.g. age, sex, occupation). Such data
-is typically held in a `data.frame` (or `tibble`) and used in various
+is typically held in a `data.frame` (or a `tibble`) and used in various
 downstream analysis. While this approach is functional, it often means
 that each analysis step will:
 
@@ -49,11 +48,11 @@ that each analysis step will:
     onset are stored.*’)
 
 2.  need to validate the required data (e.g. ‘*Check that the field
-    storing onset dates are indeed dates, and not a `factor`.*’)
+    storing dates of onset are indeed dates, and not a `character`.*’)
 
 The aim of *linelist* is to take care of these pre-requisites once and
 for all before downstream analyses, thus helping to make data pipelines
-more robust and flexible.
+more robust and straightforward.
 
 ## linelist in a nutshell
 
@@ -61,16 +60,21 @@ more robust and flexible.
 
 *linelist* is an R package which implements basic data representation
 for case line lists, alongside accessors and basic methods. It
-essentially provides two types of functionalities:
+essentially provides three types of functionalities:
 
-1.  **pre-identify key epidemiological variables** needed in downstream
-    analyses (e.g. dates of case notification, symptom onset, age,
-    gender, disease outcome) using a *tags* system
+1.  **tagging**: a *tags* system permits to pre-identify key
+    epidemiological variables needed in downstream analyses (e.g. dates
+    of case notification, symptom onset, age, gender, disease outcome)
 
-2.  **validate tagged variables** by ensuring they have the expected
-    type (e.g. checking that dates are a `Date` or a `numeric`) and
-    trivial compatibilities (e.g. checking that `outcome` happens after
-    `onset`, not before)
+2.  **validation**: functions checking that tagged variables are indeed
+    present in the `data.frame/tibble`, and that they have the expected
+    type (e.g. checking that dates are `Date`, `integer` or `numeric`)
+
+3.  **secured methods**: generic functions which could lead to the loss
+    of tagged variables have dedicated methods for *linelist* objects
+    with adapted behaviours, either updating tags as needed (*e.g.*
+    `rename`, `names() <- ...`) or issuing warnings/errors when tagged
+    variables are lost (*e.g.* `select`, `x[]`, `x[[]]`)
 
 ### Should I use *linelist*?
 
@@ -105,16 +109,24 @@ package.
 
 A `linelist` object is an instance of a `data.frame` or a `tibble` in
 which key epidemiological variables have been *tagged*. The main
-functions of the package include:
+features of the packages are broken down into the 3 categories outlined
+above.
+
+#### Tagging system
+
+Tags are paired keys pointing a reference epidemiological variables to
+the name of a column in a `data.frame` or `tibble`. The tagging system
+permits to construct `linelist` objects, modify tags in existing
+objects, check and access existing tags and the corresponding variables.
 
   - `make_linelist()`: to create a `linelist` object by tagging key epi
     variables in a `data.frame` or a `tibble`
 
+  - `set_tags():` to add, remove, or modify tags in a `linelist`
+
   - `tags()`: to list variables which have been tagged in a `linelist`
 
   - `tags_names()`: to list all recognized tag names
-
-  - `set_tags():` to modify tags in a `linelist`
 
   - `select_tags():` to select columns of a `linelist` based on tags
     using *dplyr* compatible syntax
@@ -122,8 +134,48 @@ functions of the package include:
   - `tags_df()`: to obtain a `data.frame` of all the tagged variables in
     a `linelist`
 
-  - `select()`: adapted from `dplyr::select`, for subsetting regular and
+#### Validation
+
+Basic routines are provided to validate *linelist* objects. More
+advanced validation e.g. looking at compatibility of dated events will
+be implemented in a separate package.
+
+  - `validate_tags()`: check that tagged variables are present in the
+    dataset, that tags match the pre-defined list of tagged variables
+
+  - `validate_types()`: check that tagged variables have an acceptable
+    class, as defined in `tags_types()`
+
+  - `validate_linelist()`: general validation of *linelist* objects,
+    equivalent to running both `validate_tags` and `validate_types`, and
+    checking the class of the object
+
+#### Secured methods
+
+These are dedicated S3 methods for existing generics which can be used
+to prevent the loss of tagged variables.
+
+  - `lost_tags_actions()`: to set the behaviour to adopt when tagged
+    variables would be lost by an operation: issue a warning (default),
+    an error, or ignore
+
+  - `get_lost_tags_actions()`: to check the current behaviour for lost
     tagged variables
+
+  - `rename`: adapted from `dplyr::rename`, to rename columns of a
+    `linelist`; will rename tags as needed to match the new column names
+
+  - `names(x) <-`: same as `rename`, but using the ‘base R’ approach to
+    renaming columns
+
+  - `select()`: adapted from `dplyr::select`, for subsetting columns; an
+    additional argument can be used to subset tagged variables as well;
+    will behave according to `get_lost_tags_actions()` if tagged
+    variables are lost
+
+  - `x[]` and `x[[]]`: same as `dplyr::select` but using ‘base R’
+    syntax; will behave according to `get_lost_tags_actions()` if tagged
+    variables are lost
 
 ## Worked example
 
@@ -136,6 +188,14 @@ outbreak.
 library(outbreaks)
 library(tibble)
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(magrittr)
 library(linelist)
 
@@ -234,7 +294,7 @@ x <- x %>%
 x
 #> 
 #> // linelist object
-#> # A tibble: 188 × 13
+#> # A tibble: 13 × 13
 #>    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender
 #>      <int>    <int> <date>           <date>       <date>        <dbl> <fct> 
 #>  1       1       45 1861-11-21       1861-11-25   NA                7 f     
@@ -247,8 +307,11 @@ x
 #>  8       8       45 1861-11-21       1861-11-26   NA               10 m     
 #>  9       9      182 1861-11-26       1861-11-30   NA               13 m     
 #> 10      10       45 1861-11-21       1861-11-25   NA                7 f     
-#> # … with 178 more rows, and 6 more variables: family_ID <int>, class <fct>,
-#> #   complications <fct>, x_loc <dbl>, y_loc <dbl>, inferred_outcome <chr>
+#> 11      11      182 1861-11-25       1861-11-30   NA               11 f     
+#> 12      12       45 1861-11-20       1861-11-25   NA                7 f     
+#> 13      13       12 1861-11-30       1861-12-05   NA               13 m     
+#> # … with 6 more variables: family_ID <int>, class <fct>, complications <fct>,
+#> #   x_loc <dbl>, y_loc <dbl>, inferred_outcome <chr>
 #> 
 #> // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome
 ```
@@ -263,7 +326,7 @@ the following means:
 # select tagged variables only
 x %>%
   select_tags(date_onset, date_death)
-#> # A tibble: 188 × 2
+#> # A tibble: 13 × 2
 #>    date_onset date_death
 #>    <date>     <date>    
 #>  1 1861-11-21 NA        
@@ -276,12 +339,14 @@ x %>%
 #>  8 1861-11-21 NA        
 #>  9 1861-11-26 NA        
 #> 10 1861-11-21 NA        
-#> # … with 178 more rows
+#> 11 1861-11-25 NA        
+#> 12 1861-11-20 NA        
+#> 13 1861-11-30 NA
 
 # select tagged variables only with renaming on the fly
 x %>%
   select_tags(onset = date_onset, date_death)
-#> # A tibble: 188 × 2
+#> # A tibble: 13 × 2
 #>    onset      date_death
 #>    <date>     <date>    
 #>  1 1861-11-21 NA        
@@ -294,12 +359,14 @@ x %>%
 #>  8 1861-11-21 NA        
 #>  9 1861-11-26 NA        
 #> 10 1861-11-21 NA        
-#> # … with 178 more rows
+#> 11 1861-11-25 NA        
+#> 12 1861-11-20 NA        
+#> 13 1861-11-30 NA
 
 # get all tagged variables in a data.frame
 x %>%
   tags_df()
-#> # A tibble: 188 × 5
+#> # A tibble: 13 × 5
 #>    date_onset date_death gender   age outcome 
 #>    <date>     <date>     <fct>  <dbl> <chr>   
 #>  1 1861-11-21 NA         f          7 survided
@@ -312,7 +379,9 @@ x %>%
 #>  8 1861-11-21 NA         m         10 survided
 #>  9 1861-11-26 NA         m         13 survided
 #> 10 1861-11-21 NA         f          7 survided
-#> # … with 178 more rows
+#> 11 1861-11-25 NA         f         11 survided
+#> 12 1861-11-20 NA         f          7 survided
+#> 13 1861-11-30 NA         m         13 survided
 
 # hybrid selection
 x %>%
@@ -321,7 +390,7 @@ x %>%
 #>  date_onset:date_of_prodrome, date_death:date_of_death, age:age, outcome:inferred_outcome
 #> 
 #> // linelist object
-#> # A tibble: 188 × 3
+#> # A tibble: 13 × 3
 #>    case_ID infector gender
 #>      <int>    <int> <fct> 
 #>  1       1       45 f     
@@ -334,7 +403,9 @@ x %>%
 #>  8       8       45 m     
 #>  9       9      182 m     
 #> 10      10       45 f     
-#> # … with 178 more rows
+#> 11      11      182 f     
+#> 12      12       45 f     
+#> 13      13       12 m     
 #> 
 #> // tags: gender:gender
 ```
@@ -349,30 +420,16 @@ stronger pipelines for instance):
 # hybrid selection - no warning
 x %>%
   select(1:2, tags = "gender", lost_action = "none")
-#> 
-#> // linelist object
-#> # A tibble: 188 × 3
-#>    case_ID infector gender
-#>      <int>    <int> <fct> 
-#>  1       1       45 f     
-#>  2       2       45 f     
-#>  3       3      172 f     
-#>  4       4      180 m     
-#>  5       5       45 f     
-#>  6       6      180 m     
-#>  7       7       42 m     
-#>  8       8       45 m     
-#>  9       9      182 m     
-#> 10      10       45 f     
-#> # … with 178 more rows
-#> 
-#> // tags: gender:gender
+#> Error in `dplyr::select()`:
+#> ! Can't subset columns that don't exist.
+#> ✖ Column `none` doesn't exist.
 
 # hybrid selection - error due to lost tags
 x %>%
   select(1:2, tags = "gender", lost_action = "error")
-#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
-#>  date_onset:date_of_prodrome, date_death:date_of_death, age:age, outcome:inferred_outcome
+#> Error in `dplyr::select()`:
+#> ! Can't subset columns that don't exist.
+#> ✖ Column `error` doesn't exist.
 ```
 
 ## Contributing guidelines
