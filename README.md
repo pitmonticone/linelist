@@ -59,6 +59,7 @@ details about `linelist` objects.
 ``` r
 
 # load packages and a dataset for the example
+# -------------------------------------------
 library(dplyr)
 library(magrittr)
 library(outbreaks)
@@ -90,6 +91,7 @@ head(dataset)
 #> 6     2015_22   2015-05-15 2015-05-17 2015-05-28    Dead 2015-06-01
 
 # check known tagged variables
+# ----------------------------
 tags_names()
 #>  [1] "id"             "date_onset"     "date_reporting" "date_admission"
 #>  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        
@@ -97,6 +99,7 @@ tags_names()
 #> [13] "outcome"
 
 # build a linelist
+# ----------------
 x <- dataset %>%
   tibble() %>%
   make_linelist(date_onset = "dt_onset", # date of onset
@@ -134,20 +137,24 @@ tags(x) # check available tags
 #> $occupation
 #> [1] "age"
 
-# validation: this flags a mistake (occupation cannot be an integer)
+# validation of tagged variables
+# ------------------------------
+## (this flags a likely mistake: occupation should not be an integer)
 validate_linelist(x)
 #> Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:
 #> Must inherit from class 'character'/'factor', but has class 'integer'
 
 # change tags: fix mistakes, add new ones
+# ---------------------------------------
 x <- x %>%
   set_tags(occupation = NULL, # tag removal
            gender = "sex", # new tag
            outcome = "outcome"
            )
 
-# remove geographic info: safeguards against actions losing tags
-## this issues a warning
+# safeguards against actions losing tags
+# --------------------------------------
+## attemping to remove geographical info but removing dates by mistake
 x_no_geo <- x %>%
   select(-(5:8))
 #> Error in prune_tags(out, lost_action): The following tags have lost their variable:
@@ -163,8 +170,12 @@ x_no_geo <- x %>%
 x_no_geo <- x %>%
   select(-(5:7))
 
+## to revert to default behaviour (warning upon error)
+lost_tags_action()
+#> Lost tags will now issue a warning.
 
 # access content by tags, and build downstream pipelines
+# ------------------------------------------------------
 x_no_geo %>%
   select_tags(date_onset, outcome)
 #> # A tibble: 162 × 2
@@ -205,7 +216,7 @@ x_no_geo %>%
   facet_plot(facets = "gender", fill = outcome)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="80%" />
 
 ## Documentation
 

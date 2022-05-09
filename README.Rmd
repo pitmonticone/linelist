@@ -74,9 +74,10 @@ The short example below illustrates these different features. See the
 [Documentation](Documentation) section for more in-depth examples and details
 about `linelist` objects.
 
-```{r error = TRUE}
+```{r error = TRUE, fig.height = 7, fig.width = 12, out.width = "80%"}
 
 # load packages and a dataset for the example
+# -------------------------------------------
 library(dplyr)
 library(magrittr)
 library(outbreaks)
@@ -87,9 +88,11 @@ dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)
 
 # check known tagged variables
+# ----------------------------
 tags_names()
 
 # build a linelist
+# ----------------
 x <- dataset %>%
   tibble() %>%
   make_linelist(date_onset = "dt_onset", # date of onset
@@ -99,18 +102,22 @@ x <- dataset %>%
 x
 tags(x) # check available tags
 
-# validation: this flags a mistake (occupation cannot be an integer)
+# validation of tagged variables
+# ------------------------------
+## (this flags a likely mistake: occupation should not be an integer)
 validate_linelist(x)
 
 # change tags: fix mistakes, add new ones
+# ---------------------------------------
 x <- x %>%
   set_tags(occupation = NULL, # tag removal
            gender = "sex", # new tag
            outcome = "outcome"
            )
 
-# remove geographic info: safeguards against actions losing tags
-## this issues a warning
+# safeguards against actions losing tags
+# --------------------------------------
+## attemping to remove geographical info but removing dates by mistake
 x_no_geo <- x %>%
   select(-(5:8))
 
@@ -122,8 +129,11 @@ x_no_geo <- x %>%
 x_no_geo <- x %>%
   select(-(5:7))
 
+## to revert to default behaviour (warning upon error)
+lost_tags_action()
 
 # access content by tags, and build downstream pipelines
+# ------------------------------------------------------
 x_no_geo %>%
   select_tags(date_onset, outcome)
 
