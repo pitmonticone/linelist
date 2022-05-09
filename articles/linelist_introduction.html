@@ -290,7 +290,8 @@
 <div class="section level3">
 <h3 id="changing-tags">Changing tags<a class="anchor" aria-label="anchor" href="#changing-tags"></a>
 </h3>
-<p>Let us now assume we also want to record the outcome: it is currently missing, but can be built from dates of deaths (missing date = survived). This can be done by using <code>mutate</code> on <code>x</code> to create the new variable (remember <code>x</code> is not only a <code>linelist</code>, but also a regular <code>tibble</code> and this compatible with <code>dplyr</code> verbs), and setting up a new tag using <code>set_tags</code>:</p>
+<p>Tags can be added / removed / changed using <code><a href="../reference/set_tags.html">set_tags()</a></code>.</p>
+<p>Let us assume we also want to record the outcome: it is currently missing, but can be built from dates of deaths (missing date = survived). This can be done by using <code>mutate</code> on <code>x</code> to create the new variable (remember <code>x</code> is not only a <code>linelist</code>, but also a regular <code>tibble</code> and this compatible with <code>dplyr</code> verbs), and setting up a new tag using <code>set_tags</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -319,12 +320,29 @@
 <span class="co">#&gt; <span style="color: #949494;">#   x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;, inferred_outcome &lt;chr&gt;</span></span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome</span></code></pre></div>
+<p>If we wanted to undo the above, i.e. remove the <code>outcome</code> tag, we only need set it to <code>NULL</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/set_tags.html">set_tags</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+<span class="fu"><a href="../reference/tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="co">#&gt; $date_onset</span>
+<span class="co">#&gt; [1] "date_of_prodrome"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $date_death</span>
+<span class="co">#&gt; [1] "date_of_death"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $gender</span>
+<span class="co">#&gt; [1] "gender"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $age</span>
+<span class="co">#&gt; [1] "age"</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="accessing-tagged-variables">Accessing tagged variables<a class="anchor" aria-label="anchor" href="#accessing-tagged-variables"></a>
 </h3>
 <p>Now that key variables have been tagged in <code>x</code>, we can used these pre-defined fields in downstream analyses, without having to worry about variable names and types. We could access tagged variables using any of the following means:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># select tagged variables only</span>
 <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -369,34 +387,34 @@
 <span class="co"># get all tagged variables in a data.frame</span>
 <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 5</span></span>
-<span class="co">#&gt;    date_onset date_death gender   age outcome </span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         f          7 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1861-11-23 <span style="color: #BB0000;">NA</span>         f          6 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1861-11-28 <span style="color: #BB0000;">NA</span>         f          4 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1861-11-27 <span style="color: #BB0000;">NA</span>         m         13 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1861-11-22 <span style="color: #BB0000;">NA</span>         f          8 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1861-11-26 <span style="color: #BB0000;">NA</span>         m         12 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1861-11-24 <span style="color: #BB0000;">NA</span>         m          6 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         m         10 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26 <span style="color: #BB0000;">NA</span>         m         13 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         f          7 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 1861-11-25 <span style="color: #BB0000;">NA</span>         f         11 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 1861-11-20 <span style="color: #BB0000;">NA</span>         f          7 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 1861-11-30 <span style="color: #BB0000;">NA</span>         m         13 survided</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 4</span></span>
+<span class="co">#&gt;    date_onset date_death gender   age</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         f          7</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1861-11-23 <span style="color: #BB0000;">NA</span>         f          6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1861-11-28 <span style="color: #BB0000;">NA</span>         f          4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1861-11-27 <span style="color: #BB0000;">NA</span>         m         13</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1861-11-22 <span style="color: #BB0000;">NA</span>         f          8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1861-11-26 <span style="color: #BB0000;">NA</span>         m         12</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1861-11-24 <span style="color: #BB0000;">NA</span>         m          6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         m         10</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26 <span style="color: #BB0000;">NA</span>         m         13</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         f          7</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 1861-11-25 <span style="color: #BB0000;">NA</span>         f         11</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 1861-11-20 <span style="color: #BB0000;">NA</span>         f          7</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 1861-11-30 <span style="color: #BB0000;">NA</span>         m         13</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-safeguards">Using safeguards<a class="anchor" aria-label="anchor" href="#using-safeguards"></a>
 </h3>
 <p>Because <code>x</code> remains a valid <code>tibble</code>, we can use any data handling operations implemented in <code>dplyr</code>. However, some of these operations may cause accidental removal of key tagged variables. <em>linelist</em> provides a safeguard mechanism against this. For instance, let’s assume we want to select only some columns of <code>x</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># hybrid selection</span>
 <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span>
-<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome</span>
+<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; // linelist object</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 2</span></span>
@@ -418,13 +436,13 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; // tags: [no tagged variable]</span></code></pre></div>
 <p>Here, the above command gave a meaningful warning, in which <code>select</code> removes some of the variables that were tagged. This is because <em>linelist</em> implements a specific <code>select</code> method for <code>linelist</code> objects - see <a href="https://epiverse-trace.github.io/linelist/reference/select.linelist.html" class="external-link"><code>?select.linelist</code></a>. In fact, looking at the documentation, we can see that <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> can be used to select variables both from the dataset and from the tags, using the <code>tags = ...</code> argument. For instance, to retain the first 2 variables, and the <code>gender</code> tag:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># hybrid selection</span>
 <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span>
 <span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span>
-<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age, outcome:inferred_outcome</span>
+<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; // linelist object</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 3</span></span>
@@ -446,12 +464,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; // tags: gender:gender</span></code></pre></div>
 <p>Again, we observe a warning as before due to the loss of tagged variables in the operation. This behaviour can be silenced if needed, or could be changed to issue an error (for stronger pipelines for instance):</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># hybrid selection</span>
 <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span>
 <span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span>
-<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age, outcome:inferred_outcome</span>
+<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; // linelist object</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 3</span></span>
@@ -503,7 +521,7 @@
   <span class="fu"><a href="../reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span>
 <span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span>
-<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age, outcome:inferred_outcome</span>
+<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span>
 
 <span class="co"># note that `lost_tags_action` sets the behavior for any later operation, so we </span>
 <span class="co"># need to reset the default</span>
