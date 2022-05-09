@@ -160,7 +160,7 @@
 <li><p><code><a href="../reference/make_linelist.html">make_linelist()</a></code>: to create a <code>linelist</code> object by tagging key epi variables in a <code>data.frame</code> or a <code>tibble</code></p></li>
 <li><p><code>set_tags():</code> to add, remove, or modify tags in a <code>linelist</code></p></li>
 <li><p><code><a href="../reference/tags.html">tags()</a></code>: to list variables which have been tagged in a <code>linelist</code></p></li>
-<li><p><code><a href="../reference/tags_names.html">tags_names()</a></code>: to list all recognized tag names</p></li>
+<li><p><code><a href="../reference/tags_names.html">tags_names()</a></code>: to list all recognized tag names; details on what the tags represent can be found at <a href="https://epiverse-trace.github.io/linelist/reference/make_linelist.html" class="external-link"><code>?make_linelist</code></a></p></li>
 <li><p><code>select_tags():</code> to select columns of a <code>linelist</code> based on tags using <em>dplyr</em> compatible syntax</p></li>
 <li><p><code><a href="../reference/tags_df.html">tags_df()</a></code>: to obtain a <code>data.frame</code> of all the tagged variables in a <code>linelist</code></p></li>
 </ul>
@@ -193,27 +193,17 @@
 <div class="section level2">
 <h2 id="worked-example">Worked example<a class="anchor" aria-label="anchor" href="#worked-example"></a>
 </h2>
-<p>In this example, we use the case line list of the Hagelloch 1861 measles outbreak.</p>
+<div class="section level3">
+<h3 id="example-dataset">Example dataset<a class="anchor" aria-label="anchor" href="#example-dataset"></a>
+</h3>
+<p>In this example, we use the case line list of the Hagelloch 1861 measles outbreak, distributed by the <em>outbreaks</em> pacakge as <code>measles_hagelloch_1861</code> .</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># load libraries</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/epiverse-trace/linelist" class="external-link">linelist</a></span><span class="op">)</span>
 
 <span class="co"># overview of the data</span>
-<span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span><span class="op">)</span>
 <span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span>
 <span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span>
 <span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span>
@@ -228,6 +218,10 @@
 <span class="co">#&gt; 4        61     2           yes 165.0 102.5</span>
 <span class="co">#&gt; 5        42     1           yes 145.0 120.0</span>
 <span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="creating-a-linelist-object">Creating a <em>linelist</em> object<a class="anchor" aria-label="anchor" href="#creating-a-linelist-object"></a>
+</h3>
 <p>Let us assume we want to tag the following variables to facilitate downstream analyses, after having checked their tag name in <code><a href="../reference/make_linelist.html">?make_linelist</a></code>:</p>
 <ul>
 <li>the date of symptom onset, here called <code>prodrome</code> (tag: <code>date_onset</code>)</li>
@@ -235,9 +229,22 @@
 <li>the age of the patient (tag: <code>age</code>)</li>
 <li>the gender of the patient (tag: <code>gender</code>)</li>
 </ul>
-<p>We create a <code>linelist</code> with the above information:</p>
+<p>We first load a few useful packages, and create a <code>linelist</code> with the above information:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span> <span class="co"># data.frame but with nice printing </span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="co"># for data handling</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'dplyr'</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter, lag</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span> <span class="co"># for the %&gt;% operator</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/epiverse-trace/linelist" class="external-link">linelist</a></span><span class="op">)</span> <span class="co"># this package!</span>
+
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/make_linelist.html">make_linelist</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,
@@ -279,6 +286,10 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $age</span>
 <span class="co">#&gt; [1] "age"</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="changing-tags">Changing tags<a class="anchor" aria-label="anchor" href="#changing-tags"></a>
+</h3>
 <p>Let us now assume we also want to record the outcome: it is currently missing, but can be built from dates of deaths (missing date = survived). This can be done by using <code>mutate</code> on <code>x</code> to create the new variable (remember <code>x</code> is not only a <code>linelist</code>, but also a regular <code>tibble</code> and this compatible with <code>dplyr</code> verbs), and setting up a new tag using <code>set_tags</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -308,6 +319,10 @@
 <span class="co">#&gt; <span style="color: #949494;">#   x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;, inferred_outcome &lt;chr&gt;</span></span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="accessing-tagged-variables">Accessing tagged variables<a class="anchor" aria-label="anchor" href="#accessing-tagged-variables"></a>
+</h3>
 <p>Now that key variables have been tagged in <code>x</code>, we can used these pre-defined fields in downstream analyses, without having to worry about variable names and types. We could access tagged variables using any of the following means:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -369,8 +384,42 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         f          7 survided</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 1861-11-25 <span style="color: #BB0000;">NA</span>         f         11 survided</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 1861-11-20 <span style="color: #BB0000;">NA</span>         f          7 survided</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 1861-11-30 <span style="color: #BB0000;">NA</span>         m         13 survided</span>
-
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 1861-11-30 <span style="color: #BB0000;">NA</span>         m         13 survided</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="using-safeguards">Using safeguards<a class="anchor" aria-label="anchor" href="#using-safeguards"></a>
+</h3>
+<p>Because <code>x</code> remains a valid <code>tibble</code>, we can use any data handling operations implemented in <code>dplyr</code>. However, some of these operations may cause accidental removal of key tagged variables. <em>linelist</em> provides a safeguard mechanism against this. For instance, let’s assume we want to select only some columns of <code>x</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># hybrid selection</span>
+<span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span>
+<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; // linelist object</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 2</span></span>
+<span class="co">#&gt;    case_ID infector</span>
+<span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>       1       45</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>       2       45</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>       3      172</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>       4      180</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>       5       45</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>       6      180</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>       7       42</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>       8       45</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>       9      182</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>      10       45</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span>      11      182</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span>      12       45</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span>      13       12</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; // tags: [no tagged variable]</span></code></pre></div>
+<p>Here, the above command gave a meaningful warning, in which <code>select</code> removes some of the variables that were tagged. This is because <em>linelist</em> implements a specific <code>select</code> method for <code>linelist</code> objects - see <a href="https://epiverse-trace.github.io/linelist/reference/select.linelist.html" class="external-link"><code>?select.linelist</code></a>. In fact, looking at the documentation, we can see that <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> can be used to select variables both from the dataset and from the tags, using the <code>tags = ...</code> argument. For instance, to retain the first 2 variables, and the <code>gender</code> tag:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="co"># hybrid selection</span>
 <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span>
@@ -396,9 +445,34 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">13</span>      13       12 m     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; // tags: gender:gender</span></code></pre></div>
-<p>Note especially the meaningful warning in the last example, in which <code>select</code> removes some of the variables that were tagged. This behaviour can be silenced if needed, or could be changed to issue an error (for stronger pipelines for instance):</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
+<p>Again, we observe a warning as before due to the loss of tagged variables in the operation. This behaviour can be silenced if needed, or could be changed to issue an error (for stronger pipelines for instance):</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># hybrid selection</span>
+<span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span>
+<span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span>
+<span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age, outcome:inferred_outcome</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; // linelist object</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 3</span></span>
+<span class="co">#&gt;    case_ID infector gender</span>
+<span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>       1       45 f     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>       2       45 f     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>       3      172 f     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>       4      180 m     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>       5       45 f     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>       6      180 m     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>       7       42 m     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>       8       45 m     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>       9      182 m     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>      10       45 f     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span>      11      182 f     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span>      12       45 f     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span>      13       12 m     </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; // tags: gender:gender</span>
+
 <span class="co"># hybrid selection - no warning</span>
 <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -437,6 +511,7 @@
 <span class="co">#&gt; [1] "error"</span>
 <span class="fu"><a href="../reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># reset default</span>
 <span class="co">#&gt; Lost tags will now issue a warning.</span></code></pre></div>
+</div>
 </div>
   </div>
 
