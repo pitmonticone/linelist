@@ -188,6 +188,14 @@ outbreak.
 library(outbreaks)
 library(tibble)
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(magrittr)
 library(linelist)
 
@@ -446,9 +454,7 @@ x %>%
 get_lost_tags_action() # check current behaviour
 #> [1] "error"
 lost_tags_action() # reset default
-#> NULL
-get_lost_tags_action() # check updated behaviour
-#> [1] "warning"
+#> Lost tags will now issue a warning.
 ```
 
 ## Contributing guidelines

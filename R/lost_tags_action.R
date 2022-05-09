@@ -53,6 +53,10 @@ lost_tags_action <- function(x = NULL,
 
   linelist_options <- options("linelist")$linelist
 
+  if (is.null(x)) {
+    x <- "warning"
+  }
+    
   # behaviour 1: action is passed through `x`
   if (!is.null(x) && is.character(x) && length(x) == 1L) {
     action <- match.arg(x, c("warning", "error", "none"))
