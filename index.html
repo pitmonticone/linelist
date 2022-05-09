@@ -113,6 +113,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># load packages and a dataset for the example</span>
+<span class="co"># -------------------------------------------</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span>
@@ -144,6 +145,7 @@
 <span class="co">#&gt; 6     2015_22   2015-05-15 2015-05-17 2015-05-28    Dead 2015-06-01</span>
 
 <span class="co"># check known tagged variables</span>
+<span class="co"># ----------------------------</span>
 <span class="fu"><a href="reference/tags_names.html">tags_names</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"             "date_onset"     "date_reporting" "date_admission"</span>
 <span class="co">#&gt;  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        </span>
@@ -151,6 +153,7 @@
 <span class="co">#&gt; [13] "outcome"</span>
 
 <span class="co"># build a linelist</span>
+<span class="co"># ----------------</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dataset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/make_linelist.html">make_linelist</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"dt_onset"</span>, <span class="co"># date of onset</span>
@@ -188,20 +191,24 @@
 <span class="co">#&gt; $occupation</span>
 <span class="co">#&gt; [1] "age"</span>
 
-<span class="co"># validation: this flags a mistake (occupation cannot be an integer)</span>
+<span class="co"># validation of tagged variables</span>
+<span class="co"># ------------------------------</span>
+<span class="co">## (this flags a likely mistake: occupation should not be an integer)</span>
 <span class="fu"><a href="reference/validate_linelist.html">validate_linelist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="co">#&gt; Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:</span>
 <span class="co">#&gt; Must inherit from class 'character'/'factor', but has class 'integer'</span>
 
 <span class="co"># change tags: fix mistakes, add new ones</span>
+<span class="co"># ---------------------------------------</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/set_tags.html">set_tags</a></span><span class="op">(</span>occupation <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># tag removal</span>
            gender <span class="op">=</span> <span class="st">"sex"</span>, <span class="co"># new tag</span>
            outcome <span class="op">=</span> <span class="st">"outcome"</span>
            <span class="op">)</span>
 
-<span class="co"># remove geographic info: safeguards against actions losing tags</span>
-<span class="co">## this issues a warning</span>
+<span class="co"># safeguards against actions losing tags</span>
+<span class="co"># --------------------------------------</span>
+<span class="co">## attemping to remove geographical info but removing dates by mistake</span>
 <span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span>
@@ -217,8 +224,12 @@
 <span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span>
 
+<span class="co">## to revert to default behaviour (warning upon error)</span>
+<span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Lost tags will now issue a warning.</span>
 
 <span class="co"># access content by tags, and build downstream pipelines</span>
+<span class="co"># ------------------------------------------------------</span>
 <span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="va">outcome</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 162 × 2</span>
@@ -257,7 +268,7 @@
   <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">incidence</span><span class="op">(</span><span class="st">"date_onset"</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">facet_plot</span><span class="op">(</span>facets <span class="op">=</span> <span class="st">"gender"</span>, fill <span class="op">=</span> <span class="va">outcome</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="80%"></p>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
