@@ -147,8 +147,8 @@ be implemented in a separate package.
     class, as defined in `tags_types()`
 
   - `validate_linelist()`: general validation of *linelist* objects,
-    equivalent to running both `validate_tags` and `validate_types`, and
-    checking the class of the object
+    equivalent to running both `validate_tags()` and `validate_types()`,
+    and checking the class of the object
 
 #### Secured methods
 
@@ -188,14 +188,6 @@ outbreak.
 library(outbreaks)
 library(tibble)
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(magrittr)
 library(linelist)
 
@@ -419,6 +411,7 @@ stronger pipelines for instance):
 
 # hybrid selection - no warning
 x %>%
+  lost_tags_action("none") %>%
   select(1:2, tags = "gender", lost_action = "none")
 #> Error in `dplyr::select()`:
 #> ! Can't subset columns that don't exist.
@@ -426,10 +419,20 @@ x %>%
 
 # hybrid selection - error due to lost tags
 x %>%
+  lost_tags_action("error") %>%
   select(1:2, tags = "gender", lost_action = "error")
 #> Error in `dplyr::select()`:
 #> ! Can't subset columns that don't exist.
 #> ✖ Column `error` doesn't exist.
+
+# note that `lost_tags_action` sets the behavior for any later operation, so we 
+# need to reset the default
+get_lost_tags_action() # check current behaviour
+#> [1] "error"
+lost_tags_action() # reset default
+#> NULL
+get_lost_tags_action() # check updated behaviour
+#> [1] "warning"
 ```
 
 ## Contributing guidelines
