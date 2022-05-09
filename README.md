@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# *linelist*: Tagging and Validating Epidemiological Data
+
 <!-- badges: start -->
 
 [![License:
@@ -10,17 +12,6 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
 
 <!-- badges: end -->
-
-# *linelist*: Tagging and Validating Epidemiological Data
-
-<br> **<span style="color: red;">NOTE</span>**
-
-This package is a reboot of the RECON package
-[linelist](https://github.com/reconhub/linelist). Unliked its
-predecessor, the new package focuses on the implementation of a
-*linelist* class. The data cleaning features of the original package
-will eventually be re-implemented for *linelist* objects, albeit likely
-in a separate package.
 
 ## Installation
 
@@ -46,13 +37,208 @@ remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 
 ## Usage
 
+*linelist* works by tagging key epidemiological data in a `data.frame`
+or a `tibble` to facilitate and strengthen data pipelines. The resulting
+object is a `linelist` object, which extends `data.frame` (or `tibble`)
+by providing three types of features:
+
+1.  a tagging system to identify key data, enabling access to these data
+    using their tags rather than actual names, which may change over
+    time and across datasets
+
+2.  validation of the tagged variables (making sure they are present and
+    of the right type/class)
+
+3.  safeguards against accidental losses of tagged variables in common
+    data handling operations
+
+The short example below illustrates these different features. See the
+[Documentation](Documentation) section for more in-depth examples and
+details about `linelist` objects.
+
+``` r
+
+# load packages and a dataset for the example
+library(dplyr)
+library(magrittr)
+library(outbreaks)
+library(incidence2)
+library(linelist)
+
+dataset <- outbreaks::mers_korea_2015$linelist
+head(dataset)
+#>     id age age_class sex        place_infect reporting_ctry
+#> 1 SK_1  68     60-69   M         Middle East    South Korea
+#> 2 SK_2  63     60-69   F Outside Middle East    South Korea
+#> 3 SK_3  76     70-79   M Outside Middle East    South Korea
+#> 4 SK_4  46     40-49   F Outside Middle East    South Korea
+#> 5 SK_5  50     50-59   M Outside Middle East    South Korea
+#> 6 SK_6  71     70-79   M Outside Middle East    South Korea
+#>                                              loc_hosp   dt_onset  dt_report
+#> 1 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-11 2015-05-19
+#> 2 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-18 2015-05-20
+#> 3 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-20 2015-05-20
+#> 4 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-25 2015-05-26
+#> 5                           365 Yeollin Clinic, Seoul 2015-05-25 2015-05-27
+#> 6 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-24 2015-05-28
+#>   week_report dt_start_exp dt_end_exp    dt_diag outcome   dt_death
+#> 1     2015_21   2015-04-18 2015-05-04 2015-05-20   Alive       <NA>
+#> 2     2015_21   2015-05-15 2015-05-20 2015-05-20   Alive       <NA>
+#> 3     2015_21   2015-05-16 2015-05-16 2015-05-21    Dead 2015-06-04
+#> 4     2015_22   2015-05-16 2015-05-20 2015-05-26   Alive       <NA>
+#> 5     2015_22   2015-05-17 2015-05-17 2015-05-26   Alive       <NA>
+#> 6     2015_22   2015-05-15 2015-05-17 2015-05-28    Dead 2015-06-01
+
+# check known tagged variables
+tags_names()
+#>  [1] "id"             "date_onset"     "date_reporting" "date_admission"
+#>  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        
+#>  [9] "age"            "location"       "occupation"     "hcw"           
+#> [13] "outcome"
+
+# build a linelist
+x <- dataset %>%
+  tibble() %>%
+  make_linelist(date_onset = "dt_onset", # date of onset
+                date_reporting = "dt_report", # date of reporting
+                occupation = "age" # mistake
+                )
+x
+#> 
+#> // linelist object
+#> # A tibble: 162 × 15
+#>    id      age age_class sex   place_infect   reporting_ctry loc_hosp dt_onset  
+#>    <chr> <int> <chr>     <fct> <fct>          <fct>          <fct>    <date>    
+#>  1 SK_1     68 60-69     M     Middle East    South Korea    Pyeongt… 2015-05-11
+#>  2 SK_2     63 60-69     F     Outside Middl… South Korea    Pyeongt… 2015-05-18
+#>  3 SK_3     76 70-79     M     Outside Middl… South Korea    Pyeongt… 2015-05-20
+#>  4 SK_4     46 40-49     F     Outside Middl… South Korea    Pyeongt… 2015-05-25
+#>  5 SK_5     50 50-59     M     Outside Middl… South Korea    365 Yeo… 2015-05-25
+#>  6 SK_6     71 70-79     M     Outside Middl… South Korea    Pyeongt… 2015-05-24
+#>  7 SK_7     28 20-29     F     Outside Middl… South Korea    Pyeongt… 2015-05-21
+#>  8 SK_8     46 40-49     F     Outside Middl… South Korea    Seoul C… 2015-05-26
+#>  9 SK_9     56 50-59     M     Outside Middl… South Korea    Pyeongt… NA        
+#> 10 SK_10    44 40-49     M     Outside Middl… China          Pyeongt… 2015-05-21
+#> # … with 152 more rows, and 7 more variables: dt_report <date>,
+#> #   week_report <fct>, dt_start_exp <date>, dt_end_exp <date>, dt_diag <date>,
+#> #   outcome <fct>, dt_death <date>
+#> 
+#> // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age
+tags(x) # check available tags
+#> $date_onset
+#> [1] "dt_onset"
+#> 
+#> $date_reporting
+#> [1] "dt_report"
+#> 
+#> $occupation
+#> [1] "age"
+
+# validation: this flags a mistake (occupation cannot be an integer)
+validate_linelist(x)
+#> Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:
+#> Must inherit from class 'character'/'factor', but has class 'integer'
+
+# change tags: fix mistakes, add new ones
+x <- x %>%
+  set_tags(occupation = NULL, # tag removal
+           gender = "sex", # new tag
+           outcome = "outcome"
+           )
+
+# remove geographic info: safeguards against actions losing tags
+## this issues a warning
+x_no_geo <- x %>%
+  select(-(5:8))
+#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
+#>  date_onset:dt_onset
+
+## for stronger pipelines, trigger errors upon loss
+x_no_geo <- x %>%
+  lost_tags_action("error") %>% 
+  select(-(5:8))
+#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
+#>  date_onset:dt_onset
+
+x_no_geo <- x %>%
+  select(-(5:7))
+
+
+# access content by tags, and build downstream pipelines
+x_no_geo %>%
+  select_tags(date_onset, outcome)
+#> # A tibble: 162 × 2
+#>    date_onset outcome
+#>    <date>     <fct>  
+#>  1 2015-05-11 Alive  
+#>  2 2015-05-18 Alive  
+#>  3 2015-05-20 Dead   
+#>  4 2015-05-25 Alive  
+#>  5 2015-05-25 Alive  
+#>  6 2015-05-24 Dead   
+#>  7 2015-05-21 Alive  
+#>  8 2015-05-26 Alive  
+#>  9 NA         Alive  
+#> 10 2015-05-21 Alive  
+#> # … with 152 more rows
+
+x_no_geo %>%
+  tags_df()
+#> # A tibble: 162 × 4
+#>    date_onset date_reporting gender outcome
+#>    <date>     <date>         <fct>  <fct>  
+#>  1 2015-05-11 2015-05-19     M      Alive  
+#>  2 2015-05-18 2015-05-20     F      Alive  
+#>  3 2015-05-20 2015-05-20     M      Dead   
+#>  4 2015-05-25 2015-05-26     F      Alive  
+#>  5 2015-05-25 2015-05-27     M      Alive  
+#>  6 2015-05-24 2015-05-28     M      Dead   
+#>  7 2015-05-21 2015-05-28     F      Alive  
+#>  8 2015-05-26 2015-05-29     F      Alive  
+#>  9 NA         2015-05-29     M      Alive  
+#> 10 2015-05-21 2015-05-29     M      Alive  
+#> # … with 152 more rows
+
+x_no_geo %>%
+  tags_df() %>%
+  incidence("date_onset", groups = c("gender", "outcome")) %>%
+  facet_plot(facets = "gender", fill = outcome)
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
 ## Documentation
+
+More detailed documentation can be found at:
+<https://epiverse-trace.github.io/linelist/>
+
+In particular:
+
+  - A general introduction to *linelist*
+    ([link](https://epiverse-trace.github.io/linelist/articles/linelist_introduction.html))
+
+  - The reference manual
+    ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
 
 ## Getting help
 
-## Contributions
+To ask questions or give us some feedback, please use the github
+[issues](https://github.com/epiverse-trace/linelist/issues) system.
 
-Contributions are welcome via **pull requests**.
+## Development
+
+### Lifecycle
+
+This package is currently *experimental*, as defined by the [RECON
+software lifecycle](https://www.reconverse.org/lifecycle.html). This
+means that essential features and mechanisms should not change
+drastically, but depending on user feedback, functions may be renamed,
+arguments may change, some functionalities may be added, etc.
+
+### Contributions
+
+Contributions are welcome via [pull
+requests](https://github.com/epiverse-trace/linelist/pulls).
 
 ### Code of Conduct
 
@@ -60,3 +246,12 @@ Please note that the linelist project is released with a [Contributor
 Code of
 Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
+
+### Notes
+
+This package is a reboot of the RECON package
+[linelist](https://github.com/reconhub/linelist). Unliked its
+predecessor, the new package focuses on the implementation of a
+*linelist* class. The data cleaning features of the original package
+will eventually be re-implemented for *linelist* objects, albeit likely
+in a separate package.
