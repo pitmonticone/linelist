@@ -42,15 +42,15 @@ or a `tibble` to facilitate and strengthen data pipelines. The resulting
 object is a `linelist` object, which extends `data.frame` (or `tibble`)
 by providing three types of features:
 
-1.  a tagging system to identify key data, enabling access to these data
-    using their tags rather than actual names, which may change over
-    time and across datasets
+1.  a **tagging system** to identify key data, enabling access to these
+    data using their tags rather than actual names, which may change
+    over time and across datasets
 
-2.  validation of the tagged variables (making sure they are present and
-    of the right type/class)
+2.  **validation** of the tagged variables (making sure they are present
+    and of the right type/class)
 
-3.  safeguards against accidental losses of tagged variables in common
-    data handling operations
+3.  **safeguards** against accidental losses of tagged variables in
+    common data handling operations
 
 The short example below illustrates these different features. See the
 [Documentation](Documentation) section for more in-depth examples and
