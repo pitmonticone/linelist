@@ -27,6 +27,7 @@ knitr::opts_chunk$set(
 
 
 
+
 ## Installation
 
 ### Stable version
@@ -48,6 +49,7 @@ if (!require(remotes)) {
 }
 remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 ```
+
 
 
 
@@ -136,6 +138,8 @@ x_no_geo %>%
 ```
 
 
+
+
 ## Documentation
 
 More detailed documentation can be found at:
@@ -149,26 +153,42 @@ In particular:
 
 
 
+
 ## Getting help
 
+To ask questions or give us some feedback, please use the github
+[issues](https://github.com/epiverse-trace/linelist/issues) system.
 
 
-## Contributions 
-
-Contributions are welcome via **pull requests**.
 
 
-<br> **<span style="color: red;">NOTE</span>**
+## Development
 
-This package is a reboot of the RECON package
-[linelist](https://github.com/reconhub/linelist). Unliked its predecessor, the
-new package focuses on the implementation of a *linelist* class. The data
-cleaning features of the original package will eventually be re-implemented for
-*linelist* objects, albeit likely in a separate package.
+### Lifecycle
+
+This package is currently *experimental*, as defined by the [RECON software
+lifecycle](https://www.reconverse.org/lifecycle.html). This means that essential
+features and mechanisms should not change drastically, but depending on user
+feedback, functions may be renamed, arguments may change, some functionalities
+may be added, etc.
+
+
+### Contributions
+
+Contributions are welcome via [pull requests](https://github.com/epiverse-trace/linelist/pulls).
 
 
 ### Code of Conduct
 Please note that the linelist project is released with a 
 [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
+
+
+### Notes
+
+This package is a reboot of the RECON package
+[linelist](https://github.com/reconhub/linelist). Unliked its predecessor, the
+new package focuses on the implementation of a *linelist* class. The data
+cleaning features of the original package will eventually be re-implemented for
+*linelist* objects, albeit likely in a separate package.
 
