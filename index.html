@@ -211,7 +211,7 @@
 <span class="co">## attemping to remove geographical info but removing dates by mistake</span>
 <span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span>
+<span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span>
 <span class="co">#&gt;  date_onset:dt_onset</span>
 
 <span class="co">## for stronger pipelines, trigger errors upon loss</span>
