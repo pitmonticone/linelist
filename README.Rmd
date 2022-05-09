@@ -290,12 +290,12 @@ instance):
 # hybrid selection - no warning
 x %>%
   lost_tags_action("none") %>%
-  select(1:2, tags = "gender", lost_action = "none")
+  select(1:2, tags = "gender")
 
 # hybrid selection - error due to lost tags
 x %>%
   lost_tags_action("error") %>%
-  select(1:2, tags = "gender", lost_action = "error")
+  select(1:2, tags = "gender")
 
 # note that `lost_tags_action` sets the behavior for any later operation, so we 
 # need to reset the default

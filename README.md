@@ -412,18 +412,34 @@ stronger pipelines for instance):
 # hybrid selection - no warning
 x %>%
   lost_tags_action("none") %>%
-  select(1:2, tags = "gender", lost_action = "none")
-#> Error in `dplyr::select()`:
-#> ! Can't subset columns that don't exist.
-#> ✖ Column `none` doesn't exist.
+  select(1:2, tags = "gender")
+#> 
+#> // linelist object
+#> # A tibble: 13 × 3
+#>    case_ID infector gender
+#>      <int>    <int> <fct> 
+#>  1       1       45 f     
+#>  2       2       45 f     
+#>  3       3      172 f     
+#>  4       4      180 m     
+#>  5       5       45 f     
+#>  6       6      180 m     
+#>  7       7       42 m     
+#>  8       8       45 m     
+#>  9       9      182 m     
+#> 10      10       45 f     
+#> 11      11      182 f     
+#> 12      12       45 f     
+#> 13      13       12 m     
+#> 
+#> // tags: gender:gender
 
 # hybrid selection - error due to lost tags
 x %>%
   lost_tags_action("error") %>%
-  select(1:2, tags = "gender", lost_action = "error")
-#> Error in `dplyr::select()`:
-#> ! Can't subset columns that don't exist.
-#> ✖ Column `error` doesn't exist.
+  select(1:2, tags = "gender")
+#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
+#>  date_onset:date_of_prodrome, date_death:date_of_death, age:age, outcome:inferred_outcome
 
 # note that `lost_tags_action` sets the behavior for any later operation, so we 
 # need to reset the default
