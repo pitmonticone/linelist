@@ -13,6 +13,9 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+# *linelist*: Tagging and Validating Epidemiological Data
+
 <!-- badges: start -->
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -21,17 +24,6 @@ knitr::opts_chunk$set(
 [![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
 
 <!-- badges: end -->
-
-# *linelist*: Tagging and Validating Epidemiological Data
-
-<br>
-**<span style="color: red;">NOTE</span>**
-
-This package is a reboot of the RECON package
-[linelist](https://github.com/reconhub/linelist). Unliked its predecessor, the
-new package focuses on the implementation of a *linelist* class. The data
-cleaning features of the original package will eventually be re-implemented for
-*linelist* objects, albeit likely in a separate package.
 
 
 
@@ -44,7 +36,6 @@ Our stable versions are released on CRAN, and can be installed using:
 ```{r, eval=FALSE}
 install.packages("linelist", build_vignettes = TRUE)
 ```
-
 
 ### Development version
 
@@ -62,17 +53,119 @@ remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 
 ## Usage
 
+*linelist* works by tagging key epidemiological data in a `data.frame` or a
+`tibble` to facilitate and strengthen data pipelines. The resulting object is a
+`linelist` object, which extends `data.frame` (or `tibble`) by providing three
+types of features:
+
+1. a tagging system to identify key data, enabling access to these data using
+   their tags rather than actual names, which may change over time and across
+   datasets
+   
+2. validation of the tagged variables (making sure they are present and of the
+   right type/class)
+   
+3. safeguards against accidental losses of tagged variables in common data
+   handling operations
+
+The short example below illustrates these different features. See the
+[Documentation](Documentation) section for more in-depth examples and details
+about `linelist` objects.
+
+```{r error = TRUE}
+
+# load packages and a dataset for the example
+library(dplyr)
+library(magrittr)
+library(outbreaks)
+library(incidence2)
+library(linelist)
+
+dataset <- outbreaks::mers_korea_2015$linelist
+head(dataset)
+
+# check known tagged variables
+tags_names()
+
+# build a linelist
+x <- dataset %>%
+  tibble() %>%
+  make_linelist(date_onset = "dt_onset", # date of onset
+                date_reporting = "dt_report", # date of reporting
+                occupation = "age" # mistake
+                )
+x
+tags(x) # check available tags
+
+# validation: this flags a mistake (occupation cannot be an integer)
+validate_linelist(x)
+
+# change tags: fix mistakes, add new ones
+x <- x %>%
+  set_tags(occupation = NULL, # tag removal
+           gender = "sex", # new tag
+           outcome = "outcome"
+           )
+
+# remove geographic info: safeguards against actions losing tags
+## this issues a warning
+x_no_geo <- x %>%
+  select(-(5:8))
+
+## for stronger pipelines, trigger errors upon loss
+x_no_geo <- x %>%
+  lost_tags_action("error") %>% 
+  select(-(5:8))
+
+x_no_geo <- x %>%
+  select(-(5:7))
+
+
+# access content by tags, and build downstream pipelines
+x_no_geo %>%
+  select_tags(date_onset, outcome)
+
+x_no_geo %>%
+  tags_df()
+
+x_no_geo %>%
+  tags_df() %>%
+  incidence("date_onset", groups = c("gender", "outcome")) %>%
+  facet_plot(facets = "gender", fill = outcome)
+
+```
+
 
 ## Documentation
+
+More detailed documentation can be found at:
+https://epiverse-trace.github.io/linelist/
+
+In particular:
+
+* A general introduction to *linelist* ([link](https://epiverse-trace.github.io/linelist/articles/linelist_introduction.html))
+
+* The reference manual ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
 
 
 
 ## Getting help
 
 
+
 ## Contributions 
 
 Contributions are welcome via **pull requests**.
+
+
+<br> **<span style="color: red;">NOTE</span>**
+
+This package is a reboot of the RECON package
+[linelist](https://github.com/reconhub/linelist). Unliked its predecessor, the
+new package focuses on the implementation of a *linelist* class. The data
+cleaning features of the original package will eventually be re-implemented for
+*linelist* objects, albeit likely in a separate package.
+
 
 ### Code of Conduct
 Please note that the linelist project is released with a 
