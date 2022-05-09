@@ -1,5 +1,5 @@
 Package: linelist
-Title: Base Tools for Storing and Handling Case Line Lists
+Title: Tagging and Validating Epidemiological Data
 Version: 0.0.1
 Authors@R: 
     person("Thibaut", "Jombart", , "thibaut@data.org", role = c("aut", "cre"))
@@ -17,7 +17,10 @@ Suggests:
     callr,
     covr,
     dplyr,
+    knitr,
     magrittr,
     outbreaks,
+    rmarkdown,
     testthat,
     tibble
+VignetteBuilder: knitr
