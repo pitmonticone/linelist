@@ -213,8 +213,7 @@ outbreak, distributed by the *outbreaks* pacakge as `measles_hagelloch_1861` .
 library(outbreaks)
 
 # overview of the data
-measles_hagelloch_1861 %>%
-  head()
+head(measles_hagelloch_1861)
 
 ```
 
