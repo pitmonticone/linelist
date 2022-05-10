@@ -16,16 +16,16 @@ reliable.
 \section{Main functions}{
 
 \itemize{
-\item \url{make_linelist}: to create \code{linelist} objects from a
+\item \code{\link[=make_linelist]{make_linelist()}}: to create \code{linelist} objects from a
 \code{data.frame} or a \code{tibble}, with the possibility to tag key epi variables
-\item \url{set_tags}: to change or add tagged variables in a \code{linelist}
-\item \url{tags}: to get the list of tags of a \code{linelist}
-\item \url{tags_df}: to get a \code{data.frame} of all tagged variables
-\item \url{select_tags}: like \code{dplyr::select}, but for tagged variables
-\item \url{lost_tags_action}: to change the behaviour of actions
+\item \code{\link[=set_tags]{set_tags()}}: to change or add tagged variables in a \code{linelist}
+\item \code{\link[=tags]{tags()}}: to get the list of tags of a \code{linelist}
+\item \code{\link[=tags_df]{tags_df()}}: to get a \code{data.frame} of all tagged variables
+\item \code{\link[=select_tags]{select_tags()}}: like \code{\link[dplyr:select]{dplyr::select()}}, but for tagged variables
+\item \code{\link[=lost_tags_action]{lost_tags_action()}}: to change the behaviour of actions
 where tagged variables are lost (e.g. removing columns storing tagged
 variables) to issue warnings, errors, or do nothing
-\item \href{lost_tags_action}{\code{get_lost_tags_action}}: to check the current
+\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}}: to check the current
 behaviour of actions where tagged variables are lost
 }
 }
@@ -38,9 +38,8 @@ Specific methods commonly used to handle \code{data.frame} are provided for
 alter or lose tagged variables (and may thus break downstream data
 pipelines).
 \itemize{
-\item \href{names<-.linelist}{\verb{names() <-}} and \href{rename.linelist}{\code{rename}}: will
-rename tags as needed
-\item \href{sub_linelist}{\verb{x[...] <-}} and \href{sub_linelist}{\verb{x[[...]] <-}}: will adopt
+\item \verb{names() <-} and \code{rename} (see \code{\link[=rename.linelist]{rename.linelist()}}): will rename tags as needed
+\item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_linelist}): will adopt
 the desire behaviour when tagged variables are lost
 \item \code{print()}: prints info about the \code{linelist} in addition to the \code{data.frame}
 or \code{tibble}
@@ -123,5 +122,5 @@ if (require(outbreaks)) {
 
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }
