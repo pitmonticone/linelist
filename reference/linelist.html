@@ -76,16 +76,16 @@ reliable.</p>
     <h2>Main functions</h2>
     
 
-<ul><li><p><a href="make_linelist">make_linelist</a>: to create <code>linelist</code> objects from a
+<ul><li><p><code><a href="make_linelist.html">make_linelist()</a></code>: to create <code>linelist</code> objects from a
 <code>data.frame</code> or a <code>tibble</code>, with the possibility to tag key epi variables</p></li>
-<li><p><a href="set_tags">set_tags</a>: to change or add tagged variables in a <code>linelist</code></p></li>
-<li><p><a href="tags">tags</a>: to get the list of tags of a <code>linelist</code></p></li>
-<li><p><a href="tags_df">tags_df</a>: to get a <code>data.frame</code> of all tagged variables</p></li>
-<li><p><a href="select_tags">select_tags</a>: like <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select</a></code>, but for tagged variables</p></li>
-<li><p><a href="lost_tags_action">lost_tags_action</a>: to change the behaviour of actions
+<li><p><code><a href="set_tags.html">set_tags()</a></code>: to change or add tagged variables in a <code>linelist</code></p></li>
+<li><p><code><a href="tags.html">tags()</a></code>: to get the list of tags of a <code>linelist</code></p></li>
+<li><p><code><a href="tags_df.html">tags_df()</a></code>: to get a <code>data.frame</code> of all tagged variables</p></li>
+<li><p><code><a href="select_tags.html">select_tags()</a></code>: like <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code>, but for tagged variables</p></li>
+<li><p><code><a href="lost_tags_action.html">lost_tags_action()</a></code>: to change the behaviour of actions
 where tagged variables are lost (e.g. removing columns storing tagged
 variables) to issue warnings, errors, or do nothing</p></li>
-<li><p><a href="lost_tags_action"><code>get_lost_tags_action</code></a>: to check the current
+<li><p><code><a href="lost_tags_action.html">get_lost_tags_action()</a></code>: to check the current
 behaviour of actions where tagged variables are lost</p></li>
 </ul></div>
     <div id="dedicated-methods">
@@ -96,16 +96,15 @@ behaviour of actions where tagged variables are lost</p></li>
 <p>Specific methods commonly used to handle <code>data.frame</code> are provided for
 <code>linelist</code> objects, typically to help flag or prevent actions which could
 alter or lose tagged variables (and may thus break downstream data
-pipelines).</p><ul><li><p><a href="names&lt;-.linelist"><code>names() &lt;-</code></a> and <a href="rename.linelist"><code>rename</code></a>: will
-rename tags as needed</p></li>
-<li><p><a href="sub_linelist"><code>x[...] &lt;-</code></a> and <a href="sub_linelist"><code>x[[...]] &lt;-</code></a>: will adopt
+pipelines).</p><ul><li><p><code>names() &lt;-</code> and <code>rename</code> (see <code><a href="rename.linelist.html">rename.linelist()</a></code>): will rename tags as needed</p></li>
+<li><p><code>x[...] &lt;-</code> and <code>x[[...]] &lt;-</code> (see <a href="sub_linelist.html">sub_linelist</a>): will adopt
 the desire behaviour when tagged variables are lost</p></li>
 <li><p><code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>: prints info about the <code>linelist</code> in addition to the <code>data.frame</code>
 or <code>tibble</code></p></li>
 </ul></div>
     <div id="author">
     <h2>Author</h2>
-    <p>Thibaut Jombart <a href="thibaut@data.org">thibaut@data.org</a></p>
+    <p>Thibaut Jombart <a href="mailto:thibaut@data.org">thibaut@data.org</a></p>
     </div>
 
     <div id="ref-examples">
