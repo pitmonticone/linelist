@@ -11,11 +11,11 @@
 #'
 #' @inheritParams set_tags
 #' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return If checks pass, a `linelist` object; otherwise issues an error.
 #'
-#' @seealso [`validate_types`](validate_types) to check if tagged variables have
+#' @seealso [validate_types()] to check if tagged variables have
 #'   the right classes
 #'
 #' @examples

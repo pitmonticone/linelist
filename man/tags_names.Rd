@@ -17,9 +17,8 @@ specific variable types in a \code{linelist}.
 tags_names()
 }
 \seealso{
-\url{tags_defaults} for a \code{list} of default values of the
-tags
+\code{\link[=tags_defaults]{tags_defaults()}} for a \code{list} of default values of the tags
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

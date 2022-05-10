@@ -35,5 +35,5 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

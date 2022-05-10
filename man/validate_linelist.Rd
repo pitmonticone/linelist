@@ -14,7 +14,7 @@ currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unkn
 tags will trigger an error}
 
 \item{ref_types}{a \code{list} providing allowed types for all tags, as returned
-by \url{tags_types}}
+by \code{\link[=tags_types]{tags_types()}}}
 }
 \value{
 If checks pass, a \code{linelist} object; otherwise issues an error.
@@ -22,9 +22,8 @@ If checks pass, a \code{linelist} object; otherwise issues an error.
 \description{
 This function evalutes the validity of a \code{linelist} object by checking the
 object class, its tags, and the types of the tagged variables. It combines
-validations checks made by \url{validate_types} and
-\url{validate_tags}. See 'Details' section for more information
-on the checks performed.
+validations checks made by \code{\link[=validate_types]{validate_types()}} and \code{\link[=validate_tags]{validate_tags()}}. See
+'Details' section for more information on the checks performed.
 }
 \details{
 The following checks are performed:
@@ -67,12 +66,11 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 \seealso{
 \itemize{
-\item \url{tags_types} to change allowed types
-\item \url{validate_types} to check if tagged variables have
-the right classes
-\item \url{validate_tags} to perform a series of checks on the tags
+\item \code{\link[=tags_types]{tags_types()}} to change allowed types
+\item \code{\link[=validate_types]{validate_types()}} to check if tagged variables have the right classes
+\item \code{\link[=validate_tags]{validate_tags()}} to perform a series of checks on the tags
 }
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

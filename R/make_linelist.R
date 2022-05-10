@@ -15,7 +15,7 @@
 #' @param ... a series of tags provided as `tag_name = "column_name"`, where
 #'   `tag_name` indicates any of the known variables listed in 'Details';
 #'   alternatively, a named `list` of variables to be tagged, where names
-#'   indicate the types of variable (to be selected from `tags_names()`), and
+#'   indicate the types of variable (to be selected from [tags_names()]), and
 #'   values indicate their name in the input `data.frame`; see details for a
 #'   list of known variable types and their expected content
 #'
@@ -23,7 +23,14 @@
 #'   currently recognized by `linelist` should be allowed; if `FALSE`, unknown
 #'   tags will trigger an error
 #'
-#' @seealso an [overview](linelist) of the package
+#' @seealso
+#'
+#' * An overview of the [linelist] package
+#' * [tags_names()]: for a list of known tag names
+#' * [tags_types()]: for the associated accepted types/classes
+#' * [tags()]: for a list of tagged variables in a `linelist`
+#' * [set_tags()]: for modifying tags
+#' * [tags_df()]: for selecting variables by tags
 #' 
 #' @details
 #' Known variable types include:
@@ -68,7 +75,7 @@
 #' 
 #' @export
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return The function returns a `linelist` object.
 #'

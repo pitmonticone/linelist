@@ -1,7 +1,7 @@
 #' Subset columns of a linelist object
 #'
-#' This function works similarly to `dplyr::select` but can in addition refer to
-#' tagged variables through the `tags` argument. When variables are selected
+#' This function works similarly to [dplyr::select()] but can in addition refer
+#' to tagged variables through the `tags` argument. When variables are selected
 #' using both procedures, tagged variables are output as the last columns.
 #'
 #' @rdname select.linelist
@@ -11,19 +11,19 @@
 #' @param ... the variables to select, using `dplyr` compatible syntax
 #'
 #' @param tags a `character` indicating tagged variables to select using tag
-#'   names (see `tags_names()`) for default values; values can be named, in
+#'   names (see [tags_names()]) for default values; values can be named, in
 #'   which case the output columns will be renamed accordingly (e.g. `onset =
 #'   "date_onset"` will output a column named 'onset').
 #'
 #' @exportS3Method dplyr::select
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return The function returns a `linelist` with selected columns.
 #'
 #' @seealso
-#' * [`select_tags`](select_tags) to select tags only
-#' * [`tags_df`](tags_df) to return a `data.frame` of all tagged variables
+#' * [select_tags()] to select tags only
+#' * [tags_df()] to return a `data.frame` of all tagged variables
 #' 
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {

@@ -12,7 +12,7 @@
 #' 
 #' @noRd
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return The function returns a `linelist` object.
 #' 

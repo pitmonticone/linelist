@@ -3,7 +3,7 @@
 \name{lost_tags_action}
 \alias{lost_tags_action}
 \alias{get_lost_tags_action}
-\title{Set behaviour for lost tags}
+\title{Check and set behaviour for lost tags}
 \usage{
 lost_tags_action(
   x = NULL,
@@ -56,5 +56,5 @@ get_lost_tags_action()
 lost_tags_action()
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

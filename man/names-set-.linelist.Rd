@@ -41,9 +41,8 @@ if (require(outbreaks)) {
 }
 }
 \seealso{
-\url{rename.linelist} for \code{dplyr}-style renaming of
-columns
+\code{\link[=rename.linelist]{rename.linelist()}} for renaming columns as with \code{\link[dplyr:rename]{dplyr::rename()}}
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

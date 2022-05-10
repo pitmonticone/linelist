@@ -9,12 +9,11 @@
 #'
 #' @return a `linelist` with new column names
 #'
-#' @seealso [`rename.linelist`](rename.linelist) for `dplyr`-style renaming of
-#'   columns
+#' @seealso [rename.linelist()] for renaming columns as with [dplyr::rename()]
 #' 
 #' @export
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @examples
 #' if (require(outbreaks)) {

@@ -13,7 +13,7 @@ cases in rows and variables in columns}
 \item{...}{a series of tags provided as \code{tag_name = "column_name"}, where
 \code{tag_name} indicates any of the known variables listed in 'Details';
 alternatively, a named \code{list} of variables to be tagged, where names
-indicate the types of variable (to be selected from \code{tags_names()}), and
+indicate the types of variable (to be selected from \code{\link[=tags_names]{tags_names()}}), and
 values indicate their name in the input \code{data.frame}; see details for a
 list of known variable types and their expected content}
 
@@ -86,8 +86,15 @@ if (require(outbreaks)) {
 
 }
 \seealso{
-an \href{linelist}{overview} of the package
+\itemize{
+\item An overview of the \link{linelist} package
+\item \code{\link[=tags_names]{tags_names()}}: for a list of known tag names
+\item \code{\link[=tags_types]{tags_types()}}: for the associated accepted types/classes
+\item \code{\link[=tags]{tags()}}: for a list of tagged variables in a \code{linelist}
+\item \code{\link[=set_tags]{set_tags()}}: for modifying tags
+\item \code{\link[=tags_df]{tags_df()}}: for selecting variables by tags
+}
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

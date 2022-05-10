@@ -1,4 +1,4 @@
-#' Set behaviour for lost tags
+#' Check and set behaviour for lost tags
 #'
 #' This function determines the behaviour to adopt when tagged variables of a
 #' `linelist` are lost e.g. through subsetting. This is achieved using `options`
@@ -27,7 +27,7 @@
 #'
 #' @aliases lost_tags_action get_lost_tags_action
 #' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @examples
 #' # reset default (done automatically at package loading) 

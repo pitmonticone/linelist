@@ -8,7 +8,7 @@
 #' @param remove_tags a `logical` indicating if tags should be removed from the
 #'   attributes; defaults to `TRUE`
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @noRd
 #' 

@@ -45,5 +45,5 @@ if (require(outbreaks)) {
 }
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

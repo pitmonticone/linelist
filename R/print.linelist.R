@@ -10,7 +10,7 @@
 #' 
 #' @export
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @examples
 #' if (require(outbreaks)) {

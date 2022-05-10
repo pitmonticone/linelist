@@ -10,7 +10,7 @@ tags_types(..., allow_extra = FALSE)
 \item{...}{a series of tags provided as \code{tag_name = "column_name"}, where
 \code{tag_name} indicates any of the known variables listed in 'Details';
 alternatively, a named \code{list} of variables to be tagged, where names
-indicate the types of variable (to be selected from \code{tags_names()}), and
+indicate the types of variable (to be selected from \code{\link[=tags_names]{tags_names()}}), and
 values indicate their name in the input \code{data.frame}; see details for a
 list of known variable types and their expected content}
 
@@ -39,12 +39,11 @@ tags_types(sequence = "DNAbin", allow_extra = TRUE)
 }
 \seealso{
 \itemize{
-\item \url{tags_defaults} for the default tags
-\item \url{validate_types} uses \code{tags_types()} for validating tags
-\item \url{validate_linelist} uses \code{tags_types()} for validating
-tags
+\item \code{\link[=tags_defaults]{tags_defaults()}} for the default tags
+\item \code{\link[=validate_types]{validate_types()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
+\item \code{\link[=validate_linelist]{validate_linelist()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
 }
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

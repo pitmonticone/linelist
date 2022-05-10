@@ -8,17 +8,14 @@
 #'
 #' @inheritParams make_linelist
 #' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return A named `list`.
 #'
 #' @seealso
-#' * [`tags_defaults`](tags_defaults) for the default tags
-#' 
-#' * [`validate_types`](validate_types) uses `tags_types()` for validating tags
-#' 
-#' * [`validate_linelist`](validate_linelist) uses `tags_types()` for validating
-#' tags
+#' * [tags_defaults()] for the default tags
+#' * [validate_types()] uses [tags_types()] for validating tags
+#' * [validate_linelist()] uses [tags_types()] for validating tags
 #' 
 #' @examples
 #' # list default values

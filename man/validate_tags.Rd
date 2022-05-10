@@ -45,9 +45,9 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 }
 \seealso{
-\url{validate_types} to check if tagged variables have
+\code{\link[=validate_types]{validate_types()}} to check if tagged variables have
 the right classes
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

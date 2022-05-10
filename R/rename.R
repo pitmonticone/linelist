@@ -12,15 +12,14 @@
 #'
 #' @exportS3Method dplyr::rename
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return The function returns a `linelist` with renameed columns.
 #'
 #' @seealso
-#' * [`select`](select.linelist) for selecting variables and tags
-#' * [`select_tags`](select_tags) for selecting tags
-#' * [`tags_df`](tags_df) to return a `data.frame` or a `tibble` of all
-#'   tagged variables
+#' * [select.linelist()] for selecting variables and tags
+#' * [select_tags()] for selecting tags
+#' * [tags_df()] to return a `data.frame` or a `tibble` of all agged variables
 #' 
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {

@@ -9,16 +9,16 @@ select_tags(x, ...)
 \arguments{
 \item{x}{a \code{linelist} object}
 
-\item{...}{the tagged variables to select, using \code{dplyr::select} compatible
-terminology; see \url{tags_names}) for default values}
+\item{...}{the tagged variables to select, using \code{\link[dplyr:select]{dplyr::select()}} compatible
+terminology; see \code{\link[=tags_names]{tags_names()}} for default values}
 }
 \value{
 A \code{data.frame} of tagged variables.
 }
 \description{
 This function is used to create a \code{data.frame} of tagged variables from a
-\code{linelist} object, and runs \code{dplyr::select} on the output. It is equivalent
-to running successively \url{tags_df} and \code{dplyr::select} on a
+\code{linelist} object, and runs \link[dplyr:select]{dplyr::select} on the output. It is equivalent
+to running successively \code{\link[=tags_df]{tags_df()}} and \code{\link[dplyr:select]{dplyr::select()}} on a
 \code{linelist} object. Note that the output no longer is a \code{linelist} object, but
 a regular \code{data.frame} (or \code{tibble}).
 }
@@ -45,10 +45,10 @@ if (require(outbreaks)) {
 }
 \seealso{
 \itemize{
-\item \url{tags} for existing tags in a \code{linelist}
-\item \url{tags_df} to get a \code{data.frame} of all tags
+\item \code{\link[=tags]{tags()}} for existing tags in a \code{linelist}
+\item \code{\link[=tags_df]{tags_df()}} to get a \code{data.frame} of all tags
 }
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

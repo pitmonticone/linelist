@@ -1,26 +1,23 @@
 #' Check tagged variables are the right class
 #'
 #' This function checks the class of each tagged variable in a `linelist`
-#' against pre-defined accepted classes in [`tags_types()`](tags_types).
+#' against pre-defined accepted classes in [tags_types()].
 #'
 #' @export
 #'
 #' @param x a `linelist` object
 #'
 #' @param ref_types a `list` providing allowed types for all tags, as returned
-#'   by [`tags_types`](tags_types)
+#'   by [tags_types()]
 #' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return A named `list`.
 #'
 #' @seealso
-#' * [`tags_types`](tags_types) to change allowed types
-#'
-#' * [`validate_tags`](validate_tags) to perform a series of checks on the tags
-#' 
-#' * [`validate_linelist`](validate_linelist) to combine `validate_tags` and
-#' `validate_types`
+#' * [tags_types()] to change allowed types
+#' * [validate_tags()] to perform a series of checks on the tags
+#' * [validate_linelist()] to combine `validate_tags` and `validate_types`
 #' 
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {

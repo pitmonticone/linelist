@@ -3,7 +3,7 @@
 #' The `[]` and `[[]]` operators for `linelist` objects behaves like for regular
 #' `data.frame` or `tibble`, but check that tagged variables are not lost, and
 #' takes the appropriate action if this is the case (warning, error, or ignore,
-#' depending on the general option set via `lost_tags_action()`) .
+#' depending on the general option set via [lost_tags_action()]) .
 #'
 #' @param x a `linelist` object
 #'
@@ -21,8 +21,10 @@
 #'
 #' @return If no drop is happening, a `linelist`. Otherwise an atomic vector.
 #'
-#' @seealso [`lost_tags_action`](lost_tags_action) to set the behaviour to adopt
-#'   when tags are lost through subsetting; default is to issue a warning
+#' @seealso
+#' * [lost_tags_action()] to set the behaviour to adopt when tags are
+#'   lost through subsetting; default is to issue a warning
+#' * [get_lost_tags_action()] to check the current the behaviour
 #' 
 #' @export
 #'
@@ -30,7 +32,7 @@
 #'
 #' @aliases sub_linelist
 #' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {

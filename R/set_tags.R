@@ -1,16 +1,16 @@
 #' Changes tags of a linelist object
 #'
 #' This function changes the `tags` of a `linelist` object, using the same
-#' syntax as the constructor `make_linelist`. If some of the default tags are
+#' syntax as the constructor [make_linelist()]. If some of the default tags are
 #' missing, they will be added to the final object.
 #'
 #' @inheritParams make_linelist
 #'
-#' @seealso [make_linelist](make_linelist) to create a `linelist` object
+#' @seealso [make_linelist()] to create a `linelist` object
 #'
 #' @export
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return The function returns a `linelist` object.
 #'

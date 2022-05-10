@@ -5,12 +5,11 @@
 #'
 #' @export
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return The function returns a `character` vector.
 #'
-#' @seealso [tags_defaults](tags_defaults) for a `list` of default values of the
-#'   tags
+#' @seealso [tags_defaults()] for a `list` of default values of the tags
 #' 
 #' @examples
 #' tags_names()

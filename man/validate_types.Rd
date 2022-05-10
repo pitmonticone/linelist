@@ -10,14 +10,14 @@ validate_types(x, ref_types = tags_types())
 \item{x}{a \code{linelist} object}
 
 \item{ref_types}{a \code{list} providing allowed types for all tags, as returned
-by \url{tags_types}}
+by \code{\link[=tags_types]{tags_types()}}}
 }
 \value{
 A named \code{list}.
 }
 \description{
 This function checks the class of each tagged variable in a \code{linelist}
-against pre-defined accepted classes in \href{tags_types}{\code{tags_types()}}.
+against pre-defined accepted classes in \code{\link[=tags_types]{tags_types()}}.
 }
 \examples{
 if (require(outbreaks) && require(dplyr) && require(magrittr)) {
@@ -38,12 +38,11 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 \seealso{
 \itemize{
-\item \url{tags_types} to change allowed types
-\item \url{validate_tags} to perform a series of checks on the tags
-\item \url{validate_linelist} to combine \code{validate_tags} and
-\code{validate_types}
+\item \code{\link[=tags_types]{tags_types()}} to change allowed types
+\item \code{\link[=validate_tags]{validate_tags()}} to perform a series of checks on the tags
+\item \code{\link[=validate_linelist]{validate_linelist()}} to combine \code{validate_tags} and \code{validate_types}
 }
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

@@ -8,7 +8,7 @@
 #' 
 #' @export
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return A `data.frame` of tagged variables.
 #'

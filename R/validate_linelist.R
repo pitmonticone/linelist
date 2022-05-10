@@ -2,9 +2,8 @@
 #'
 #' This function evalutes the validity of a `linelist` object by checking the
 #' object class, its tags, and the types of the tagged variables. It combines
-#' validations checks made by [`validate_types`](validate_types) and
-#' [`validate_tags`](validate_tags). See 'Details' section for more information
-#' on the checks performed.
+#' validations checks made by [validate_types()] and [validate_tags()]. See
+#' 'Details' section for more information on the checks performed.
 #'
 #' @details The following checks are performed:
 #'
@@ -23,17 +22,14 @@
 #'
 #' @inheritParams set_tags
 #' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return If checks pass, a `linelist` object; otherwise issues an error.
 #'
 #' @seealso
-#' * [`tags_types`](tags_types) to change allowed types
-#' 
-#' * [`validate_types`](validate_types) to check if tagged variables have
-#'   the right classes
-#'
-#' * [`validate_tags`](validate_tags) to perform a series of checks on the tags
+#' * [tags_types()] to change allowed types
+#' * [validate_types()] to check if tagged variables have the right classes
+#' * [validate_tags()] to perform a series of checks on the tags
 #'
 #' @examples
 #' 

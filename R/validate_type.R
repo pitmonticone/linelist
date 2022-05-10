@@ -2,9 +2,9 @@
 #'
 #' Internal. This function checks that a specific tagged variable has the
 #' expected type of data. Default expected types are defined by
-#' [`tags_types`](tags_types). Note that this is a low-level function. Consider
-#' using the plurial version `validate_types` which operates the validation on
-#' all tagged variables of a `linelist` object.
+#' [tags_types()]. Note that this is a low-level function. Consider using the
+#' plurial version `validate_types` which operates the validation on all tagged
+#' variables of a `linelist` object.
 #'
 #' @noRd
 #'
@@ -15,14 +15,16 @@
 #'
 #' @param ref_types a `list` providing allowed types for all tags 
 #' 
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return `TRUE` if the test is successful; otherwise, a `character` indicating
 #'   the issue
 #'
-#' @seealso [`tags_types`](tags_types) to check or change acceptable data
-#'   classes for specific tags; [`validate_types`](validate_types) to apply
-#'   validation to a `linelist`
+#' @seealso
+#'
+#' * [tags_types()] to check or change acceptable data
+#'   classes for specific tags
+#' * [validate_types()] to apply validation to a `linelist`
 #' 
 
 validate_type <- function(x, tag, ref_types = tags_types()) {

@@ -1,26 +1,25 @@
 #' Extract tagged variables of a linelist object
 #'
 #' This function is used to create a `data.frame` of tagged variables from a
-#' `linelist` object, and runs `dplyr::select` on the output. It is equivalent
-#' to running successively [`tags_df`](tags_df) and `dplyr::select` on a
+#' `linelist` object, and runs [dplyr::select] on the output. It is equivalent
+#' to running successively [tags_df()] and [dplyr::select()] on a
 #' `linelist` object. Note that the output no longer is a `linelist` object, but
 #' a regular `data.frame` (or `tibble`).
 #'
 #' @param x a `linelist` object
 #'
-#' @param ... the tagged variables to select, using `dplyr::select` compatible
-#'   terminology; see [`tags_names`](tags_names)) for default values
+#' @param ... the tagged variables to select, using [dplyr::select()] compatible
+#'   terminology; see [tags_names()] for default values
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return A `data.frame` of tagged variables.
 #'
 #' @export
 #'
 #' @seealso
-#' * [`tags`](tags) for existing tags in a `linelist`
-#'
-#' * [`tags_df`](tags_df) to get a `data.frame` of all tags
+#' * [tags()] for existing tags in a `linelist`
+#' * [tags_df()] to get a `data.frame` of all tags
 #' 
 #' @examples
 #' if (require(outbreaks)) {

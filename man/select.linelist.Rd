@@ -12,15 +12,15 @@
 \item{...}{the variables to select, using \code{dplyr} compatible syntax}
 
 \item{tags}{a \code{character} indicating tagged variables to select using tag
-names (see \code{tags_names()}) for default values; values can be named, in
+names (see \code{\link[=tags_names]{tags_names()}}) for default values; values can be named, in
 which case the output columns will be renamed accordingly (e.g. \code{onset = "date_onset"} will output a column named 'onset').}
 }
 \value{
 The function returns a \code{linelist} with selected columns.
 }
 \description{
-This function works similarly to \code{dplyr::select} but can in addition refer to
-tagged variables through the \code{tags} argument. When variables are selected
+This function works similarly to \code{\link[dplyr:select]{dplyr::select()}} but can in addition refer
+to tagged variables through the \code{tags} argument. When variables are selected
 using both procedures, tagged variables are output as the last columns.
 }
 \examples{
@@ -58,10 +58,10 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 \seealso{
 \itemize{
-\item \url{select_tags} to select tags only
-\item \url{tags_df} to return a \code{data.frame} of all tagged variables
+\item \code{\link[=select_tags]{select_tags()}} to select tags only
+\item \code{\link[=tags_df]{tags_df()}} to return a \code{data.frame} of all tagged variables
 }
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

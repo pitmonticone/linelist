@@ -45,12 +45,11 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 \seealso{
 \itemize{
-\item \href{select.linelist}{\code{select}} for selecting variables and tags
-\item \url{select_tags} for selecting tags
-\item \url{tags_df} to return a \code{data.frame} or a \code{tibble} of all
-tagged variables
+\item \code{\link[=select.linelist]{select.linelist()}} for selecting variables and tags
+\item \code{\link[=select_tags]{select_tags()}} for selecting tags
+\item \code{\link[=tags_df]{tags_df()}} to return a \code{data.frame} or a \code{tibble} of all agged variables
 }
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

@@ -35,7 +35,7 @@ If no drop is happening, a \code{linelist}. Otherwise an atomic vector.
 The \verb{[]} and \verb{[[]]} operators for \code{linelist} objects behaves like for regular
 \code{data.frame} or \code{tibble}, but check that tagged variables are not lost, and
 takes the appropriate action if this is the case (warning, error, or ignore,
-depending on the general option set via \code{lost_tags_action()}) .
+depending on the general option set via \code{\link[=lost_tags_action]{lost_tags_action()}}) .
 }
 \examples{
 if (require(outbreaks) && require(dplyr) && require(magrittr)) {
@@ -60,9 +60,12 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 }
 }
 \seealso{
-\url{lost_tags_action} to set the behaviour to adopt
-when tags are lost through subsetting; default is to issue a warning
+\itemize{
+\item \code{\link[=lost_tags_action]{lost_tags_action()}} to set the behaviour to adopt when tags are
+lost through subsetting; default is to issue a warning
+\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}} to check the current the behaviour
+}
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

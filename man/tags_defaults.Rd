@@ -17,5 +17,5 @@ This function returns a named list providing the default tags for a
 tags_defaults()
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }

@@ -7,7 +7,7 @@
 #'
 #' @param x a `data.frame`
 #'
-#' @param tags a list of tags as returned by `tags()`; if default values are
+#' @param tags a list of tags as returned by [tags()]; if default values are
 #'   missing, they will be added to the new list of tags
 #'
 #' @param lost_action a `character` indicating the behaviour to adopt when tagged
@@ -16,10 +16,10 @@
 #' 
 #' @noRd
 #'
-#' @seealso [`prune_tags`](prune_tags) for removing tags which have lost their
+#' @seealso [prune_tags()] for removing tags which have lost their
 #'   variables
 #'
-#' @author Thibaut Jombart [thibaut@data.org](thibaut@data.org)
+#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return The function returns a `linelist` object with updated tags.
 #' 

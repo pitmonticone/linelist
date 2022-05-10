@@ -13,7 +13,7 @@ cases in rows and variables in columns}
 \item{...}{a series of tags provided as \code{tag_name = "column_name"}, where
 \code{tag_name} indicates any of the known variables listed in 'Details';
 alternatively, a named \code{list} of variables to be tagged, where names
-indicate the types of variable (to be selected from \code{tags_names()}), and
+indicate the types of variable (to be selected from \code{\link[=tags_names]{tags_names()}}), and
 values indicate their name in the input \code{data.frame}; see details for a
 list of known variable types and their expected content}
 
@@ -26,7 +26,7 @@ The function returns a \code{linelist} object.
 }
 \description{
 This function changes the \code{tags} of a \code{linelist} object, using the same
-syntax as the constructor \code{make_linelist}. If some of the default tags are
+syntax as the constructor \code{\link[=make_linelist]{make_linelist()}}. If some of the default tags are
 missing, they will be added to the final object.
 }
 \examples{
@@ -59,8 +59,8 @@ if (require(outbreaks)) {
 
 }
 \seealso{
-\url{make_linelist} to create a \code{linelist} object
+\code{\link[=make_linelist]{make_linelist()}} to create a \code{linelist} object
 }
 \author{
-Thibaut Jombart \url{thibaut@data.org}
+Thibaut Jombart \email{thibaut@data.org}
 }
