@@ -4,3 +4,4 @@ README.Rmd
 README.md
 codecov.yml
 ^\.github$
+^LICENSE\.md$
