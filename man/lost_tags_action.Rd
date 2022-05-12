@@ -38,7 +38,7 @@ but it can also accept a dataset as first argument, so that it can be used in
 pipelines as well.
 }
 \examples{
-# reset default (done automatically at package loading) 
+# reset default - done automatically at package loading
 lost_tags_action()
 
 # check current value
@@ -52,7 +52,7 @@ get_lost_tags_action()
 lost_tags_action("none")
 get_lost_tags_action()
 
-# reset to default (warning)
+# reset to default: warning
 lost_tags_action()
 }
 \author{

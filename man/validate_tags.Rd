@@ -35,13 +35,14 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
   x
 
   ## validation
-  validate_linelist(x)
+  validate_tags(x)
 
   ## hack to create an invalid tags (missing defaults)
   attr(x, "tags") <- list(id = "case_ID")
 
   ## the below issues an error
-  # validate_linelist(x)
+  ## note: tryCatch is only used to avoid a genuine error in the example 
+  tryCatch(validate_tags(x), error = paste)
 }
 }
 \seealso{
