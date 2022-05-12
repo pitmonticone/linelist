@@ -30,7 +30,7 @@
 #' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @examples
-#' # reset default (done automatically at package loading) 
+#' # reset default - done automatically at package loading
 #' lost_tags_action()
 #' 
 #' # check current value
@@ -44,7 +44,7 @@
 #' lost_tags_action("none")
 #' get_lost_tags_action()
 #' 
-#' # reset to default (warning)
+#' # reset to default: warning
 #' lost_tags_action()
 
 lost_tags_action <- function(x = NULL,

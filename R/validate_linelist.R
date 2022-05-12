@@ -56,7 +56,8 @@
 #'   x
 #'
 #'   ## the below issues an error
-#'   # validate_linelist(x)
+#'   ## note: tryCatch is only used to avoid a genuine error in the example 
+#'   tryCatch(validate_linelist(x), error = paste)
 #' }
 
 validate_linelist <- function(x,

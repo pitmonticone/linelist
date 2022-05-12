@@ -30,7 +30,8 @@
 #'   x
 #'
 #'   ## the below would issue an error
-#'   # validate_types(x)
+#'   ## note: tryCatch is only used to avoid a genuine error in the example 
+#'   tryCatch(validate_types(x), error = paste)
 #'
 #'   ## to allow other types, e.g. gender to be integer, character or factor
 #'   validate_types(x, tags_types(gender = c("integer", "character", "factor")))
