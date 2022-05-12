@@ -106,14 +106,16 @@ the right classes</p></div>
 <span class="r-in">  <span class="va">x</span></span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="co">## validation</span></span>
-<span class="r-in">  <span class="fu"><a href="validate_linelist.html">validate_linelist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu">validate_tags</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="co">## hack to create an invalid tags (missing defaults)</span></span>
 <span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"tags"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="co">## the below issues an error</span></span>
-<span class="r-in">  <span class="co"># validate_linelist(x)</span></span>
+<span class="r-in">  <span class="co">## note: tryCatch is only used to avoid a genuine error in the example </span></span>
+<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">validate_tags</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, error <span class="op">=</span> <span class="va">paste</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error in validate_tags(x): The following default tags are missing:\ndate_onset, date_reporting, date_admission, date_discharge, date_outcome, date_death, gender, age, location, occupation, hcw, outcome\n"</span>
 </code></pre></div>
     </div>
   </div>
