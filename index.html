@@ -121,6 +121,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconverse/incidence2" class="external-link">incidence2</a></span><span class="op">)</span>
+<span class="co">#&gt; Error in library(incidence2): there is no package called 'incidence2'</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/epiverse-trace/linelist" class="external-link">linelist</a></span><span class="op">)</span>
 
 <span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu">outbreaks</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/outbreaks/man/mers_korea_2015.html" class="external-link">mers_korea_2015</a></span><span class="op">$</span><span class="va">linelist</span>
@@ -270,8 +271,8 @@
 <span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">incidence</span><span class="op">(</span><span class="st">"date_onset"</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">facet_plot</span><span class="op">(</span>facets <span class="op">=</span> <span class="st">"gender"</span>, fill <span class="op">=</span> <span class="va">outcome</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="80%"></p>
+  <span class="fu">facet_plot</span><span class="op">(</span>facets <span class="op">=</span> <span class="st">"gender"</span>, fill <span class="op">=</span> <span class="va">outcome</span><span class="op">)</span>
+<span class="co">#&gt; Error in facet_plot(., facets = "gender", fill = outcome): could not find function "facet_plot"</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
@@ -362,6 +363,9 @@
 <li><a href="https://codecov.io/gh/epiverse-trace/linelist" class="external-link"><img src="https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02" alt="codecov"></a></li>
 <li><a href="https://www.reconverse.org/lifecycle.html#experimental" class="external-link"><img src="https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg" alt="lifecycle-experimental"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.6556047" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6556047.svg" alt="DOI"></a></li>
+<li><a href="https://cran.r-project.org/web/checks/check_results_linelist.html" class="external-link"><img src="https://cranchecks.info/badges/summary/linelist" alt="cran-check"></a></li>
+<li><a href="https://cran.r-project.org/package=linelist" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/linelist" alt="month-download"></a></li>
+<li><a href="https://cran.r-project.org/package=linelist" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/linelist" alt="total-download"></a></li>
 </ul>
 </div>
 
