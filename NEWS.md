@@ -1,3 +1,12 @@
+# linelist 0.0.2
+
+## New features
+
+## Bug fixes
+
+
+
+
 # linelist 0.0.1
 
 This is the first proof-of-concept release on CRAN.
