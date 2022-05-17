@@ -7,13 +7,13 @@
 
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![cran-check](https://cranchecks.info/badges/summary/linelist)](https://cran.r-project.org/web/checks/check_results_linelist.html)
 [![R-CMD-check](https://github.com/epiverse-trace/linelist/workflows/R-CMD-check/badge.svg)](https://github.com/epiverse-trace/linelist/actions)
 [![codecov](https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02)](https://codecov.io/gh/epiverse-trace/linelist)
 [![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6556047.svg)](https://doi.org/10.5281/zenodo.6556047)
-[![cran-check](https://cranchecks.info/badges/summary/linelist)](https://cran.r-project.org/web/checks/check_results_linelist.html)
 [![month-download](https://cranlogs.r-pkg.org/badges/linelist)](https://cran.r-project.org/package=linelist)
 [![total-download](https://cranlogs.r-pkg.org/badges/grand-total/linelist)](https://cran.r-project.org/package=linelist)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6556047.svg)](https://doi.org/10.5281/zenodo.6556047)
 
 <!-- badges: end -->
 
