@@ -11,6 +11,9 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![codecov](https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02)](https://codecov.io/gh/epiverse-trace/linelist)
 [![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6556047.svg)](https://doi.org/10.5281/zenodo.6556047)
+[![cran-check](https://cranchecks.info/badges/summary/linelist)](https://cran.r-project.org/web/checks/check_results_linelist.html)
+[![month-download](https://cranlogs.r-pkg.org/badges/linelist)](https://cran.r-project.org/package=linelist)
+[![total-download](https://cranlogs.r-pkg.org/badges/grand-total/linelist)](https://cran.r-project.org/package=linelist)
 
 <!-- badges: end -->
 
@@ -65,6 +68,7 @@ library(dplyr)
 library(magrittr)
 library(outbreaks)
 library(incidence2)
+#> Error in library(incidence2): there is no package called 'incidence2'
 library(linelist)
 
 dataset <- outbreaks::mers_korea_2015$linelist
@@ -215,9 +219,8 @@ x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
   facet_plot(facets = "gender", fill = outcome)
+#> Error in facet_plot(., facets = "gender", fill = outcome): could not find function "facet_plot"
 ```
-
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="80%" />
 
 ## Documentation
 
