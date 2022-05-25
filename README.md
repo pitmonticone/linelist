@@ -226,9 +226,9 @@ x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
   facet_plot(facets = "gender", fill = outcome)
-#> Error in `check_suggests()`:
-#> ! Suggested package 'ggplot2' not present.
 ```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="80%" />
 
 ## Documentation
 
