@@ -2,6 +2,11 @@
 
 ## New features
 
+* added a hex logo thanks to David Mascarina's contribution
+
+* added short lay description to README thanks to Emma Marty's contribution
+
+
 ## Bug fixes
 
 
