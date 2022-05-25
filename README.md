@@ -17,6 +17,13 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 
 <!-- badges: end -->
 
+*linelist* provides a safe entry point to the *Epiverse* software
+ecosystem, adding a foundational layer through *tagging*, *validation*,
+and *safeguarding* epidemiological data, to help make data pipelines
+more straightforward and robust.
+
+<br>
+
 ## Installation
 
 ### Stable version
@@ -255,6 +262,12 @@ arguments may change, some functionalities may be added, etc.
 
 Contributions are welcome via [pull
 requests](https://github.com/epiverse-trace/linelist/pulls).
+
+Contributors to the project include:
+
+  - Thibaut Jombart (author)
+  - David Mascarina (logo)
+  - Emma Marty (communication)
 
 ### Code of Conduct
 
