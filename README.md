@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# *linelist*: Tagging and Validating Epidemiological Data
+# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/linelist_hex.png" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -64,12 +64,12 @@ details about `linelist` objects.
 
 # load packages and a dataset for the example
 # -------------------------------------------
-library(dplyr)
-library(magrittr)
-library(outbreaks)
-library(incidence2)
-#> Error in library(incidence2): there is no package called 'incidence2'
-library(linelist)
+library(pacman)
+p_load(dplyr)
+p_load(magrittr)
+p_load(outbreaks)
+p_load(incidence2)
+p_load(linelist)
 
 dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)
@@ -219,7 +219,8 @@ x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
   facet_plot(facets = "gender", fill = outcome)
-#> Error in facet_plot(., facets = "gender", fill = outcome): could not find function "facet_plot"
+#> Error in `check_suggests()`:
+#> ! Suggested package 'ggplot2' not present.
 ```
 
 ## Documentation

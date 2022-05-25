@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 ```
 
 
-# *linelist*: Tagging and Validating Epidemiological Data
+# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/linelist_hex.png" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -82,11 +82,12 @@ about `linelist` objects.
 
 # load packages and a dataset for the example
 # -------------------------------------------
-library(dplyr)
-library(magrittr)
-library(outbreaks)
-library(incidence2)
-library(linelist)
+library(pacman)
+p_load(dplyr)
+p_load(magrittr)
+p_load(outbreaks)
+p_load(incidence2)
+p_load(linelist)
 
 dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)
