@@ -22,7 +22,6 @@ ecosystem, adding a foundational layer through *tagging*, *validation*,
 and *safeguarding* epidemiological data, to help make data pipelines
 more straightforward and robust.
 
-<br>
 
 ## Installation
 
@@ -48,6 +47,8 @@ remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 
 ## Usage
 
+<img src="man/figures/linelist_infographics.png" width="60%" />
+ 
 *linelist* works by tagging key epidemiological data in a `data.frame`
 or a `tibble` to facilitate and strengthen data pipelines. The resulting
 object is a `linelist` object, which extends `data.frame` (or `tibble`)
