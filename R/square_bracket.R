@@ -73,7 +73,7 @@
   lost_action <- get_lost_tags_action()
 
   # Case 1
-  out <- NextMethod()
+  out <- drop_linelist(x)[i, j, drop = drop]
   if (is.null(ncol(out))) {
     return(out)
   }
