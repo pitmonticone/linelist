@@ -10,7 +10,9 @@
 #'
 #' @param ... the variables to rename, using `dplyr` compatible syntax
 #'
-#' @exportS3Method dplyr::rename
+#' @importFrom dplyr rename
+#'
+#' @export
 #'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
