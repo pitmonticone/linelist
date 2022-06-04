@@ -67,8 +67,10 @@
   # 2. if the output is going to be a `linelist` we need to restore previous
   # tags with the appropriate behaviour in case of missing tagged variables
   #
-  # Note that the [ operator's implementation is messy and does not deal well
-  # with extra arguments, so we need to stick to the original signature here.
+  # Note that the [ operator's implementation is messy and does not seem to pass
+  # the drop argument well when using NextMethod(); also it does not allow extra
+  # args, in case we wanted to use them; so declassing the object instead using
+  # drop_linelist()
 
   lost_action <- get_lost_tags_action()
 
