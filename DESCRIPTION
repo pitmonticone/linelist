@@ -9,7 +9,7 @@ URL: https://github.com/epiverse-trace/linelist
 BugReports: https://github.com/epiverse-trace/linelist/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Config/testthat/edition: 3
 Imports:
     checkmate

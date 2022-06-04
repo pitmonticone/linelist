@@ -59,19 +59,21 @@
 `[.linelist` <- function(x, i, j, drop = FALSE) {
   # Strategy for subsetting
   #
-  # Subsetting is done using the next method in line, for which we drop the
-  # linelist class (we cannot use NextMethod because of the extra argument
-  # `lost_action`). Then we need to check two things:
+  # Subsetting is done using the next method in line, and making post-hoc checks
+  # on two things:
   #
   # 1. that the subsetted object is still a `data.frame` or a `tibble`; if not,
   # we automatically drop the `linelist` class and tags
   # 2. if the output is going to be a `linelist` we need to restore previous
   # tags with the appropriate behaviour in case of missing tagged variables
+  #
+  # Note that the [ operator's implementation is messy and does not deal well
+  # with extra arguments, so we need to stick to the original signature here.
 
   lost_action <- get_lost_tags_action()
 
   # Case 1
-  out <- drop_linelist(x)[i, j, drop = drop]
+  out <- NextMethod()
   if (is.null(ncol(out))) {
     return(out)
   }
