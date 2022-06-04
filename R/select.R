@@ -15,7 +15,9 @@
 #'   which case the output columns will be renamed accordingly (e.g. `onset =
 #'   "date_onset"` will output a column named 'onset').
 #'
-#' @exportS3Method dplyr::select
+#' @importFrom dplyr select
+#'
+#' @export
 #'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
