@@ -22,7 +22,6 @@ ecosystem, adding a foundational layer through *tagging*, *validation*,
 and *safeguarding* epidemiological data, to help make data pipelines
 more straightforward and robust.
 
-
 ## Installation
 
 ### Stable version
@@ -48,7 +47,7 @@ remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 ## Usage
 
 <img src="man/figures/linelist_infographics.png" width="60%" />
- 
+
 *linelist* works by tagging key epidemiological data in a `data.frame`
 or a `tibble` to facilitate and strengthen data pipelines. The resulting
 object is a `linelist` object, which extends `data.frame` (or `tibble`)
@@ -229,7 +228,7 @@ x_no_geo %>%
   facet_plot(facets = "gender", fill = outcome)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="80%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="60%" />
 
 ## Documentation
 
@@ -248,6 +247,16 @@ In particular:
 
 To ask questions or give us some feedback, please use the github
 [issues](https://github.com/epiverse-trace/linelist/issues) system.
+
+## Data privacy
+
+Case line lists may contain personally identifiable information (PII).
+While *linelist* provides a way to store this data in R, it does not
+currently provide tools for data anonymization. Respecting individual
+privacy and ensuring PII is handled with the required level of
+confidentiality is the user’s responsibility. For most analytics
+purposes, PII is not needed, so that would often be advisable to remove
+PII from the data before sharing them with analytics teams.
 
 ## Development
 
