@@ -274,7 +274,7 @@
   <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">incidence</span><span class="op">(</span><span class="st">"date_onset"</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">facet_plot</span><span class="op">(</span>facets <span class="op">=</span> <span class="st">"gender"</span>, fill <span class="op">=</span> <span class="va">outcome</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="80%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="60%"></p>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
@@ -290,6 +290,11 @@
 <h2 id="getting-help">Getting help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
 </h2>
 <p>To ask questions or give us some feedback, please use the github <a href="https://github.com/epiverse-trace/linelist/issues" class="external-link">issues</a> system.</p>
+</div>
+<div class="section level2">
+<h2 id="data-privacy">Data privacy<a class="anchor" aria-label="anchor" href="#data-privacy"></a>
+</h2>
+<p>Case line lists may contain personally identifiable information (PII). While <em>linelist</em> provides a way to store this data in R, it does not currently provide tools for data anonymization. Respecting individual privacy and ensuring PII is handled with the required level of confidentiality is the user’s responsibility. Note that PII is rarely needed for common analytics tasks, so that in many instances it may be advisable to remove PII from the data before sharing them with analytics teams.</p>
 </div>
 <div class="section level2">
 <h2 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
@@ -388,7 +393,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

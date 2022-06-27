@@ -85,6 +85,8 @@ fields for further data cleaning and analysis.</p>
     <dl><dt>x</dt>
 <dd><p>a <code>data.frame</code> or a <code>tibble</code> containing case line list data, with
 cases in rows and variables in columns</p></dd>
+
+
 <dt>...</dt>
 <dd><p>a series of tags provided as <code>tag_name = "column_name"</code>, where
 <code>tag_name</code> indicates any of the known variables listed in 'Details';
@@ -92,14 +94,19 @@ alternatively, a named <code>list</code> of variables to be tagged, where names
 indicate the types of variable (to be selected from <code><a href="tags_names.html">tags_names()</a></code>), and
 values indicate their name in the input <code>data.frame</code>; see details for a
 list of known variable types and their expected content</p></dd>
+
+
 <dt>allow_extra</dt>
 <dd><p>a <code>logical</code> indicating if additional data tags not
 currently recognized by <code>linelist</code> should be allowed; if <code>FALSE</code>, unknown
 tags will trigger an error</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The function returns a <code>linelist</code> object.</p>
+    
+
+<p>The function returns a <code>linelist</code> object.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -188,7 +195,7 @@ format); this is the recommended format</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
