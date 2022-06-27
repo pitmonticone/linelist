@@ -252,12 +252,14 @@ To ask questions or give us some feedback, please use the github
 
 Case line lists may contain personally identifiable information (PII).
 While *linelist* provides a way to store this data in R, it does not
-currently provide tools for data anonymization. Respecting individual
-privacy and ensuring PII is handled with the required level of
-confidentiality is the user’s responsibility. Note that PII is rarely
-needed for common analytics tasks, so that in many instances it may be
-advisable to remove PII from the data before sharing them with analytics
-teams.
+currently provide tools for data anonymization. The user is responsible
+for respecting individual privacy and ensuring PII is handled with the
+required level of confidentiality, in compliance with applicable laws
+and regulations for storing and sharing PII.
+
+Note that PII is rarely needed for common analytics tasks, so that in
+many instances it may be advisable to remove PII from the data before
+sharing them with analytics teams.
 
 ## Development
 
