@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Digital Public
-Good](https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.svg)](https://digitalpublicgoods.net/registry/linelist.html)
+Good](https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.png)](https://digitalpublicgoods.net/registry/linelist.html)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![cran-check](https://cranchecks.info/badges/summary/linelist)](https://cran.r-project.org/web/checks/check_results_linelist.html)
