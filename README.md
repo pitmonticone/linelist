@@ -70,14 +70,37 @@ The short example below illustrates these different features. See the
 details about `linelist` objects.
 
 ``` r
+
 # load packages and a dataset for the example
 # -------------------------------------------
 library(pacman)
-#> Warning: package 'pacman' was built under R version 4.1.3
 p_load(dplyr)
+#> Installing package into '/Users/runner/work/_temp/Library'
+#> (as 'lib' is unspecified)
+#> also installing the dependencies 'ellipsis', 'purrr', 'generics', 'tidyselect'
+#> 
+#> The downloaded binary packages are in
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpATsIs3/downloaded_packages
+#> 
+#> dplyr installed
 p_load(magrittr)
 p_load(outbreaks)
+#> Installing package into '/Users/runner/work/_temp/Library'
+#> (as 'lib' is unspecified)
+#> 
+#> The downloaded binary packages are in
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpATsIs3/downloaded_packages
+#> 
+#> outbreaks installed
 p_load(incidence2)
+#> Installing package into '/Users/runner/work/_temp/Library'
+#> (as 'lib' is unspecified)
+#> also installing the dependencies 'tzdb', 'cpp11', 'data.table', 'grates', 'clock'
+#> 
+#> The downloaded binary packages are in
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpATsIs3/downloaded_packages
+#> 
+#> incidence2 installed
 p_load(linelist)
 
 dataset <- outbreaks::mers_korea_2015$linelist
@@ -123,22 +146,24 @@ x <- dataset %>%
 x
 #> 
 #> // linelist object
-#> # A tibble: 162 x 15
-#>    id      age age_class sex   place_infect   reporting_ctry loc_hosp dt_onset  
-#>    <chr> <int> <chr>     <fct> <fct>          <fct>          <fct>    <date>    
-#>  1 SK_1     68 60-69     M     Middle East    South Korea    Pyeongt~ 2015-05-11
-#>  2 SK_2     63 60-69     F     Outside Middl~ South Korea    Pyeongt~ 2015-05-18
-#>  3 SK_3     76 70-79     M     Outside Middl~ South Korea    Pyeongt~ 2015-05-20
-#>  4 SK_4     46 40-49     F     Outside Middl~ South Korea    Pyeongt~ 2015-05-25
-#>  5 SK_5     50 50-59     M     Outside Middl~ South Korea    365 Yeo~ 2015-05-25
-#>  6 SK_6     71 70-79     M     Outside Middl~ South Korea    Pyeongt~ 2015-05-24
-#>  7 SK_7     28 20-29     F     Outside Middl~ South Korea    Pyeongt~ 2015-05-21
-#>  8 SK_8     46 40-49     F     Outside Middl~ South Korea    Seoul C~ 2015-05-26
-#>  9 SK_9     56 50-59     M     Outside Middl~ South Korea    Pyeongt~ NA        
-#> 10 SK_10    44 40-49     M     Outside Middl~ China          Pyeongt~ 2015-05-21
-#> # ... with 152 more rows, and 7 more variables: dt_report <date>,
-#> #   week_report <fct>, dt_start_exp <date>, dt_end_exp <date>, dt_diag <date>,
-#> #   outcome <fct>, dt_death <date>
+#> # A tibble: 162 × 15
+#>    id      age age_class sex   place_inf…¹ repor…² loc_h…³ dt_onset   dt_report 
+#>    <chr> <int> <chr>     <fct> <fct>       <fct>   <fct>   <date>     <date>    
+#>  1 SK_1     68 60-69     M     Middle East South … Pyeong… 2015-05-11 2015-05-19
+#>  2 SK_2     63 60-69     F     Outside Mi… South … Pyeong… 2015-05-18 2015-05-20
+#>  3 SK_3     76 70-79     M     Outside Mi… South … Pyeong… 2015-05-20 2015-05-20
+#>  4 SK_4     46 40-49     F     Outside Mi… South … Pyeong… 2015-05-25 2015-05-26
+#>  5 SK_5     50 50-59     M     Outside Mi… South … 365 Ye… 2015-05-25 2015-05-27
+#>  6 SK_6     71 70-79     M     Outside Mi… South … Pyeong… 2015-05-24 2015-05-28
+#>  7 SK_7     28 20-29     F     Outside Mi… South … Pyeong… 2015-05-21 2015-05-28
+#>  8 SK_8     46 40-49     F     Outside Mi… South … Seoul … 2015-05-26 2015-05-29
+#>  9 SK_9     56 50-59     M     Outside Mi… South … Pyeong… NA         2015-05-29
+#> 10 SK_10    44 40-49     M     Outside Mi… China   Pyeong… 2015-05-21 2015-05-29
+#> # … with 152 more rows, 6 more variables: week_report <fct>,
+#> #   dt_start_exp <date>, dt_end_exp <date>, dt_diag <date>, outcome <fct>,
+#> #   dt_death <date>, and abbreviated variable names ¹​place_infect,
+#> #   ²​reporting_ctry, ³​loc_hosp
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 #> 
 #> // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age
 tags(x) # check available tags
@@ -192,7 +217,7 @@ lost_tags_action()
 # ------------------------------------------------------
 x_no_geo %>%
   select_tags(date_onset, outcome)
-#> # A tibble: 162 x 2
+#> # A tibble: 162 × 2
 #>    date_onset outcome
 #>    <date>     <fct>  
 #>  1 2015-05-11 Alive  
@@ -205,11 +230,12 @@ x_no_geo %>%
 #>  8 2015-05-26 Alive  
 #>  9 NA         Alive  
 #> 10 2015-05-21 Alive  
-#> # ... with 152 more rows
+#> # … with 152 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 
 x_no_geo %>%
   tags_df()
-#> # A tibble: 162 x 4
+#> # A tibble: 162 × 4
 #>    date_onset date_reporting gender outcome
 #>    <date>     <date>         <fct>  <fct>  
 #>  1 2015-05-11 2015-05-19     M      Alive  
@@ -222,15 +248,16 @@ x_no_geo %>%
 #>  8 2015-05-26 2015-05-29     F      Alive  
 #>  9 NA         2015-05-29     M      Alive  
 #> 10 2015-05-21 2015-05-29     M      Alive  
-#> # ... with 152 more rows
+#> # … with 152 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 
 x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
   facet_plot(facets = "gender", fill = outcome)
-#> Error in `check_suggests()`:
-#> ! Suggested package 'ggplot2' not present.
 ```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="60%" />
 
 ## Documentation
 
@@ -239,10 +266,10 @@ More detailed documentation can be found at:
 
 In particular:
 
--   A general introduction to *linelist*
+  - A general introduction to *linelist*
     ([link](https://epiverse-trace.github.io/linelist/articles/linelist_introduction.html))
 
--   The reference manual
+  - The reference manual
     ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
 
 ## Getting help
@@ -280,9 +307,9 @@ requests](https://github.com/epiverse-trace/linelist/pulls).
 
 Contributors to the project include:
 
--   Thibaut Jombart (author)
--   David Mascarina (logo)
--   Emma Marty (communication)
+  - Thibaut Jombart (author)
+  - David Mascarina (logo)
+  - Emma Marty (communication)
 
 ### Code of Conduct
 
