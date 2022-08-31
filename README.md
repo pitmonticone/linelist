@@ -66,7 +66,7 @@ by providing three types of features:
     common data handling operations
 
 The short example below illustrates these different features. See the
-[Documentation](Documentation) section for more in-depth examples and
+[Documentation](#Documentation) section for more in-depth examples and
 details about `linelist` objects.
 
 ``` r
@@ -80,7 +80,7 @@ p_load(dplyr)
 #> also installing the dependencies 'ellipsis', 'purrr', 'generics', 'tidyselect'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpM80wFi/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPI9gSu/downloaded_packages
 #> 
 #> dplyr installed
 p_load(magrittr)
@@ -89,7 +89,7 @@ p_load(outbreaks)
 #> (as 'lib' is unspecified)
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpM80wFi/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPI9gSu/downloaded_packages
 #> 
 #> outbreaks installed
 p_load(incidence2)
@@ -98,7 +98,7 @@ p_load(incidence2)
 #> also installing the dependencies 'tzdb', 'cpp11', 'data.table', 'grates', 'clock'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpM80wFi/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPI9gSu/downloaded_packages
 #> 
 #> incidence2 installed
 p_load(linelist)
