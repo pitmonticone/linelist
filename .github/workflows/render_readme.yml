@@ -17,7 +17,7 @@ jobs:
   render-readme:
     runs-on: macos-latest
     env:
-      GITHUB_PAT: ${{ secrets.PAT_TIBO }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout repos
         uses: actions/checkout@v2
