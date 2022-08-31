@@ -80,7 +80,7 @@ p_load(dplyr)
 #> also installing the dependencies 'ellipsis', 'purrr', 'generics', 'tidyselect'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpATsIs3/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpM80wFi/downloaded_packages
 #> 
 #> dplyr installed
 p_load(magrittr)
@@ -89,7 +89,7 @@ p_load(outbreaks)
 #> (as 'lib' is unspecified)
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpATsIs3/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpM80wFi/downloaded_packages
 #> 
 #> outbreaks installed
 p_load(incidence2)
@@ -98,7 +98,7 @@ p_load(incidence2)
 #> also installing the dependencies 'tzdb', 'cpp11', 'data.table', 'grates', 'clock'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpATsIs3/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpM80wFi/downloaded_packages
 #> 
 #> incidence2 installed
 p_load(linelist)
@@ -163,7 +163,6 @@ x
 #> #   dt_start_exp <date>, dt_end_exp <date>, dt_diag <date>, outcome <fct>,
 #> #   dt_death <date>, and abbreviated variable names ¹​place_infect,
 #> #   ²​reporting_ctry, ³​loc_hosp
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 #> 
 #> // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age
 tags(x) # check available tags
@@ -231,7 +230,6 @@ x_no_geo %>%
 #>  9 NA         Alive  
 #> 10 2015-05-21 Alive  
 #> # … with 152 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 
 x_no_geo %>%
   tags_df()
@@ -249,7 +247,6 @@ x_no_geo %>%
 #>  9 NA         2015-05-29     M      Alive  
 #> 10 2015-05-21 2015-05-29     M      Alive  
 #> # … with 152 more rows
-#> # ℹ Use `print(n = ...)` to see more rows
 
 x_no_geo %>%
   tags_df() %>%
