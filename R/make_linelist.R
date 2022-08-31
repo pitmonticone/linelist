@@ -2,7 +2,7 @@
 #'
 #' This function converts a `data.frame` or a `tibble` into a `linelist` object,
 #' where different types of epidemiologically relevant data are tagged. This
-#' includes dates of different events (e.g. onset of symtpom, case reporting),
+#' includes dates of different events (e.g. onset of symptoms, case reporting),
 #' information on the patient (e.g. age, gender, location) as well as other
 #' informations such as the type of case (e.g. confirmed, probable) or the
 #' outcome of the disease. The output will seem to be the same `data.frame`, but

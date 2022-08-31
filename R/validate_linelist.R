@@ -1,6 +1,6 @@
 #' Checks the content of a linelist object
 #'
-#' This function evalutes the validity of a `linelist` object by checking the
+#' This function evaluates the validity of a `linelist` object by checking the
 #' object class, its tags, and the types of the tagged variables. It combines
 #' validations checks made by [validate_types()] and [validate_tags()]. See
 #' 'Details' section for more information on the checks performed.
