@@ -47,11 +47,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add README.md
           git diff-index --quiet HEAD || git commit -m "Automatic readme update"
-   
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PAT_TIBO }}
-          branch: 'main'
-          force: true
-          
+          git push origin || echo "No changes to push"
