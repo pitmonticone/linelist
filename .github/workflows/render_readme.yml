@@ -38,7 +38,7 @@ jobs:
  
       - name: Compile the readme
         run: |
-          rmarkdown::render("readme.Rmd")
+          rmarkdown::render("README.Rmd")
         shell: Rscript {0}
         
       - name: Commit files
