@@ -80,7 +80,7 @@ p_load(dplyr)
 #> also installing the dependencies 'ellipsis', 'purrr', 'generics', 'tidyselect'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp9rPCdr/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYWo7Yf/downloaded_packages
 #> 
 #> dplyr installed
 p_load(magrittr)
@@ -89,7 +89,7 @@ p_load(outbreaks)
 #> (as 'lib' is unspecified)
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp9rPCdr/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYWo7Yf/downloaded_packages
 #> 
 #> outbreaks installed
 p_load(incidence2)
@@ -98,7 +98,7 @@ p_load(incidence2)
 #> also installing the dependencies 'tzdb', 'cpp11', 'data.table', 'grates', 'clock'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp9rPCdr/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYWo7Yf/downloaded_packages
 #> 
 #> incidence2 installed
 p_load(linelist)
@@ -307,6 +307,7 @@ Contributors to the project include:
   - Thibaut Jombart (author)
   - David Mascarina (logo)
   - Emma Marty (communication)
+  - Pietro Monticone (contributor)
 
 ### Code of Conduct
 
@@ -318,7 +319,7 @@ By contributing to this project, you agree to abide by its terms.
 ### Notes
 
 This package is a reboot of the RECON package
-[linelist](https://github.com/reconhub/linelist). Unliked its
+[linelist](https://github.com/reconhub/linelist). Unlike its
 predecessor, the new package focuses on the implementation of a
 *linelist* class. The data cleaning features of the original package
 will eventually be re-implemented for *linelist* objects, albeit likely
