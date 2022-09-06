@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/linelist_hex.png" align="right" width="120" />
+# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -80,7 +80,7 @@ p_load(dplyr)
 #> also installing the dependencies 'ellipsis', 'purrr', 'generics', 'tidyselect'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPI9gSu/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmphl9NS5/downloaded_packages
 #> 
 #> dplyr installed
 p_load(magrittr)
@@ -89,7 +89,7 @@ p_load(outbreaks)
 #> (as 'lib' is unspecified)
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPI9gSu/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmphl9NS5/downloaded_packages
 #> 
 #> outbreaks installed
 p_load(incidence2)
@@ -98,7 +98,7 @@ p_load(incidence2)
 #> also installing the dependencies 'tzdb', 'cpp11', 'data.table', 'grates', 'clock'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPI9gSu/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmphl9NS5/downloaded_packages
 #> 
 #> incidence2 installed
 p_load(linelist)
