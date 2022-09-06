@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/linelist_hex.png" align="right" width="120" />
+# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 

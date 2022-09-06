@@ -2,7 +2,7 @@
 title: "An introduction to linelist"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{linelist_introduction}
+  %\VignetteIndexEntry{An introduction to linelist}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

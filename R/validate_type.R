@@ -3,7 +3,7 @@
 #' Internal. This function checks that a specific tagged variable has the
 #' expected type of data. Default expected types are defined by
 #' [tags_types()]. Note that this is a low-level function. Consider using the
-#' plurial version `validate_types` which operates the validation on all tagged
+#' plural version `validate_types` which operates the validation on all tagged
 #' variables of a `linelist` object.
 #'
 #' @noRd
