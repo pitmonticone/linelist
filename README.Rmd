@@ -215,6 +215,7 @@ Contributors to the project include:
 * Thibaut Jombart (author)
 * David Mascarina (logo)
 * Emma Marty (communication)
+* Pietro Monticone (contributor)
 
 ### Code of Conduct
 Please note that the linelist project is released with a 
@@ -225,7 +226,7 @@ By contributing to this project, you agree to abide by its terms.
 ### Notes
 
 This package is a reboot of the RECON package
-[linelist](https://github.com/reconhub/linelist). Unliked its predecessor, the
+[linelist](https://github.com/reconhub/linelist). Unlike its predecessor, the
 new package focuses on the implementation of a *linelist* class. The data
 cleaning features of the original package will eventually be re-implemented for
 *linelist* objects, albeit likely in a separate package.

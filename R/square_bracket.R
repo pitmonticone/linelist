@@ -1,4 +1,4 @@
-#' Subsetting of linelist objets
+#' Subsetting of linelist objects
 #'
 #' The `[]` and `[[]]` operators for `linelist` objects behaves like for regular
 #' `data.frame` or `tibble`, but check that tagged variables are not lost, and
