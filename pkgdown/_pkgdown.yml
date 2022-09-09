@@ -1,0 +1,17 @@
+url: https://epiverse-trace.github.io/linelist/
+
+reference:
+  - title: Package Overview
+    contents:
+    - linelist
+  - title: Make and Validate `linelist`
+    contents:
+    - make_linelist
+    - validate_linelist
+    - validate_types
+  - title: S3 Methods for `linelist` Objects
+    contents:
+    - ends_with("\\.linelist")
+  - title: Manipulate `linelist` Tags
+    contents:
+    - contains("tags")
