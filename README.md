@@ -77,10 +77,10 @@ library(pacman)
 p_load(dplyr)
 #> Installing package into '/Users/runner/work/_temp/Library'
 #> (as 'lib' is unspecified)
-#> also installing the dependencies 'ellipsis', 'purrr', 'generics', 'tidyselect'
+#> also installing the dependencies 'generics', 'tidyselect'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYWo7Yf/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpEsZg0k/downloaded_packages
 #> 
 #> dplyr installed
 p_load(magrittr)
@@ -89,16 +89,16 @@ p_load(outbreaks)
 #> (as 'lib' is unspecified)
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYWo7Yf/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpEsZg0k/downloaded_packages
 #> 
 #> outbreaks installed
 p_load(incidence2)
 #> Installing package into '/Users/runner/work/_temp/Library'
 #> (as 'lib' is unspecified)
-#> also installing the dependencies 'tzdb', 'cpp11', 'data.table', 'grates', 'clock'
+#> also installing the dependencies 'tzdb', 'cpp11', 'ellipsis', 'data.table', 'grates', 'clock'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYWo7Yf/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpEsZg0k/downloaded_packages
 #> 
 #> incidence2 installed
 p_load(linelist)
@@ -264,7 +264,7 @@ More detailed documentation can be found at:
 In particular:
 
   - A general introduction to *linelist*
-    ([link](https://epiverse-trace.github.io/linelist/articles/linelist_introduction.html))
+    ([link](https://epiverse-trace.github.io/linelist/articles/linelist.html))
 
   - The reference manual
     ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
@@ -313,7 +313,7 @@ Contributors to the project include:
 
 Please note that the linelist project is released with a [Contributor
 Code of
-Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
 ### Notes
